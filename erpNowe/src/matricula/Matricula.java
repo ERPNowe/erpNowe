@@ -1,9 +1,15 @@
 package matricula;
 
 /**
+ * Clase Matricula
  * @author Vanessa
  * @version 1.0
  * @since 18/11/2015
+ * <br>
+ * <p>
+ * Esta clase se corresponde con los atributos y
+ *  los metodos de la clase matricula
+ * </p>
  */
 
 /**
