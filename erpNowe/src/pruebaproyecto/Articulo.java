@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-
+// Prueba cambio
 public class Articulo {
 
 	 private static String usuario = "root";
