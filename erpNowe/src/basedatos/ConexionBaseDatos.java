@@ -1,4 +1,16 @@
-package pruebaproyecto;
+/**
+ * Clase ConexionBaseDatos
+ * @autor curso14/7803
+ * @version 1.0
+ * @since 18/11/2015
+ * <br>
+ * <p>
+ * Esta clase se corresponde con los metodos principales 
+ * de acceso y gestión a la base de datos mysql "nowedb"
+ * </p>
+ */
+
+package basedatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,7 +50,7 @@ public class ConexionBaseDatos {
  //-----------------------------------------------------------------------------------
  //-----------------------------------------------------------------------------------
  
- // Consultas (executeQuery())
+ /** Consultas (executeQuery())*/
  public ResultSet getQuery(String query){
     Statement sentenciaSql = null; //para crear el objeto que te pirmite hacer la sentencia
     ResultSet datos = null; //recoge los datos de la select
@@ -58,7 +70,7 @@ public class ConexionBaseDatos {
  //-----------------------------------------------------------------------------------
  //-----------------------------------------------------------------------------------
  
- // Insertar, Modificar, Borrar (executeUpdate())
+ /**Insertar, Modificar, Borrar (executeUpdate())*/
  public boolean setQuery(String query){
     Statement sentenciaSql = null;
     boolean resultado = false; //lo utilizamos para saber si se ha podido ejecutar 
@@ -77,7 +89,7 @@ public class ConexionBaseDatos {
  //-----------------------------------------------------------------------------------
  //-----------------------------------------------------------------------------------
  
- //cerrar la base de datos
+ /**Cerrar la base de datos*/
  public void cerrarConexion(){
 	 try {
 		conn.close();
