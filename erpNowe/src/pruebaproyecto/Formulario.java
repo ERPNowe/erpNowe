@@ -1,4 +1,4 @@
-package accesobasedatos;
+package pruebaproyecto;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -83,30 +83,11 @@ public class Formulario extends JPanel implements ActionListener {
 		tf3.setColumns(10);
 
 		btnBorrar = new JButton("Borrar");
-/*		btnBorrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				labelResultado.setText("");
-				// conexion = new ConexionBaseDatos(bd, usuario, pwd);
-				Articulo.borrarArticulo();
-				// Principal.conexion.cerrarConexion();
-				tf1.setText("");
-				tf2.setText("");
-			}
-		});*/
 		btnBorrar.setBounds(475, 225, 89, 23);
 		this.add(btnBorrar);
 		btnBorrar.addActionListener(this);
 
 		btnListaRegs = new JButton("Listar registros");
-/*		btnListaRegs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				labelResultado.setText("");
-				tf1.setText("");
-				tf2.setText("");
-				// Principal.conexion = new ConexionBaseDatos(bd, usuario, pwd);
-				Articulo.listaArticulos();
-			}
-		});*/
 		btnListaRegs.setBounds(25, 225, 177, 23);
 		this.add(btnListaRegs);
 		btnListaRegs.addActionListener(this);
@@ -119,13 +100,6 @@ public class Formulario extends JPanel implements ActionListener {
         add(scrollRegs);
 
 		btnModificar = new JButton("Modificar");
-/*		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				labelResultado.setText("");
-				// conexion = new ConexionBaseDatos(bd, usuario, pwd);
-				Articulo.modificarArticulo();
-			}
-		});*/
 		btnModificar.setBounds(21, 118, 179, 23);
 		this.add(btnModificar);
 		btnModificar.addActionListener(this);
