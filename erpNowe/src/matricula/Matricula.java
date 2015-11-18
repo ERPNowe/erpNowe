@@ -1,4 +1,4 @@
-package Matricula;
+package matricula;
 
 /**
  * @author Vanessa
