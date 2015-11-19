@@ -28,8 +28,8 @@ import javax.swing.JPanel;
 public class VentanaPrincipal extends JFrame {
 	
 	private JMenuBar barraMenu;
-	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula;
-	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula;
+	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
+	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, ayuda, salir;
 	
 	public VentanaPrincipal () {
 		
@@ -84,12 +84,25 @@ public class VentanaPrincipal extends JFrame {
 		menuCalificacion.add(calificacion);		
 		
 		menuMatricula = new JMenu ("Matrícula");
-		barraMenu.add(menuCalificacion);
+		barraMenu.add(menuMatricula);
 		
 		matricula = new JMenuItem("Matrícula");
 		//matricula.addActionListener(this);
 		menuMatricula.add(matricula);	
 		
+		menuAyuda = new JMenu ("Ayuda");
+		barraMenu.add(menuAyuda);
+		
+		ayuda = new JMenuItem("?");
+		//matricula.addActionListener(this);
+		menuAyuda.add(ayuda);
+		
+		menuSalir = new JMenu ("Salir");
+		barraMenu.add(menuSalir);
+		
+		salir = new JMenuItem("Salir");
+		//matricula.addActionListener(this);
+		menuSalir.add(salir);
 	}
 	
 }
