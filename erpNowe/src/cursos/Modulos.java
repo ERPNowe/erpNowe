@@ -78,8 +78,8 @@ import basedatos.ConexionBaseDatos;
 	    String campo1, campo2, resultado ="";
 	    datos = conexion.getQuery("SELECT * FROM modulos;");
 	    try {
-	      while(datos.next()){//es el metodo que permite ir recorriendo los datos
-	    	  campo1 = datos.getString("idModulo"); //podemos poner el nombre o un numero
+	      while(datos.next()){
+	    	  campo1 = datos.getString("idModulo"); 
 	    	  campo2 = datos.getString("nombre");
 	    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2; 
 	      }

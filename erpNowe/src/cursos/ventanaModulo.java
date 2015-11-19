@@ -52,7 +52,7 @@ public class ventanaModulo extends JFrame {
 	    	  * Creacion de los botones
 	    	  */
 	    	 consultar=new JButton("Consultar");
-	    	 consultar.setBounds(10,10,100,50); //Padding_Left, Padding_Top, Ancho, Alto
+	    	 consultar.setBounds(10,10,100,50);
 	         add(consultar);
 	         consultar.addActionListener(this);
 	         
