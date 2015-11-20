@@ -3,9 +3,6 @@ package Matricula;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
-
-
 /**
  * Clase Matricula
  * @author Vanessa
@@ -86,10 +83,10 @@ public class Matricula {
 	}
 	
 /**
- *  Metodo crearPresupuesto, aun en proceso, NO TERMINADO
+ *  Metodo crearPresupuesto, aun en proceso, ****NO TERMINADO****
  */
-	 
-	public static void crearPresupuesto(){
+	
+	public static String crearPresupuesto(){
 		
 		float presupuesto= 1000.0F;
 		float descsitulabo = 20.00F;
@@ -98,6 +95,7 @@ public class Matricula {
 		String tipoCurso;
 		String situacionLaboral;
 		String tipoPago;
+		String resultado;
 		
 		//esto se borrará, es solo para comprobar los casos
 		tipoCurso = "privado";
@@ -106,7 +104,6 @@ public class Matricula {
 		
 		if (tipoCurso == "publico"){
 			presupuestoFinal = 0;
-		
 		}
 		else {
 			if (situacionLaboral == "desempleado"){
@@ -120,19 +117,24 @@ public class Matricula {
 				presupuestoFinal = presupuesto - ((presupuesto * desctipopago)/100);}
 			}
 		}
-		System.out.println("presupuesto  = "+ presupuesto);
-		System.out.println("presupuesto final = "+ presupuestoFinal);
-	}
+		resultado = "el presupuesto sin descuento es = " + presupuesto+ "\n" +" y el presupuesto "
+				     + " final que te queda con descuento = " + presupuestoFinal;
+		
+		return resultado;
+						
+	}//fin del metodo crearPresupuesto
 	
 /**
- * Metodo Consultar
+
+ * Metodo ConsultarID
+ * Consulta las matriculas del alumno que hemos indicado
  * @return el resultado de la consulta
  */
 
-	public static String Consultar(){
+	public static String Consultarid(String idAlumno){
 		ResultSet datos;
 	    String campo1, campo2, campo3, campo4,campo5, resultado ="";
-	    datos = principal.conexion.getQuery("SELECT * FROM matricula;");
+	    datos = principal.conexion.getQuery("SELECT * FROM matricula where idAlumno =" + idAlumno);
 	    try {
 	      while(datos.next()){//es el metodo que permite ir recorriendo los datos
 	    	  campo1 = datos.getString("idAlumno"); //podemos poner el nombre o un numero
@@ -140,12 +142,90 @@ public class Matricula {
 	    	  campo3 = datos.getString("FormaPago");
 	    	  campo4 = datos.getString("Promociones");
 	    	  campo5 = datos.getString("Pagado");
-	    	  resultado = resultado +"\n" +campo1 + "     " + campo2 + "     " + campo3 + "\t"+ campo4 + "\t" + campo5 ; 
+	    	  
+	    	  if (campo5=="1")
+	    		  campo5="Pagado";
+	    	  else campo5="No Pagado";
+	    	  
+	    	  resultado = resultado +"\n"+"Alumno: "+campo1 + "\n" 
+	    	  +"Grupo: " + campo2 + "\n"
+	    	  +"forma de pago: " + campo3 + "\n"
+	    	  + campo4 + "\n"
+	    	  + campo5 + "\n"+ "\n"; 
 	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();
-	   }
+	    }
 	    return resultado; }
+	
+	/**
+
+	 * Metodo ConsultarGR
+	 * Consulta las matriculas del grupo que hemos indicado
+	 * @return el resultado de la consulta
+	 */
+
+		public static String ConsultarGR(String idGrupo){
+			ResultSet datos;
+		    String campo1, campo2, campo3, campo4,campo5, resultado ="";
+		    datos = principal.conexion.getQuery("SELECT * FROM matricula where idGrupo =" + idGrupo);
+		    try {
+		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
+		    	  campo1 = datos.getString("idAlumno"); //podemos poner el nombre o un numero
+		    	  campo2 = datos.getString("idGrupo");
+		    	  campo3 = datos.getString("FormaPago");
+		    	  campo4 = datos.getString("Promociones");
+		    	  campo5 = datos.getString("Pagado");
+		    	  
+		    	  //este if lo pongo para que no se vea solo un numero en la consulta, si no, pagado o no pagado
+		    	  if (campo5=="1")
+		    		  campo5="Pagado";
+		    	  else campo5="No Pagado";
+		    	  
+		    	  resultado = resultado +"\n"+"Alumno: "+campo1 + "\n" 
+		    	  +"Grupo: " + campo2 + "\n"
+		    	  +"forma de pago: " + campo3 + "\n"
+		    	  + campo4 + "\n"
+		    	  + campo5 + "\n"+ "\n"; 
+		      }
+		    }
+		    catch (SQLException e) { e.printStackTrace();
+		    }
+		    return resultado; }
+		
+	
+	/**
+	 * Metodo Consultar
+	 * Consulta toda la tabla matricula
+	 * @return el resultado de la consulta
+	 */
+
+		public static String Consultar(){
+			ResultSet datos;
+		    String campo1, campo2, campo3, campo4,campo5, resultado ="";
+		    datos = principal.conexion.getQuery("SELECT * FROM matricula");
+		    try {
+		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
+		    	  campo1 = datos.getString("idAlumno"); //podemos poner el nombre o un numero
+		    	  campo2 = datos.getString("idGrupo");
+		    	  campo3 = datos.getString("FormaPago");
+		    	  campo4 = datos.getString("Promociones");
+		    	  campo5 = datos.getString("Pagado");
+		    	  
+		    	  if (campo5=="1")
+		    		  campo5="Pagado";
+		    	  else campo5="No Pagado";
+		    	  
+		    	  resultado = resultado +"\n"+"Alumno: "+campo1 + "\n" 
+		    	    	  +"Grupo: " + campo2 + "\n"
+		    	    	  +"forma de pago: " + campo3 + "\n"
+		    	    	  + campo4 + "\n"
+		    	    	  + campo5 + "\n"+ "\n"; 
+		      }
+		    }
+		    catch (SQLException e) { e.printStackTrace();
+		   }
+		    return resultado; }
 	
 
 	

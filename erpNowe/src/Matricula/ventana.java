@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -38,29 +39,41 @@ public class ventana extends JFrame {
 
 		 class Panel extends JPanel implements ActionListener{
 
-			 JButton consultar, Presupuesto, limpiar,cerrar;
+			 JButton consultar, Consultaid,ConsultaGR,Presupuesto, limpiar,cerrar;
 			 JTextArea textareaconsulta; 
 			 JTextField textfield1, textfield2,textfield3;
 			 JLabel label1,label2,label3;
+			 JScrollPane scrollArea;
 			 
 			 public Panel() {
 		    	 setLayout(null);
 		    	 setSize(710,340);
 		    	 setBackground(new Color(192,192,192));
+		    	 scrollArea = new JScrollPane();
 		    	
 		    	 //creo los botones
-		    	 consultar=new JButton("Consultar");
-		    	 consultar.setBounds(10,10,100,50); //Padding_Left, Padding_Top, Ancho, Alto
+		    	 consultar=new JButton("Listado");
+		    	 consultar.setBounds(10,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(consultar);
 		         consultar.addActionListener(this);
 		         
-		         Presupuesto=new JButton("Presupuesto");
-		         Presupuesto.setBounds(10,70,100,50);
+		         Consultaid=new JButton("Consulta alumno");
+		         Consultaid.setBounds(10,70,120,50);
+		         add(Consultaid);
+		         Consultaid.addActionListener(this);
+		         
+		         ConsultaGR=new JButton("Consulta GRUPO");
+		         ConsultaGR.setBounds(10,130,120,50);
+		         add(ConsultaGR);
+		         ConsultaGR.addActionListener(this);
+		         
+		      /*   Presupuesto=new JButton("Presupuesto");
+		         Presupuesto.setBounds(10,190,120,50);
 		         add(Presupuesto);
-		         Presupuesto.addActionListener(this);
+		         Presupuesto.addActionListener(this);*/
 		         
 		         limpiar=new JButton("Limpiar");
-		         limpiar.setBounds(120,250,100,25);
+		         limpiar.setBounds(140,250,100,25);
 		         add(limpiar);
 		         limpiar.addActionListener(this); 
 		         
@@ -72,9 +85,13 @@ public class ventana extends JFrame {
 		         
 			 //pongo el textarea
 		         textareaconsulta = new JTextArea();
-		         textareaconsulta.setBounds(120,10,450,230);
-		         add(textareaconsulta);
+		         //textareaconsulta.setBounds(140,10,430,230);
+		         //add(textareaconsulta);
 		         textareaconsulta.setBackground(new Color(224,224,224));
+		         
+		         scrollArea.setViewportView(textareaconsulta);
+		         scrollArea.setBounds(140,10,430,230); //posiciona dentro de la ventana
+		         add(scrollArea);
 			 
 			 
 			 //pongo los texfileds y jlabel
@@ -98,7 +115,7 @@ public class ventana extends JFrame {
 		         add(textfield2);
 		         textfield2.setBackground( new Color(224,224,224) );
 		         
-		         label1=new JLabel("formaPago");
+		      /*   label1=new JLabel("formaPago");
 		         label1.setBounds(580,150,100,20);
 		         add(label1);
 		         
@@ -107,7 +124,6 @@ public class ventana extends JFrame {
 		         add(textfield3);
 		         textfield3.setBackground( new Color(224,224,224) );
 		         
-		         //cambuiar posicion
 		         label1=new JLabel("promociones");
 		         label1.setBounds(580,210,100,20);
 		         add(label1);
@@ -124,7 +140,7 @@ public class ventana extends JFrame {
 		         textfield3=new JTextField();
 		         textfield3.setBounds(580,250,100,20);
 		         add(textfield3);
-		         textfield3.setBackground( new Color(224,224,224) );
+		         textfield3.setBackground( new Color(224,224,224));*/
 			 
 			 }
 		          //creo las acciones
@@ -134,14 +150,14 @@ public class ventana extends JFrame {
 		             if (botonPulsado==consultar) {
 		            	 textareaconsulta.setText(Matricula.Consultar());}
 		             
+		             if (botonPulsado==Consultaid) {
+		            	 textareaconsulta.setText(Matricula.Consultarid(textfield1.getText()));}
+		             
 		             if (botonPulsado==Presupuesto) {
-		            	// textareaconsulta.setText(Matricula.insertarArticulo(textfield2.getText(), textfield3.getText()));}
-		            	 Matricula.crearPresupuesto();}
-		            // if (botonPulsado==modificar) {
-		            //	 textareaconsulta.setText(Articulo.modificarArticulo(textfield2.getText(), textfield3.getText()));}
+			             textareaconsulta.setText(Matricula.crearPresupuesto());}
 		            	 
-		           //  if (botonPulsado==borrar) {
-		           // 	 textareaconsulta.setText(Articulo.borrarArticulo(textfield1.getText()));}
+		             if (botonPulsado==ConsultaGR) {
+		            	 textareaconsulta.setText(Matricula.ConsultarGR(textfield2.getText()));}
 		             
 		             if (botonPulsado==limpiar) {
 		            	 textfield1.setText("");
