@@ -28,7 +28,7 @@ public class ventana extends JFrame {
 	
 		 public ventana() {
 		    	//para ponerle el icono a la app
-		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logoApp.gif"));
+		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 			    setIconImage(icon);
 			    setSize(710,340); // Ancho*Alto
 			    setTitle("Gestión Alumnos Nowe");
