@@ -21,8 +21,8 @@ public class VentanaCursos extends JFrame {
 	
 		 public VentanaCursos() {
 		    	//para ponerle el icono a la app
-		    	//Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logoApp.gif"));
-			   // setIconImage(icon);
+		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
+		    	setIconImage(icon);
 			    setSize(900,370); // Ancho*Alto
 			    setTitle("Gestión Cursos Nowe");
 			    setLocationRelativeTo(null);
@@ -252,7 +252,7 @@ public class VentanaCursos extends JFrame {
 		            	 textareaconsulta.setText("");}
 		             
 		             if (botonPulsado==cerrar) {
-		            	 Principalcursos.conexion.cerrarConexion();
+		            	 Cursos.conexion.cerrarConexion();
 		            	 textareaconsulta.setText("conexion cerrada");}
 		            	 
 		           }
