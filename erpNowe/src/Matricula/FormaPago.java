@@ -1,6 +1,20 @@
+/**
+ * Clase FormaPago
+ * @author curso14/7803
+ * @version 1.0
+ * @since 20/11/2015
+ * <br>
+ * <p> 
+ * Esta clase corresponde a la gestion de forma de pagos
+ * </p> 
+ */
+
+package Matricula;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+
 
 
 public class FormaPago {
