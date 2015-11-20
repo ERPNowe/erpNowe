@@ -73,10 +73,30 @@ import basedatos.ConexionBaseDatos;
 	 * Metodo para consultar todos los datos de la tabla modulos
 	 * @return
 	 */
-	public static String consultar(){
+	public static String consultar(String idModulo){
 		ResultSet datos;
 	    String campo1, campo2, resultado ="";
-	    datos = conexion.getQuery("SELECT * FROM modulos;");
+	    datos = conexion.getQuery("SELECT * FROM modulos WHERE idModulo = '"+idModulo+"'");
+	    try {
+	      while(datos.next()){
+	    	  campo1 = datos.getString("idModulo"); 
+	    	  campo2 = datos.getString("nombre");
+	    	  resultado = campo1 + "\t" + campo2; 
+	      }
+	    }
+	    catch (SQLException e) { e.printStackTrace();
+	   }
+	    return resultado; 
+	}
+	
+	/**
+	 * Metodo para listar la tabla
+	 * @return
+	 */
+	public static String listar(){
+		ResultSet datos;
+	    String campo1, campo2, resultado ="";
+	    datos = conexion.getQuery("SELECT * FROM modulos");
 	    try {
 	      while(datos.next()){
 	    	  campo1 = datos.getString("idModulo"); 
@@ -88,6 +108,7 @@ import basedatos.ConexionBaseDatos;
 	   }
 	    return resultado; 
 	}
+	
 	/**
 	 * Metodo para insertar un nuevo registro en la tabla
 	 * @param idModulo
@@ -101,9 +122,9 @@ import basedatos.ConexionBaseDatos;
 				 ok = conexion.setQuery("INSERT INTO modulos(idModulo, Nombre)"
 						+ " VALUES ('" + idModulo + "','" + nombre + "')");
 				 if (ok) 
-					 resultado = "Se insertó registro correctamente";
+					 resultado = "Se insertó el nuevo modulo correctamente";
 				 else 
-					resultado = "No se pudo insertar";	 
+					resultado = "No se pudo insertar nuevo modulo";	 
 			} 
 		 
 		 catch(Exception e){ e.printStackTrace(); }
@@ -125,9 +146,9 @@ import basedatos.ConexionBaseDatos;
 			 ok = conexion.setQuery("UPDATE modulos set Nombre = '"+ nombre
 					 + "' where idModulo = '"+ idModulo +"'");
 			 if (ok) 
-				 resultado = "Se modificó registro correctamente";
+				 resultado = "Se modificó el modulo correctamente";
 			 else 
-				 resultado = "No se pudo modificar";	 
+				 resultado = "No se pudo modificar el modulo";	 
 		 }
 		 catch(Exception e){ e.printStackTrace(); }
 		 return resultado;
@@ -144,9 +165,9 @@ import basedatos.ConexionBaseDatos;
 		 try{
 			 ok = conexion.setQuery("DELETE FROM modulos WHERE idModulo = '"+ idModulo +"'");
 			 if (ok) 
-				 resultado = "Se borró el registro correctamente";
+				 resultado = "Se borró el modulo correctamente";
 			 else 
-				resultado ="No se pudo borrar";	 
+				resultado ="No se pudo borrar el modulo";	 
 		 }
 		 catch(Exception e){ e.printStackTrace(); }
 		 return resultado;
