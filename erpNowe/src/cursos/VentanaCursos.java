@@ -13,11 +13,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+/**
+ * @author Alberto Jaén
+ * @since 20/11/2015
+ * @version 1.0
+*/
 @SuppressWarnings("serial")
 public class VentanaCursos extends JFrame {
+	/**
+	 * Consructor de la ventana
+	 */
 	
-	//creo el constructor del panel donde pongo todas sus propiedades//
 	
 		 public VentanaCursos() {
 		    	//para ponerle el icono a la app
@@ -37,14 +43,18 @@ public class VentanaCursos extends JFrame {
 			 JTextField textfield1, textfield2,textfield3,textfield4,textfield5,textfield6,textfield7,textfield8;
 			 JLabel label1,label2,label3,label4,label5,label6,label7,label8;
 			 JScrollPane scrollArea;
-			 
+			 /**
+			  * Constructor del panel
+			  */
 			 public Panel() {
 		    	 setLayout(null);
 		    	 setSize(710,320);
 		    	 setBackground(new Color(192,192,192));
 		    	 scrollArea = new JScrollPane();
 		    	 
-		    	 //creo los botones
+		    	 /**
+		    	  * Creacion de los botones
+		    	  */
 		    	 consultar=new JButton("Listado");
 		    	 consultar.setBounds(10,10,100,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(consultar);
@@ -82,18 +92,23 @@ public class VentanaCursos extends JFrame {
 		         cerrar.addActionListener(this);
 		         
 		         
-			 //pongo el textarea
+		         /**
+		          * Creacion del TextArea
+		          */
 		       
-		         textareaconsulta = new JTextArea();
-		         //textareaconsulta.setBounds(120,10,450,230);
-		         //add(textareaconsulta);
+		         textareaconsulta = new JTextArea();	 
 		         textareaconsulta.setBackground(new Color(224,224,224));
 		         
+		         /**
+		          * Creacion del panel scroll
+		          */ 
 		         scrollArea.setViewportView(textareaconsulta);
 		         scrollArea.setBounds(120,10,450,230); //posiciona dentro de la ventana
 		         add(scrollArea);
 			 
-			 //pongo los texfileds y jlabel
+		         /**
+		          * Creacion de los TextFields y Labels
+		          */
  
 		         
 		         label1=new JLabel("idCurso");
@@ -171,7 +186,9 @@ public class VentanaCursos extends JFrame {
 		         
 			 
 			 }
-		          //creo las acciones
+			 /**
+			  * Acciones de los botones al ser pulsados
+			  */
 			 public void actionPerformed(ActionEvent e) {
 		         	Object botonPulsado = e.getSource();
 		         	

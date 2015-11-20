@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * @author Alberto Jaén
- * @since 18/11/2015
+ * @since 20/11/2015
  * @version 1.0
 */
 	public class Cursos {
@@ -27,7 +27,10 @@ import java.util.Scanner;
 	 
 	
 		
-	 //-----------------------------------------------------------------------------------
+		 /**
+			 * Metodo para listar la tabla
+			 * @return
+			 */
 
 		public static String Consultar(){
 		 	ResultSet datos;
@@ -52,7 +55,10 @@ import java.util.Scanner;
 		    return resultado; 
 	 }
 			
-//--------------------------------------------------------------------------------------------------------------------------------------------	
+		/**
+		 * Metodo para consultar todos los datos de la tabla cursos
+		 * @return
+		 */
 		public static String Consultarip(int idCurso) {
 			ResultSet datos;
 		    String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
@@ -77,7 +83,12 @@ import java.util.Scanner;
 	 
 		}
 
-//----------------------------------------------------------------------------------------------------------------------------------	
+		/**
+		 * Metodo para insertar un nuevo registro en la tabla
+		 * @param idCursos
+		 * @param codigoCurso, nombre, categoria, descripcion, precio , duracion , privado
+		 * @return
+		 */
 	public static String Insertar(String codigoCurso,String nombre,String categoria, String descripcion,Float precio,int duracion,int privado
 			 ){
 		 boolean ok = false;
@@ -96,7 +107,12 @@ import java.util.Scanner;
 		return resultado;
 		
 	}
-	//-------------------------------------------------------------------------------------------------------------------------
+	/**
+	 * Metodo para modificar entradas de la base de datos
+	 * @param idCursos
+	 * @param codigoCurso, nombre, categoria, descripcion, precio , duracion , privado
+	 * @return
+	 */
 	
 	public static String Modificar(int idcurso,String codigoCurso,String nombre,String categoria, String descripcion,Float precio,int duracion,int privado){
 		 boolean ok = false;
@@ -114,8 +130,12 @@ import java.util.Scanner;
 		 return resultado;
 	}
 	
-	//-------------------------------------------------------------------------------------
-	
+
+	/**
+	 * Metodo para borrar registros de la base de datos
+	 * @param idCursos
+	 * @return
+	 */
 	public static String Eliminar(int idCursos){
 		 
 		 boolean ok = false;
