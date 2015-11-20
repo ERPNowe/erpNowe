@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import basedatos.ConexionBaseDatos;
 
 
 public class FormaPago {
