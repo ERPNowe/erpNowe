@@ -178,8 +178,7 @@ public class ventana extends JFrame {
 		             
 		             if (botonPulsado==cerrar) {
 		            	 principal.conexion.cerrarConexion();
-		            	 textareaconsulta.setText("conexion cerrada");}
-		            	 
+		            	 textareaconsulta.setText("conexion cerrada");} 
 		           }
 		         }
 }

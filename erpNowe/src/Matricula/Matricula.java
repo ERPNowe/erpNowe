@@ -114,7 +114,6 @@ public class Matricula {
 	    return resultado; }
 	
 	/**
-
 	 * Metodo ConsultarGR
 	 * Consulta las matriculas del grupo que hemos indicado
 	 * @return el resultado de la consulta
