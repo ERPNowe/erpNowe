@@ -19,12 +19,11 @@ public class principal {
 	
 	
 	 public static void main(String[] args) {
-		
 		 // En caso de no tener contraseña pwd = ""
 	   conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 	   ventana ventana=new ventana();
 	   ventana.setVisible(true);
-
+	   
 	}
 
 }
