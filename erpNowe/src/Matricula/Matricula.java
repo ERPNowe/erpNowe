@@ -86,7 +86,7 @@ public class Matricula {
  *  Metodo crearPresupuesto, aun en proceso, ****NO TERMINADO****
  */
 	
-	public static String crearPresupuesto(){
+	/*public static String crearPresupuesto(){
 		
 		float presupuesto= 1000.0F;
 		float descsitulabo = 20.00F;
@@ -122,7 +122,7 @@ public class Matricula {
 		
 		return resultado;
 						
-	}//fin del metodo crearPresupuesto
+	}//fin del metodo crearPresupuesto*/
 	
 /**
 
