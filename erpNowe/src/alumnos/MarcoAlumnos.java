@@ -15,6 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+
+/**
+ * @author Carlos ,Eduardo, Angel
+ * @since 25/11/2015
+ * @version 1.0
+*/
+
 @SuppressWarnings("serial")
 public class MarcoAlumnos extends JFrame {
 
@@ -264,19 +271,25 @@ public class MarcoAlumnos extends JFrame {
 			}
 			}
 			if (botonPulsado == insertar) {
-
+				String tel = textfield5.getText();
+				String cp = textfield7.getText();
+				String fec = textfield11.getText();
+				if(tel.equals("")) tel = "0";
+				if(cp.equals("")) cp = "0";
+				if(fec.equals("")) fec = "0";
+					
 				textareaconsulta.setText(Controlador.insertarAlumno(
 						textfield1.getText(),
 						textfield2.getText(),
 						textfield3.getText(),
 						textfield4.getText(), 
-						Integer.parseInt(textfield5.getText()),
+						tel,
 						textfield6.getText(),
-						Integer.parseInt(textfield7.getText()),
+						cp,
 						textfield8.getText(),
 						textfield9.getText(), 
 						textfield10.getText(),
-						textfield11.getText()));
+						fec));
 			}
 
 			if (botonPulsado == modificar) {

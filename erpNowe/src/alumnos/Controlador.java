@@ -2,8 +2,8 @@ package alumnos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import basedatos.ConexionBaseDatos;
+import utilidades.Fecha;
 
 public class Controlador {
 
@@ -60,9 +60,9 @@ public class Controlador {
 			String apellidos,
 			String dNI,
 			String email,
-			int telefono,
+			String telefono,
 			String direccion,
-			int codigoPostal,
+			String codigoPostal,
 			String municipio,
 			String provincia,
 			String pais,
@@ -70,13 +70,25 @@ public class Controlador {
 	{
 		    String resultado = null;
 		    boolean ok = false;
-
+		    
 		try {
-			ok = conexion.setQuery(
-					"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais, FechaNacimiento) VALUES ('"
-							+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', " + telefono + ", '"
-							+ direccion + "', " + codigoPostal + ", '" + municipio + "', '" + provincia + "', '" + pais
-							+ "', '" + fechaNacimiento + "')");
+			
+			if(fechaNacimiento.equals("0")){
+				ok = conexion.setQuery(
+						"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais ) VALUES ('"
+								+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', '" + telefono + "', '"
+								+ direccion + "', '" + codigoPostal + "', '" + municipio + "', '" + provincia + "', '" + pais
+								+ "')");
+			
+			}else {
+				ok = conexion.setQuery(
+						"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais, FechaNacimiento) VALUES ('"
+								+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', '" + telefono + "', '"
+								+ direccion + "', '" + codigoPostal + "', '" + municipio + "', '" + provincia + "', '" + pais
+								+ "', " + fechaNacimiento + ")");
+			}
+			
+			
 			if (ok)
 				resultado = "Se inserto correctamente";
 			else

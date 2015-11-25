@@ -1,7 +1,11 @@
 package alumnos;
-
 import java.sql.Date;
 
+/**
+ * @author Carlos ,Eduardo, Angel
+ * @since 25/11/2015
+ * @version 1.0
+*/
 public class Alumno {
 	
 	private int idAlumno;
