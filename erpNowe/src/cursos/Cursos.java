@@ -19,7 +19,7 @@ import ventanaPrincipal.VentanaPrincipal;
 		 private static String bd = "nowedb";
 		 //static basedatos.ConexionBaseDatos conexion = null;
 		 //static Scanner scanner = new Scanner(System.in);
-		
+	
 	    
 		 public static void main(String[] args) {
 			 // En caso de no tener contraseña pwd = ""
@@ -108,7 +108,7 @@ import ventanaPrincipal.VentanaPrincipal;
 				 else 
 					resultado ="No se pudo insertar";	 
 			} 
-		 
+		// todos los campos han de rellenarse 
 		 catch(Exception e){ e.printStackTrace(); }
 		return resultado;
 		
