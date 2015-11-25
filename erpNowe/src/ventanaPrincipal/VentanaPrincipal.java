@@ -68,7 +68,7 @@ public class VentanaPrincipal extends JFrame {
 			    
 		cursos = new JMenuItem("Cursos");
 		//cursos.addActionListener(this);
-		menuAlumnos.add(cursos);
+		menuCursos.add(cursos);
 		grupos = new JMenuItem("Grupos");
 		//grupos.addActionListener(this);
 		menuCursos.add(grupos);
