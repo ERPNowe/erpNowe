@@ -18,6 +18,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -25,12 +26,21 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-public class VentanaPrincipal extends JFrame {
+import cursos.VentanaCursos;
+import cursos.ventanaModulo;
+
+public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private JMenuBar barraMenu;
 	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
 	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, ayuda, salir;
 	
+	public static String usuario = "root";
+		 public static String pwd = "root";
+		 public static String bd = "nowedb";
+		 public static basedatos.ConexionBaseDatos conexion = null;
+	
+		 
 	public VentanaPrincipal () {
 		
 				
@@ -57,52 +67,67 @@ public class VentanaPrincipal extends JFrame {
 		barraMenu.add(menuAlumnos);		
 			    
 		matriculado = new JMenuItem("Matriculado");
-		//matriculado.addActionListener(this);
+		matriculado.addActionListener(this);
 		menuAlumnos.add(matriculado);
 		interesado = new JMenuItem("Interesado");
-		//interesado.addActionListener(this);
+		interesado.addActionListener(this);
 		menuAlumnos.add(interesado);
 		
 		menuCursos = new JMenu ("Cursos");
 		barraMenu.add(menuCursos);		
 			    
 		cursos = new JMenuItem("Cursos");
-		//cursos.addActionListener(this);
+		cursos.addActionListener(this);
 		menuCursos.add(cursos);
 		grupos = new JMenuItem("Grupos");
-		//grupos.addActionListener(this);
+		grupos.addActionListener(this);
 		menuCursos.add(grupos);
 		modulos = new JMenuItem("Módulos");
-		//modulos.addActionListener(this);
+		modulos.addActionListener(this);
 		menuCursos.add(modulos);
 		
 		menuCalificacion = new JMenu ("Calificación");
 		barraMenu.add(menuCalificacion);
 		
 		calificacion = new JMenuItem("Calificación");
-		//calificacion.addActionListener(this);
+		calificacion.addActionListener(this);
 		menuCalificacion.add(calificacion);		
 		
 		menuMatricula = new JMenu ("Matrícula");
 		barraMenu.add(menuMatricula);
 		
 		matricula = new JMenuItem("Matrícula");
-		//matricula.addActionListener(this);
+		matricula.addActionListener(this);
 		menuMatricula.add(matricula);	
 		
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
 		
 		ayuda = new JMenuItem("?");
-		//matricula.addActionListener(this);
+		matricula.addActionListener(this);
 		menuAyuda.add(ayuda);
 		
 		menuSalir = new JMenu ("Salir");
 		barraMenu.add(menuSalir);
 		
 		salir = new JMenuItem("Salir");
-		//matricula.addActionListener(this);
-		menuSalir.add(salir);
-	}
+		matricula.addActionListener(this);
+		menuSalir.add(salir);}
 	
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource()== cursos) {
+     
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+   		    VentanaCursos ventana=new VentanaCursos();
+   		    ventana.setVisible(true);
+   		   }
+		if (e.getSource()== modulos){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			 ventanaModulo ventana = new ventanaModulo();
+			 ventana.setVisible(true);   
+			
+		}
+        }
 }
+

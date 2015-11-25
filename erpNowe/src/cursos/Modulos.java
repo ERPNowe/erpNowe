@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import basedatos.ConexionBaseDatos;
+import ventanaPrincipal.VentanaPrincipal;
 
 /** 
  * @author Victor Jimenez
@@ -19,11 +20,11 @@ import basedatos.ConexionBaseDatos;
 		 private static String usuario = "root";
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
-		 static ConexionBaseDatos conexion = null;
-		 static Scanner scanner = new Scanner(System.in);
+		 //static ConexionBaseDatos conexion = null;
+		 //static Scanner scanner = new Scanner(System.in);
 
 		public static void main(String[] args) {
-			 conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			 //conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			 ventanaModulo ventana = new ventanaModulo();
 			 ventana.setVisible(true);   
 		}
@@ -76,13 +77,15 @@ import basedatos.ConexionBaseDatos;
 	public static String consultar(String idModulo){
 		ResultSet datos;
 	    String campo1, campo2, resultado ="";
-	    datos = conexion.getQuery("SELECT * FROM modulos WHERE idModulo = '"+idModulo+"'");
+	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos WHERE idModulo = '"+idModulo+"'");
 	    try {
 	      while(datos.next()){
 	    	  campo1 = datos.getString("idModulo"); 
 	    	  campo2 = datos.getString("nombre");
 	    	  resultado = campo1 + "\t" + campo2; 
 	      }
+	      ventanaModulo.modificar.setEnabled(true);
+		     ventanaModulo.borrar.setEnabled(true);
 	    }
 	    catch (SQLException e) { e.printStackTrace();
 	   }
@@ -96,7 +99,7 @@ import basedatos.ConexionBaseDatos;
 	public static String listar(){
 		ResultSet datos;
 	    String campo1, campo2, resultado ="";
-	    datos = conexion.getQuery("SELECT * FROM modulos");
+	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos");
 	    try {
 	      while(datos.next()){
 	    	  campo1 = datos.getString("idModulo"); 
@@ -119,7 +122,7 @@ import basedatos.ConexionBaseDatos;
 		 boolean ok = false;
 		 String resultado = null;
 		 try {
-				 ok = conexion.setQuery("INSERT INTO modulos(idModulo, Nombre)"
+				 ok = VentanaPrincipal.conexion.setQuery("INSERT INTO modulos(idModulo, Nombre)"
 						+ " VALUES ('" + idModulo + "','" + nombre + "')");
 				 if (ok) 
 					 resultado = "Se insertó el nuevo modulo correctamente";
@@ -143,7 +146,7 @@ import basedatos.ConexionBaseDatos;
 		 String resultado = null;
 		 
 		 try{
-			 ok = conexion.setQuery("UPDATE modulos set Nombre = '"+ nombre
+			 ok = VentanaPrincipal.conexion.setQuery("UPDATE modulos set Nombre = '"+ nombre
 					 + "' where idModulo = '"+ idModulo +"'");
 			 if (ok) 
 				 resultado = "Se modificó el modulo correctamente";
@@ -163,7 +166,7 @@ import basedatos.ConexionBaseDatos;
 		 String resultado = null;
 		 
 		 try{
-			 ok = conexion.setQuery("DELETE FROM modulos WHERE idModulo = '"+ idModulo +"'");
+			 ok = VentanaPrincipal.conexion.setQuery("DELETE FROM modulos WHERE idModulo = '"+ idModulo +"'");
 			 if (ok) 
 				 resultado = "Se borró el modulo correctamente";
 			 else 

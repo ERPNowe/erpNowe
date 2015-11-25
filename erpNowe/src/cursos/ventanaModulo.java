@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import ventanaPrincipal.VentanaPrincipal;
+
 /** 
  * @author Victor Jimenez
  * @since 19/11/2015
@@ -25,7 +27,10 @@ public class ventanaModulo extends JFrame {
 	/**
 	 * Consructor de la ventana
 	 */
-	 public ventanaModulo() {
+	public static JButton modificar;
+	public static JButton borrar;
+	
+	public ventanaModulo() {
 	    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		    setIconImage(icon);
 		    setSize(900,400); 
@@ -37,7 +42,7 @@ public class ventanaModulo extends JFrame {
 
 	 class Panel extends JPanel implements ActionListener{
 
-		 JButton consultar,listado, insertar, modificar,borrar, limpiar,cerrar;
+		 JButton consultar,listado, insertar, limpiar,cerrar;
 		 JTextArea textareaconsulta; 
 		 JTextField textfield1, textfield2;
 		 JLabel label1,label2;
@@ -73,11 +78,13 @@ public class ventanaModulo extends JFrame {
 	         modificar = new JButton("Modificar");
 	         modificar.setBounds(10,190,100,50);
 	         add(modificar);
+	         modificar.setEnabled(false);
 	         modificar.addActionListener(this);
 	         
 	         borrar =new JButton("Eliminar");
 	         borrar.setBounds(10,250,100,50);
 	         add(borrar);
+	         borrar.setEnabled(false);
 	         borrar.addActionListener(this); 
 	         
 	         limpiar = new JButton("Limpiar");
@@ -155,7 +162,7 @@ public class ventanaModulo extends JFrame {
 	            	 textareaconsulta.setText("");}
 	             
 	             if (botonPulsado == cerrar) {
-	            	 Modulos.conexion.cerrarConexion();
+	            	 VentanaPrincipal.conexion.cerrarConexion();
 	            	 textareaconsulta.setText("conexion cerrada");}
 	           }
 	         }

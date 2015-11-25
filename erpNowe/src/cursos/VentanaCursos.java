@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import ventanaPrincipal.VentanaPrincipal;
 /**
  * @author Alberto Jaén
  * @since 20/11/2015
@@ -24,7 +26,8 @@ public class VentanaCursos extends JFrame {
 	 * Consructor de la ventana
 	 */
 	
-	
+	public static JButton modificar;
+	public static JButton borrar;
 		 public VentanaCursos() {
 		    	//para ponerle el icono a la app
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
@@ -38,7 +41,11 @@ public class VentanaCursos extends JFrame {
 
 		 class Panel extends JPanel implements ActionListener{
 
-			 JButton consultar, insertar, modificar,borrar, limpiar,cerrar,consultar1;
+			 JButton consultar, insertar;
+			
+			JButton limpiar;
+			JButton cerrar;
+			JButton consultar1;
 			 JTextArea textareaconsulta; 
 			 JTextField textfield1, textfield2,textfield3,textfield4,textfield5,textfield6,textfield7,textfield8;
 			 JLabel label1,label2,label3,label4,label5,label6,label7,label8;
@@ -74,11 +81,13 @@ public class VentanaCursos extends JFrame {
 		         modificar=new JButton("Modificar");
 		         modificar.setBounds(10,130,100,50);
 		         add(modificar);
+		         modificar.setEnabled(false);
 		         modificar.addActionListener(this);
 		         
 		         borrar=new JButton("Eliminar");
 		         borrar.setBounds(10,190,100,50);
 		         add(borrar);
+		         borrar.setEnabled(false);
 		         borrar.addActionListener(this); 
 		         
 		         limpiar=new JButton("Limpiar");
@@ -269,7 +278,7 @@ public class VentanaCursos extends JFrame {
 		            	 textareaconsulta.setText("");}
 		             
 		             if (botonPulsado==cerrar) {
-		            	 Cursos.conexion.cerrarConexion();
+		            	 VentanaPrincipal.conexion.cerrarConexion();
 		            	 textareaconsulta.setText("conexion cerrada");}
 		            	 
 		           }

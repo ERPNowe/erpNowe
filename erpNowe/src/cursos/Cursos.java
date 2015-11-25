@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import cursos.VentanaCursos.Panel;
+import ventanaPrincipal.VentanaPrincipal;
+
 
 /**
  * @author Alberto Jaén
@@ -14,13 +17,13 @@ import java.util.Scanner;
 		 private static String usuario = "root";
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
-		 static basedatos.ConexionBaseDatos conexion = null;
-		 static Scanner scanner = new Scanner(System.in);
+		 //static basedatos.ConexionBaseDatos conexion = null;
+		 //static Scanner scanner = new Scanner(System.in);
 		
 	    
 		 public static void main(String[] args) {
 			 // En caso de no tener contraseña pwd = ""
-		    conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+		    //conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 		    VentanaCursos ventana=new VentanaCursos();
 		    ventana.setVisible(true);
 		}
@@ -35,7 +38,7 @@ import java.util.Scanner;
 		public static String Consultar(){
 		 	ResultSet datos;
 		    String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
-		    datos = conexion.getQuery("SELECT * FROM cursos;");
+		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM cursos;");
 		    try {
 		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
 		    	  campo1 = datos.getString("idCurso"); //podemos poner el nombre o un numero
@@ -62,7 +65,7 @@ import java.util.Scanner;
 		public static String Consultarip(int idCurso) {
 			ResultSet datos;
 		    String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
-		    datos = conexion.getQuery("SELECT * FROM cursos where idCurso = '"+idCurso+"'");
+		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM cursos where idCurso = '"+idCurso+"'");
 		    try {
 		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
 		    	  campo1 = datos.getString("idCurso"); //podemos poner el nombre o un numero
@@ -76,6 +79,9 @@ import java.util.Scanner;
 		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3
 		    			  + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
 		      }
+		     VentanaCursos.modificar.setEnabled(true);
+		     VentanaCursos.borrar.setEnabled(true);
+		      
 		    }
 		    catch (SQLException e) { e.printStackTrace();
 		   }
@@ -94,7 +100,7 @@ import java.util.Scanner;
 		 boolean ok = false;
 		 String resultado = null;
 		 try {
-				 ok = conexion.setQuery("INSERT INTO cursos(CodigoCurso ,Nombre ,Categoria ,Descripcion ,Precio ,Duracion ,Privado)"
+				 ok = VentanaPrincipal.conexion.setQuery("INSERT INTO cursos(CodigoCurso ,Nombre ,Categoria ,Descripcion ,Precio ,Duracion ,Privado)"
 						+ " VALUES ('" + codigoCurso + "','" + nombre  + "','" 
 				 		+ categoria + "','" +  descripcion + "','" +  precio + "','" +  duracion + "','" +  privado  + "' )");
 				 if (ok) 
@@ -119,7 +125,7 @@ import java.util.Scanner;
 		 String resultado = null;
 		 
 		 try{
-			 ok = conexion.setQuery("UPDATE cursos set CodigoCurso  = '"+codigoCurso+"' ,Nombre = '"+nombre+"' ,Categoria = '"
+			 ok = VentanaPrincipal.conexion.setQuery("UPDATE cursos set CodigoCurso  = '"+codigoCurso+"' ,Nombre = '"+nombre+"' ,Categoria = '"
 			 		 +categoria+ "',Descripcion = '"+descripcion+"',Precio = '"+precio+"',Duracion = '"+duracion+"',Privado = '"+privado+"'where idCurso = '"+idcurso+"'");
 			 if (ok) 
 				 resultado="Se modificó registro correctamente";
@@ -142,7 +148,7 @@ import java.util.Scanner;
 		 String resultado = null;
 		 
 		 try{
-			 ok = conexion.setQuery("DELETE FROM cursos WHERE idCurso = '"+idCursos+"'");
+			 ok = VentanaPrincipal.conexion.setQuery("DELETE FROM cursos WHERE idCurso = '"+idCursos+"'");
 			 if (ok) 
 				 resultado="Se borró el registro correctamente";
 			 else 
