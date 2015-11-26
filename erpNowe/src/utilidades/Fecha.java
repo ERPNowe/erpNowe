@@ -39,6 +39,18 @@ public class Fecha {
 		return ((año % 4) == 0) && (año % 100 != 0 || (año % 400 == 0));
 	}
 	
+	public static String darFormatoBD(String fecString){
+		String d, m, a;
+		int tam = fecString.length();
+		if(tam == 10){  // teniendo en cuenta dd/mm/aaaa
+			d = fecString.substring(0, 2);
+			m = fecString.substring(3, 5);
+			a = fecString.substring(6);
+			return (a + "-" + m + "-" + d);
+		}
+		return "";
+	}
+	
 	public boolean fechaCorrecta(){
 		boolean diaCorrecto, mesCorrecto, añoCorrecto;
 		// año correcto?
