@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import cursos.Grupos;
 import utilidades.Fecha;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -198,20 +200,23 @@ void cargarCombo() throws SQLException {
 							filas.getString("idAcademia")+"\t"+"\t"+
 							filas.getString("idOficial")+"\t"+"\t"+
 							filas.getString("horario")+"\t"+
-							filas.getString("fechaInicio")+"\t"+"\t"+
-							filas.getString("fechaFin")+"\t"+"\t"+
+							Fecha.devolverFormatoBD(filas.getString("fechaInicio"))+"\t"+"\t"+
+							Fecha.devolverFormatoBD(filas.getString("fechaFin"))+"\t"+"\t"+
 							filas.getString("aula")+"\t"+"\t"+
 							filas.getString("idCurso")+"\n");
 					cidAcademia.setText(filas.getString("idAcademia"));
 					cidOficial.setText(filas.getString("idOficial"));
 					chorario.setText(filas.getString("horario"));
+					/*String stfechaInicio = Fecha.darFormatoBD(cfechaInicio.getText());
+			 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
+					 * */
 					cfechaInicio.setText(filas.getString("fechaInicio"));
 					cfechaFin.setText(filas.getString("fechaFin"));
 					caula.setText(filas.getString("aula"));
 					cidCurso.setText(filas.getString("idCurso"));
 					
 				} else {
-					JOptionPane.showMessageDialog(null, "no existe el grupo");
+					JOptionPane.showMessageDialog(null, "no existe el registro");
 				}
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -222,23 +227,21 @@ void cargarCombo() throws SQLException {
 				 area.setText(Grupos.listar());}
 				
 	
-		 if(botonPulsado == btInsertar){
-			//String stidGrupo = cidGrupo.getText();
-			 String stidAcademia = cidAcademia.getText();
-			 String stidOficial = cidOficial.getText();
-			 String sthorario = chorario.getText();
-			 String stfechaInicio = Fecha.darFormatoBD(cfechaInicio.getText());
-			 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
-			 String staula = caula.getText();
-			 String stidCurso = (String) cidCurso.getText();
-			 int intidCurso = Integer.parseInt(stidCurso); 
-			 try{
-			 Grupos.insertar( stidAcademia,stidOficial, sthorario, stfechaInicio, stfechaFin, staula,
-						intidCurso);	 }
-			 catch(Exception exc){ exc.printStackTrace(); 
-				 JOptionPane.showMessageDialog(null, "comprobar que el formato de la fecha sea correcto");
-			 }
-		 }
+			if(botonPulsado == btInsertar){
+				 
+				 
+				 //String stidGrupo = cidGrupo.getText();
+				 String stidAcademia = cidAcademia.getText();
+				 String stidOficial = cidOficial.getText();
+				 String sthorario = chorario.getText();
+				 String stfechaInicio = Fecha.darFormatoBD(cfechaInicio.getText());
+				 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
+				 String staula = caula.getText();
+				 String stidCurso = (String) cidCurso.getText();
+				 int intidCurso = Integer.parseInt(stidCurso);
+				 Grupos.insertar( stidAcademia,stidOficial, sthorario, stfechaInicio, stfechaFin, staula,
+								intidCurso);	 
+				 }
 		 
 		 
 		 if(botonPulsado == btModificar){
@@ -247,19 +250,14 @@ void cargarCombo() throws SQLException {
 			 String stidAcademia = cidAcademia.getText();
 			 String stidOficial = cidOficial.getText();
 			 String sthorario = chorario.getText();
-			 String stfechaInicio = cfechaInicio.getText();
-			 String stfechaFin = cfechaFin.getText();
+			 String stfechaInicio = Fecha.darFormatoBD(cfechaInicio.getText());
+			 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
 			 String staula = caula.getText();
 			 String stidCurso = (String) cidCurso.getText();
 			 int intidCurso = Integer.parseInt(stidCurso);
-			 try{
-			Grupos.modificar( intidGrupo, stidAcademia,stidOficial, sthorario,stfechaInicio,stfechaFin, staula,
-						intidCurso);}
-			 catch(Exception exc){ exc.printStackTrace(); 
-			 JOptionPane.showMessageDialog(null, "comprobar que el formato de la fecha sea correcto");
-				 
+			 Grupos.modificar( intidGrupo, stidAcademia,stidOficial, sthorario,stfechaInicio,stfechaFin, staula,
+								intidCurso);
 			 }
-		 }
 /*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
 		 if(botonPulsado == btBorrar){
 			 String idGrupo = cidGrupo.getText();
