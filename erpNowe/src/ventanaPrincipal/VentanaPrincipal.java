@@ -25,7 +25,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import alumnos.VentanaInteresado;
+//import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
@@ -129,11 +129,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			 ventana.setVisible(true);   
 			
 		}
-		if (e.getSource()== interesado){
+		/*if (e.getSource()== interesado){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaInteresado ne = new VentanaInteresado();
 			ne.setVisible(true);
-		}
+		}*/
 		if (e.getSource()== grupos){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaGrupos ne = new VentanaGrupos();
