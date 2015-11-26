@@ -5,23 +5,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-
-import cursos.ConexionBaseDatos;
+/**
+ * importar librerías creadas por usuario*/
 import cursos.VentanaGrupos;
 import utilidades.Fecha;
+import ventanaPrincipal.VentanaPrincipal;
 /**@author Eva
  * @version 1
  * @since 20151118
  */
-public class Grupos extends ConexionBaseDatos{
-	 private static String usuario = "root";
+public class Grupos {
+	 /*private static String usuario = "root";
 	 private static String pwd = "root";
 	 private static String bd = "nowedb";
-	 static ConexionBaseDatos conexion = new ConexionBaseDatos(bd, usuario, pwd);
+	 static ConexionBaseDatos conexion = new ConexionBaseDatos(bd, usuario, pwd);*/
+	public static void main(String[] args) {
+		 
+	    VentanaGrupos ventana=new VentanaGrupos();
+	    ventana.setVisible(true);
+	}
 	
-	public Grupos(String bd, String usuario, String pwd) {
-		super(bd, usuario, pwd);
-		}
 	/** <p>Atributos </p>
 	 */
 	private static int idGrupo;//autoincremental, habrá que poner un idGrupo++ después de crear un grupo
@@ -87,10 +90,12 @@ public class Grupos extends ConexionBaseDatos{
 	 */
 	public static String insertar(String idAcademia,	String idOficial,	String horario,	String stfechaInicio,	String stfechaFin,String aula,
 	int idCurso){
+		/*antes de insertar hay que comprobar que el formato de la fecha sea correcto. Si ya está en formato aaaa/mm/dd 
+		 * no se cambia*/
 		boolean ok = false;
 		String resultado = null;
 		try {
-				ok = conexion.setQuery("INSERT INTO grupos(idAcademia, idOficial, horario, fechaInicio, fechaFin, aula, idCurso)"
+				ok = VentanaPrincipal.conexion.setQuery("INSERT INTO grupos(idAcademia, idOficial, horario, fechaInicio, fechaFin, aula, idCurso)"
 						+ " VALUES ('" + idAcademia+"','"+ idOficial+"','"+ horario+"','"+ stfechaInicio
 						+"','"+ stfechaFin+"','"+ aula+"',"+ idCurso + ")");
 				if(ok)
@@ -110,7 +115,7 @@ public class Grupos extends ConexionBaseDatos{
 		boolean ok = false;
 		String resultado = null;
 		try {
-				ok = conexion.setQuery("UPDATE grupos SET idAcademia = '" + idAcademia +"',"
+				ok = VentanaPrincipal.conexion.setQuery("UPDATE grupos SET idAcademia = '" + idAcademia +"',"
 														+ "idOficial = '" + idOficial +"',"
 														+ "horario = '" + horario +"',"
 														+ "fechaInicio = '" + stfechaInicio +"',"
@@ -135,7 +140,7 @@ public class Grupos extends ConexionBaseDatos{
 		boolean ok = false;
 		String resultado = null;
 		try {
-				ok = conexion.setQuery("DELETE FROM grupos WHERE idGrupo = "+ idGrupo );
+				ok = VentanaPrincipal.conexion.setQuery("DELETE FROM grupos WHERE idGrupo = "+ idGrupo );
 				if(ok)
 					resultado = "Se borró el grupo";
 				else
@@ -149,27 +154,27 @@ public class Grupos extends ConexionBaseDatos{
 	 */
 	public static ResultSet consultar(String idGrupo){
 		ResultSet datos;
-		 datos = conexion.getQuery("SELECT * FROM grupos WHERE idGrupo =" + idGrupo );
+		 datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM grupos WHERE idGrupo =" + idGrupo );
 		return datos;
 	}
 	
 	public static String listar(){
 		ResultSet datos;
-		String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
-		 datos = conexion.getQuery("SELECT * FROM grupos");
+		String cidGrupo, cidAcademia, cidOficial,chorario,cfecInicio,cfecFin,caula,cidCurso, resultado ="";
+		 datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM grupos");
 		 try {
 		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
 		    	  //resultado = "idGrupo\t"+"idAcademia\t"+"idOficial \t"+"horario\t"+"fechaInicio\t"+"fechaFin\t"+"aula\t"+"idCurso\t";
-		    	  campo1 = datos.getString("idGrupo"); 
-		    	  campo2 = datos.getString("idAcademia");
-		    	  campo3 = datos.getString("idOficial");
-		    	  campo4 = datos.getString("horario");
-		    	  campo5 = datos.getString("fechaInicio");
-		    	  campo6 = datos.getString("fechaFin");
-		    	  campo7 = datos.getString("aula");
-		    	  campo8 = datos.getString("idCurso");
-		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3
-		    			  + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
+		    	  cidGrupo = datos.getString("idGrupo"); 
+		    	  cidAcademia = datos.getString("idAcademia");
+		    	  cidOficial = datos.getString("idOficial");
+		    	  chorario = datos.getString("horario");
+		    	  cfecInicio = datos.getString("fechaInicio");
+		    	  cfecFin = datos.getString("fechaFin");
+		    	  caula = datos.getString("aula");
+		    	  cidCurso = datos.getString("idCurso");
+		    	  resultado = resultado +"\n"+ cidGrupo + "\t" + cidAcademia + "\t" + cidOficial
+		    			  + "\t" + chorario + "\t" + cfecInicio + "\t" + cfecFin + "\t" + caula + "\t" + cidCurso ; 
 		      }
 		    }
 		    catch (SQLException e) { e.printStackTrace();

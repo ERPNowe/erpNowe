@@ -38,7 +38,9 @@ public class Fecha {
 	protected boolean bisiesto(){
 		return ((año % 4) == 0) && (año % 100 != 0 || (año % 400 == 0));
 	}
-	
+	/**
+	 * Cambiar el formato de la fecha dd/mm/aaaa a aaaa/mm/dd
+	 * */
 	public static String darFormatoBD(String fecString){
 		String d, m, a;
 		int tam = fecString.length();

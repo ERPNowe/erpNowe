@@ -33,8 +33,8 @@ public class VentanaGrupos extends JFrame {
 	
 	 public VentanaGrupos() {
 			setSize(1200,800);  
-			//Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/iconos/logoApp.gif"));
-			//setIconImage(icon);
+			Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
+	    	setIconImage(icon);
 			setTitle("Ventana Grupos");
 			//setResizable(false);
 			setLocationRelativeTo(null);
@@ -48,16 +48,7 @@ public class VentanaGrupos extends JFrame {
 
 @SuppressWarnings("serial")
 class Paneles extends JPanel implements ActionListener{
-	
-	/*private int idGrupo;//autoincremental, habrá que poner un idGrupo++ después de crear un grupo
-	private String idAcademia;
-	private String idOficial;
-	private String horario;
-	private Date fechaInicio;
-	private Date fechaFin;
-	private String aula;
-	private int idCurso;*/
-	 
+		 
 	JLabel lbidGrupo, lbidAcademia, lbidOficial, lbhorario, lbfechaInicio, lbfechaFin,lbaula,lbidCurso,lbcodCurso;
  	JTextField cidGrupo,cidAcademia,cidOficial,chorario,cfechaInicio,cfechaFin,caula,cidCurso;
  	JButton btConsultar, btInsertar,btModificar,btBorrar,btListado;
@@ -128,7 +119,6 @@ public Paneles()  {
 	try {
 		cargarCombo();
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	comboidCurso.addActionListener(this);
@@ -152,10 +142,13 @@ public Paneles()  {
 	btModificar.setBounds(50,420,100,30);
 	btModificar.addActionListener(this);
 	add(btModificar);
+	/*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
 	btBorrar = new JButton("Borrar");
 	btBorrar.setBounds(150,420,100,30);
 	btBorrar.addActionListener(this);
 	add(btBorrar);
+	//btBorrar.setVisible(false);
+	
 	btListado = new JButton("Listado");
 	btListado.setBounds(50,460,100,30);
 	btListado.addActionListener(this);
@@ -218,7 +211,7 @@ void cargarCombo() throws SQLException {
 					cidCurso.setText(filas.getString("idCurso"));
 					
 				} else {
-					JOptionPane.showMessageDialog(null, "no existe el registro");
+					JOptionPane.showMessageDialog(null, "no existe el grupo");
 				}
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -230,9 +223,7 @@ void cargarCombo() throws SQLException {
 				
 	
 		 if(botonPulsado == btInsertar){
-				 
-			 
-			 //String stidGrupo = cidGrupo.getText();
+			//String stidGrupo = cidGrupo.getText();
 			 String stidAcademia = cidAcademia.getText();
 			 String stidOficial = cidOficial.getText();
 			 String sthorario = chorario.getText();
@@ -240,9 +231,13 @@ void cargarCombo() throws SQLException {
 			 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
 			 String staula = caula.getText();
 			 String stidCurso = (String) cidCurso.getText();
-			 int intidCurso = Integer.parseInt(stidCurso);
+			 int intidCurso = Integer.parseInt(stidCurso); 
+			 try{
 			 Grupos.insertar( stidAcademia,stidOficial, sthorario, stfechaInicio, stfechaFin, staula,
-						intidCurso);	 
+						intidCurso);	 }
+			 catch(Exception exc){ exc.printStackTrace(); 
+				 JOptionPane.showMessageDialog(null, "comprobar que el formato de la fecha sea correcto");
+			 }
 		 }
 		 
 		 
@@ -257,10 +252,15 @@ void cargarCombo() throws SQLException {
 			 String staula = caula.getText();
 			 String stidCurso = (String) cidCurso.getText();
 			 int intidCurso = Integer.parseInt(stidCurso);
+			 try{
 			Grupos.modificar( intidGrupo, stidAcademia,stidOficial, sthorario,stfechaInicio,stfechaFin, staula,
-						intidCurso);	
+						intidCurso);}
+			 catch(Exception exc){ exc.printStackTrace(); 
+			 JOptionPane.showMessageDialog(null, "comprobar que el formato de la fecha sea correcto");
+				 
+			 }
 		 }
-
+/*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
 		 if(botonPulsado == btBorrar){
 			 String idGrupo = cidGrupo.getText();
 			 int intidGrupo = Integer.parseInt(idGrupo);			 
