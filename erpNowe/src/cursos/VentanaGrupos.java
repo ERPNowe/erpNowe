@@ -210,8 +210,8 @@ void cargarCombo() throws SQLException {
 					/*String stfechaInicio = Fecha.darFormatoBD(cfechaInicio.getText());
 			 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
 					 * */
-					cfechaInicio.setText(filas.getString("fechaInicio"));
-					cfechaFin.setText(filas.getString("fechaFin"));
+					cfechaInicio.setText(Fecha.devolverFormatoBD(filas.getString("fechaInicio")));
+					cfechaFin.setText(Fecha.devolverFormatoBD(filas.getString("fechaFin")));
 					caula.setText(filas.getString("aula"));
 					cidCurso.setText(filas.getString("idCurso"));
 					
