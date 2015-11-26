@@ -1,4 +1,4 @@
-package Matricula;
+package matricula;
 
 /**
  * 
@@ -22,13 +22,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class ventana extends JFrame {
+public class VentanaMatricula extends JFrame {
 	
 	//creo el constructor del panel donde pongo todas sus propiedades//
 	
-		 public ventana() {
+		 public VentanaMatricula() {
 		    	//para ponerle el icono a la app
-		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logoApp.gif"));
+		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 			    setIconImage(icon);
 			    setSize(710,440); // Ancho*Alto
 			    setTitle("Gestión Alumnos Nowe");
@@ -39,7 +39,7 @@ public class ventana extends JFrame {
 
 		 class Panel extends JPanel implements ActionListener{
 
-			 JButton consultar, Consultaid,ConsultaGR,Presupuesto, limpiar,cerrar;
+			 JButton consultar, Consultaid,ConsultaGR,Presupuesto,Modificar,Insertar, limpiar,cerrar;
 			 JTextArea textareaconsulta; 
 			 JTextField textfield1, textfield2,textfield3, textfield4, textfield5, textfield6;
 			 JLabel label1,label2,label3, label4, label5, label6;
@@ -53,7 +53,7 @@ public class ventana extends JFrame {
 		    	
 		    	 //creo los botones
 		    	 consultar=new JButton("Listado");
-		    	 consultar.setBounds(10,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
+		    	 consultar.setBounds(10,10,120,50); 
 		         add(consultar);
 		         consultar.addActionListener(this);
 		         
@@ -67,18 +67,30 @@ public class ventana extends JFrame {
 		         add(ConsultaGR);
 		         ConsultaGR.addActionListener(this);
 		         
+		         Modificar=new JButton("Modificar");
+		         Modificar.setBounds(10,190,120,50);
+		         add(Modificar);
+		         Modificar.addActionListener(this);
+		         
+		         Insertar=new JButton("Insertar");
+		         Insertar.setBounds(10,250,120,50);
+		         add(Insertar);
+		         Insertar.addActionListener(this);
+		         
 		         Presupuesto=new JButton("Presupuesto");
-		         Presupuesto.setBounds(10,190,120,50);
+		         Presupuesto.setBounds(10,310,120,50);
 		         add(Presupuesto);
 		         Presupuesto.addActionListener(this);
 		         
+		         
+		         
 		         limpiar=new JButton("Limpiar");
-		         limpiar.setBounds(140,250,100,25);
+		         limpiar.setBounds(140,310,100,25);
 		         add(limpiar);
 		         limpiar.addActionListener(this); 
 		         
 		         cerrar=new JButton("Cerrar");
-		         cerrar.setBounds(470,250,100,25);
+		         cerrar.setBounds(470,310,100,25);
 		         add(cerrar);
 		         cerrar.addActionListener(this);
 		         
@@ -90,7 +102,7 @@ public class ventana extends JFrame {
 		         textareaconsulta.setBackground(new Color(224,224,224));
 		         
 		         scrollArea.setViewportView(textareaconsulta);
-		         scrollArea.setBounds(140,10,430,230); //posiciona dentro de la ventana
+		         scrollArea.setBounds(140,10,430,290); //posiciona dentro de la ventana
 		         add(scrollArea);
 			 
 			 
@@ -131,7 +143,7 @@ public class ventana extends JFrame {
 		         textfield4=new JTextField();
 		         textfield4.setBounds(580,190,100,20);
 		         add(textfield4);
-		         textfield4.setBackground( new Color(224,224,224) );
+		         textfield4.setBackground(new Color(224,224,224) );
 		         
 		         label5=new JLabel("promociones");
 		         label5.setBounds(580,270,100,20);
@@ -140,16 +152,16 @@ public class ventana extends JFrame {
 		         textfield5=new JTextField();
 		         textfield5.setBounds(580,250,100,20);
 		         add(textfield5);
-		         textfield5.setBackground( new Color(224,224,224) );
+		         textfield5.setBackground(new Color(224,224,224) );
 		         
 		         label6=new JLabel("pagado");
-		         label6.setBounds(580,360,100,20);
+		         label6.setBounds(580,330,100,20);
 		         add(label6);
 		         
 		         textfield6=new JTextField();
 		         textfield6.setBounds(580,310,100,20);
 		         add(textfield6);
-		         textfield6.setBackground( new Color(224,224,224));
+		         textfield6.setBackground(new Color(224,224,224));
 			 
 			 }
 		          //creo las acciones
@@ -163,10 +175,53 @@ public class ventana extends JFrame {
 		            	 textareaconsulta.setText(Matricula.Consultarid(textfield1.getText()));}
 		             
 		             if (botonPulsado==Presupuesto) {
-		            	 //ventana presupuesto = new ventana();
-		          	   	//presupuesto.setVisible(true);
-		            	 //textareaconsulta.setText(Matricula.crearPresupuesto());
-		          	   	}
+			           //  textareaconsulta.setText(Matricula.crearPresupuesto());
+		            	 }
+		            	 
+		             if (botonPulsado==Insertar) {
+		            	 String idAlumno = textfield1.getText();
+		            	 int Alumno = Integer.parseInt(idAlumno);
+		            	 
+		            	 String idGrupo = textfield2.getText();
+		            	 int Grupo = Integer.parseInt(idGrupo);
+		            	 
+		            	 String FormaPago = textfield3.getText();
+		            	 int pago = Integer.parseInt(FormaPago);
+		            	 
+		            	 String Desempleado = textfield4.getText();
+		            	 int Desemplead = Integer.parseInt(Desempleado);
+		            	 
+		            	 String Promociones = textfield5.getText();
+		            	 
+		            	 String Pagado = textfield6.getText();
+		            	 int Pagad = Integer.parseInt(Pagado);
+		            	 
+		            	 
+		            	 textareaconsulta.setText(Matricula.insertar(Alumno,Grupo,pago,Desemplead,Promociones,Pagad));
+		            	 }
+		             
+		             if (botonPulsado==Modificar) {
+		            	 String idAlumno = textfield1.getText();
+		            	 int Alumno = Integer.parseInt(idAlumno);
+		            	 
+		            	 String idGrupo = textfield2.getText();
+		            	 int Grupo = Integer.parseInt(idGrupo);
+		            	 
+		            	 String FormaPago = textfield3.getText();
+		            	 int pago = Integer.parseInt(FormaPago);
+		            	 
+		            	 String Desempleado = textfield4.getText();
+		            	 int Desemplead = Integer.parseInt(Desempleado);
+		            	 
+		            	 String Promociones = textfield5.getText();
+		            	 
+		            	 String Pagado = textfield6.getText();
+		            	 int Pagad = Integer.parseInt(Pagado);
+		            	 
+		            	 
+		            	 textareaconsulta.setText(Matricula.modificar(Alumno,Grupo,pago,Desemplead,Promociones,Pagad));
+		            	 }
+		             
 		             if (botonPulsado==ConsultaGR) {
 		            	 textareaconsulta.setText(Matricula.ConsultarGR(textfield2.getText()));}
 		             
@@ -174,12 +229,15 @@ public class ventana extends JFrame {
 		            	 textfield1.setText("");
 		            	 textfield2.setText("");
 		            	 textfield3.setText("");
+		            	 textfield4.setText("");
+		            	 textfield5.setText("");
+		            	 textfield6.setText("");
 		            	 textareaconsulta.setText("");}
 		             
 		             if (botonPulsado==cerrar) {
 		            	 principal.conexion.cerrarConexion();
-		            	 textareaconsulta.setText("conexion cerrada");} 
+		            	 textareaconsulta.setText("conexion cerrada");}
+		            	 
 		           }
 		         }
 }
-
