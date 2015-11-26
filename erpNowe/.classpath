@@ -11,5 +11,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="erpNowe/src"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/TEMP/iText-5.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
