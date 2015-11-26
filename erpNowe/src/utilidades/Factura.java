@@ -22,7 +22,7 @@ public class Factura {
 	private String formaPago;
 	
 	/**
-	 * Metodo constructor
+	 * Metodo constructor Factura
 	 * @param int idfactura, int anofactura, int facturascont, float totfactura, String fechafact, String nomempresa,
 	 * @param String direccempresa, String cifempresa, String personacontacto, String telffaxempresa, float baseimponible,
 	 * @param String formaPago
