@@ -53,6 +53,18 @@ public class Fecha {
 		return "";
 	}
 	
+	public static String devolverFormatoBD(String fecString){
+		String d, m, a;
+		int tam = fecString.length();
+		if(tam == 10){  // teniendo en cuenta que sale aaaa/mm/dd
+			a = fecString.substring(0, 4);
+			m = fecString.substring(5, 7);
+			d = fecString.substring(8);
+			return (d + "-" + m + "-" + a);
+		}
+		return "";
+	}
+	
 	public boolean fechaCorrecta(){
 		boolean diaCorrecto, mesCorrecto, añoCorrecto;
 		// año correcto?
