@@ -5,7 +5,7 @@
  * @since 19/11/2015
  * <br>
  * <p> 
- * Esta clase corresponde a la pantalla principal del programa y su menú
+ * Esta clase corresponde a la pantalla principal del programa y sus menús
  * </p> 
  */
 
@@ -42,18 +42,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		 public static basedatos.ConexionBaseDatos conexion = null;
 	
 		 
-	public VentanaPrincipal () {
-		
+	public VentanaPrincipal () {		
 				
 		setLayout(null);
 		Fondo fondo;
 		Toolkit t = Toolkit.getDefaultToolkit();
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension tamañoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(null);
 		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		setIconImage(icon);
         this.setTitle("ERP Nowe");
-        setSize(screenSize.width, screenSize.height);
+        setSize(tamañoPantalla.width, tamañoPantalla.height);
         setResizable(false);
         
         
