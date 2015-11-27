@@ -1,11 +1,20 @@
+/**
+ * Clase Alumno
+ * @author curso14/7803
+ * @since 25/11/2015
+ * @version 1.0
+ * @since 18/11/2015
+ * <br>
+ * <p>
+ * Esta clase se corresponde con los metodos principales 
+ * de acceso y gestión de la tabla alumnos.
+ * </p>
+*/
+
 package alumnos;
 import java.sql.Date;
 
-/**
- * @author Carlos ,Eduardo, Angel
- * @since 25/11/2015
- * @version 1.0
-*/
+
 public class Alumno {
 	
 	private int idAlumno;
@@ -24,7 +33,9 @@ public class Alumno {
 	
 	public Alumno(int idAlumno, String nombre, String apellidos, String dNI, String email, int telefono,
 			String direccion, int codigoPostal, String municipio, String provincia, String pais, Date fechaNacimiento) {
+		
 		super();
+		
 		this.idAlumno = idAlumno;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -39,238 +50,98 @@ public class Alumno {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-
-
-
 	public int getIdAlumno() {
 		return idAlumno;
 	}
-
-
-
-
-
-
-
+	
 	public void setIdAlumno(int idAlumno) {
 		this.idAlumno = idAlumno;
 	}
-
-
-
-
-
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
-
-
-
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-
-
-
-
-
+	
 	public String getApellidos() {
 		return apellidos;
 	}
-
-
-
-
-
-
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
-
-
-
-
-
-
 	public String getDNI() {
 		return DNI;
 	}
-
-
-
-
-
-
 
 	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
 
-
-
-
-
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
-
-
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
-
-
-
-
 	public int getTelefono() {
 		return telefono;
 	}
-
-
-
-
-
-
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
 
-
-
-
-
-
 	public String getDireccion() {
 		return direccion;
 	}
 
-
-
-
-
-
-
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-
-
-
-
-
-
-
+	
 	public int getCodigoPostal() {
 		return codigoPostal;
 	}
-
-
-
-
-
-
 
 	public void setCodigoPostal(int codigoPostal) {
 		this.codigoPostal = codigoPostal;
 	}
 
-
-
-
-
-
-
 	public String getMunicipio() {
 		return municipio;
 	}
-
-
-
-
-
-
 
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
 	}
 
-
-
-
-
-
-
 	public String getProvincia() {
 		return provincia;
 	}
-
-
-
-
-
-
 
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
 
-
-
-
-
-
-
 	public String getPais() {
 		return pais;
 	}
-
-
-
-
-
-
 
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
 
-
-
-
-
-
-
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-
-
-
-
-
-
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
@@ -278,26 +149,21 @@ public class Alumno {
 
 
 
-public void insertar() {
+	public void insertar() {		
+		
+	}
 	
+	public void modificar(){		
+		
+	}
 	
-}
+	public void consultar() {		
+		
+	}
+	
+	public void eliminar(){		
+		
+	}
 
-public void modificar(){
-	
-	
-}
-
-public void consultar() {
-	
-	
-}
-
-public void eliminar(){
-	
-	
-}
-
-	
 
 }
