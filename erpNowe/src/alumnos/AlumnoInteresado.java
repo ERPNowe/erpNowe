@@ -1,22 +1,35 @@
+/**
+ * Clase AlumnosInteresado
+ * @autor curso14/7803
+ * @version 1.0
+ * @since 18/11/2015
+ * <br>
+ * <p>
+ * Esta clase se corresponde con los metodos principales 
+ * de acceso y gestión de la tabla Alumno Interesado
+ * </p>
+ */
+
 package alumnos;
 
 import java.sql.Date;
 
 public class AlumnoInteresado extends Alumno  {
+	
 	private char idInteresado;
 	private String cursosInteresado;
 	private String observaciones;
-	//private int idAlumno; /*este atributo es heredadod de la clase padre Alumno*/
+	
 	public AlumnoInteresado(int idAlumno, String nombre, String apellidos, String dNI, String email, int telefono,
 			String direccion, int codigoPostal, String municipio, String provincia, String pais, Date fechaNacimiento,
 			char idInteresado,String cursosInteresado,String observaciones) {
+		
 		super(idAlumno, nombre, apellidos, dNI, email, telefono, direccion, codigoPostal, municipio, provincia, pais,
 				fechaNacimiento);
+		
 		this.idInteresado =idInteresado;
 		this.cursosInteresado=cursosInteresado;
-		this.observaciones=observaciones;
-		
-		
+		this.observaciones=observaciones;		
 	}
 	
 	
@@ -50,20 +63,16 @@ public class AlumnoInteresado extends Alumno  {
 	}
 
 
-	public void pedirInformacion() {
-		
+	public void pedirInformacion() {		
 		
 	}
 	
 
-	public void visualizarCursos(){
-		
-		
+	public void visualizarCursos(){		
 		
 	}
 	
-	public void solicitarPresupuesto(){
-		
+	public void solicitarPresupuesto(){		
 		
 	}
 }
