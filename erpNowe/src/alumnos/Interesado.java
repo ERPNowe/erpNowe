@@ -2,10 +2,6 @@ package alumnos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import basedatos.ConexionBaseDatos;
-import utilidades.Fecha;
 import ventanaPrincipal.VentanaPrincipal;
 
 public class Interesado {
@@ -96,8 +92,8 @@ public class Interesado {
 				String  idAlum =datos.getString("idAlumno");
 				
 				ok2 = VentanaPrincipal.conexion.setQuery(
-				"INSERT INTO alumnoInteresado  (cursoInteresado,Observaciones,idAlumno ) VALUES ('"
-				+ curso + "','" + observaciones +"','" + idAlum +"')");
+				"INSERT INTO alumnoInteresado  (cursosInteresado,Observaciones,idAlumno ) VALUES ('"
+				+ curso + "','" + observaciones +"'," + idAlum +")");
 			}
 			
 			
