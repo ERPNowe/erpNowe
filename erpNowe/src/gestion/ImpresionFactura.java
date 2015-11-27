@@ -54,8 +54,9 @@ public class ImpresionFactura {
 	    		  							);
 	      
 	      
+	      int  lienasfactura =2;
 	      
-	      FacturasDetalle[] facturaimpDetalle = new FacturasDetalle[2];
+	      FacturasDetalle[] facturaimpDetalle = new FacturasDetalle[lienasfactura];
 	      
 	      FacturasDetalle   facturaimpDetalleVal =  new FacturasDetalle(1,//int idfacturasdetalle,
 																		"F3432C5",//String codproducto,
@@ -242,13 +243,17 @@ public class ImpresionFactura {
 		    table.addCell(cellimporteeur);
 	
 	
-	        for (int i=0; i < 10; i++){
+	        for (int i=0; i < lienasfactura -1; i++){
 	        	
-			    table.addCell(i+".1");
-			    table.addCell(i+".2");
-			    table.addCell(i+".3");
-			    table.addCell(i+".4");
-			    table.addCell(i+".5");
+			    table.addCell(facturaimpDetalle[i].getCodproducto());
+			    
+			    table.addCell(facturaimpDetalle[i].getDescproducto());
+			    
+			    table.addCell( Integer.toString(facturaimpDetalle[i].getCantidad()) );
+			    
+			    table.addCell( Float.toString(  facturaimpDetalle[i].getPreciounidad()));
+			    
+			    table.addCell( Float.toString(  facturaimpDetalle[i].getImporte()));
 	        	
 	        }	    
 		    
