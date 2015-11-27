@@ -1,5 +1,4 @@
 package alumnos;
-
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import ventanaPrincipal.VentanaPrincipal;
 
 
@@ -37,11 +35,10 @@ public class VentanaInteresado extends JFrame {
 		setSize(855, 410); // Ancho*Alto
 		setTitle("Gestión Alumnos Nowe");
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 		Panel p = new Panel(); // crear la clase panel como en marcoprincipal
 		add(p);
-		
-		
+	
 		
 	}
 	
@@ -65,7 +62,7 @@ public class VentanaInteresado extends JFrame {
 			setResizable(false);
 			scrollArea = new JScrollPane();
 			// creo los botones
-			consultar = new JButton("Consulta");
+			consultar = new JButton("consultar");
 			consultar.setBounds(10, 10, 100, 50); // Padding_Left, Padding_Top,Ancho, Alto
 			add(consultar);
 			consultar.addActionListener(this);
@@ -81,13 +78,13 @@ public class VentanaInteresado extends JFrame {
 			modificar.setEnabled(false);
 			modificar.addActionListener(this);
 
-			borrar = new JButton("Eliminar");
+			borrar = new JButton("Elimin");
 			borrar.setBounds(10, 190, 100, 50);
 			add(borrar);
 			borrar.setEnabled(false);
 			borrar.addActionListener(this);
 			
-			listar = new JButton("Listar");
+			listar = new JButton("buscar \n alumno");
 			listar.setBounds(10, 250, 100, 50);
 			add(listar);
 			listar.addActionListener(this);
@@ -114,7 +111,7 @@ public class VentanaInteresado extends JFrame {
 
 			// pongo los texfileds y jlabel
 
-			label1 = new JLabel("Nombre");
+			label1 = new JLabel("Nomkk");
 			label1.setBounds(635, 30, 100, 20);
 			add(label1);
 
@@ -326,12 +323,12 @@ public class VentanaInteresado extends JFrame {
 				if(tel.equals("")) tel = "0";
 				if(cp.equals("")) cp = "0";
 				if(fec.equals("")) fec = "0";
-				ResultSet resultado = VentanaPrincipal.conexion.getQuery("SELECT idCurso FROM cursos where codigoCurso ='"+select.getSelectedItem().toString()+"'");
+				ResultSet resultado = VentanaPrincipal.conexion.getQuery("SELECT idCurso FROM cursos where CodigoCurso ='"+(String)select.getSelectedItem()+"'");
 				String idcurso="";
 				try {
-					idcurso  = resultado.getString("idcurso");
+					idcurso = resultado.getString("idCurso");
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 				textareaconsulta.setText(Interesado.insertarAlumno(
@@ -396,7 +393,7 @@ public class VentanaInteresado extends JFrame {
 
 					textareaconsulta.setText(Interesado.borrarAlumno(textfield3.getText()));
 				} else if (textfield3.getText().equals("")) {
-					textareaconsulta.setText("Deves introducir el DNI de alumno que quieres borrar ");
+					textareaconsulta.setText("Debes introducir el DNI de alumno que quieres borrar ");
 				}
 
 			}
