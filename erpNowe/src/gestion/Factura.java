@@ -113,7 +113,7 @@ public class Factura {
 	public int getFacturasCont() {
 		return this.facturascont;
 	}
-	public float getTotFacturaa) {
+	public float getTotFactura() {
 		return this.totfactura;
 	}	
 	public String getFechafact() {

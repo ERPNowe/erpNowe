@@ -1,5 +1,6 @@
 package gestion;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Calendar;
@@ -80,34 +81,35 @@ public class ImpresionFactura {
 	      facturaimpDetalle[1]=facturaimpDetalleVal2;
 	      
 	          
-	      String NUMERO = "Número:" + facturaimp.getAnoFactura() + "/" + facturaimp.getFacturasCont();
+	      String NUMERO =  facturaimp.getAnoFactura() + "/" + facturaimp.getFacturasCont();
+	     
 	      
           Calendar fec = new GregorianCalendar();
           int año = fec.get(Calendar.YEAR);
           int mes = fec.get(Calendar.MONTH);
 	      int dia = fec.get(Calendar.DAY_OF_MONTH);
-	      String FECHATXT = "Fecha: " + dia + "/" + (mes+1) + "/" + año  ;                   
+	      String FECHATXT = dia + "/" + (mes+1) + "/" + año  ;                   
 		  
 		  
 		  try  {
 		   
 	      FileOutputStream archivo = new FileOutputStream("C:\\temp\\facturatmp.pdf");
 	      Document documento = new Document();
-	      
+	     
 	      // Se asocia el documento al OutputStream y se indica que el espaciado entre
 		  // lineas sera de 20. Esta llamada debe hacerse antes de abrir el docume
 	      PdfWriter writer = PdfWriter.getInstance(documento, archivo);
 	      
 	        	      
 	      documento.open();
-	      
-		  documento.add(new Paragraph(" "));
+	     
 		  	      
 	      try
 	      {
-	          Image foto = Image.getInstance("C:\\temp\\logoFactura.bmp");
-	          foto.scaleToFit(100, 100);
-	          foto.setAlignment(Chunk.ALIGN_LEFT);
+	          Image foto = Image.getInstance("C:\\temp\\cabfact.png");
+	          foto.scaleToFit(600, 600);
+	          foto.setAbsolutePosition(0, 700);
+	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
 	          documento.add(foto);
 	      }
 	      catch ( Exception e )
@@ -116,89 +118,122 @@ public class ImpresionFactura {
 	      }
 	      
 	      
-	      Chunk facturChunk = new Chunk(NUMERO,new Font(FontFamily.HELVETICA, 8, Font.BOLD, BaseColor.WHITE));
-	      facturChunk.setBackground(BaseColor.BLUE, 200f, 10f, 50f, 10f);	
-	      
-	      documento.add(facturChunk);
-	      
-	      documento.add(new Paragraph(" "));
-	      
-	      Chunk fechaChunk = new Chunk(FECHATXT,new Font(FontFamily.HELVETICA, 8, Font.BOLD, BaseColor.WHITE));
-	      fechaChunk.setBackground(BaseColor.BLUE, 200f, 10f, 50f, 10f);	      
-	      documento.add(fechaChunk);
-	      
-	      documento.add(new Paragraph(" "));
-	      
-	      Paragraph datosClientetxt = new Paragraph("Datos del cliente:",
-                  FontFactory.getFont("arial",   // fuente
-                  15,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.CYAN)); // color
-	      	     
-	      datosClientetxt.setAlignment(Element.ALIGN_CENTER);
-	      
-	      documento.add(datosClientetxt);           
 	      
 	      
-	      Paragraph nombreEmpresatxt = new Paragraph("Nombre de la empresa:" + facturaimp.getNomempresa(),
-                  FontFactory.getFont("arial",   // fuente
-                  12,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.BLACK)); // color
-	      
-	      nombreEmpresatxt.setAlignment(Element.ALIGN_CENTER);
-	      
-	      documento.add(nombreEmpresatxt);
+	  
 	      
 	      
-	      Paragraph direcciontxt = new Paragraph("Dirección:" + facturaimp.getDireccempresa(),
-                  FontFactory.getFont("arial",   // fuente
-                  12,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.BLACK)); // color
+    		//--------------------------------------------------------
+	        PdfContentByte cb = writer.getDirectContent();
+	        BaseFont bf = BaseFont.createFont(); 
+	        
+	        //-------------------------------------------------------	
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(495, 769);
+	        cb.setFontAndSize(bf, 8);
+	        cb.showText(NUMERO);
+	        cb.endText();
+	        cb.restoreState();
+	        
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(495, 755);
+	        cb.setFontAndSize(bf, 8);
+	        cb.showText(FECHATXT);
+	        cb.endText();
+	        cb.restoreState();
+	        //--------------------------------------------------------
+
+	        
+	  
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(120, 700);
+	        cb.setFontAndSize(bf, 17);
+	        cb.showText("Datos del cliente:");
+	        cb.endText();
+	        cb.restoreState();
+
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(130, 675);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText("Nombre de la empresa:    " + facturaimp.getNomempresa());
+	        cb.endText();
+	        cb.restoreState();
+          
+	        
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(130, 655);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText("Dirección:               " + facturaimp.getDireccempresa());	        
+	        cb.endText();
+	        cb.restoreState();
+	        
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(130, 635);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText("C.I.F. :                 " + facturaimp.getCifempresa());	        
+	        cb.endText();
+	        cb.restoreState();	  
+	        
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(130, 615);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText("Persona de contacto :     " + facturaimp.getPersonacontacto());	        
+	        cb.endText();
+	        cb.restoreState();	        
 	      
-	      direcciontxt.setAlignment(Element.ALIGN_CENTER);
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(130, 595);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText("Teléfono/Fax :           " + facturaimp.getTelffaxempresa());	        
+	        cb.endText();
+	        cb.restoreState();	
+	        
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(130, 575);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText("Correo electrónico :     " + facturaimp.getTelffaxempresa());	        
+	        cb.endText();
+	        cb.restoreState();		        
+	        
+	        
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        
+	        
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));
+	        documento.add(new Paragraph(" "));	        
+
+	     
+ 
 	      
-	      documento.add(direcciontxt);
-	      
-	      Paragraph ciftxt = new Paragraph("C.I.F.:" + facturaimp.getCifempresa(),
-                  FontFactory.getFont("arial",   // fuente
-                  12,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.BLACK)); // color
-	      
-	      ciftxt.setAlignment(Element.ALIGN_CENTER);
-	      
-	      documento.add(ciftxt);	      
-	      
-	      
-	      Paragraph personacontactotxt = new Paragraph("Persona de contacto:" + facturaimp.getPersonacontacto(),
-                  FontFactory.getFont("arial",   // fuente
-                  12,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.BLACK)); // color
-	      personacontactotxt.setAlignment(Element.ALIGN_CENTER);
-	      documento.add(personacontactotxt);	      	      
-	      
-	      
-	      Paragraph telefonoFaxtxt = new Paragraph("Teléfono/Fax:" + facturaimp.getTelffaxempresa(),
-                  FontFactory.getFont("arial",   // fuente
-                  12,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.BLACK)); // color
-	      telefonoFaxtxt.setAlignment(Element.ALIGN_CENTER);
-	      documento.add(telefonoFaxtxt);	 
-	      
-	      Paragraph correoElectronicoxtxt = new Paragraph("Correo electrónico::" +facturaimp.getEmailempresa() ,
-                  FontFactory.getFont("arial",   // fuente
-                  12,                            // tamaño
-                  Font.ITALIC,                   // estilo
-                  BaseColor.BLACK)); // color
-	      correoElectronicoxtxt.setAlignment(Element.ALIGN_CENTER);
-	      documento.add(correoElectronicoxtxt);	
-	      
-	      documento.add(new Paragraph(" "));
-	      documento.add(new Paragraph(" "));
+	  
+
 	      
 	      Paragraph datosTrabajotxt = new Paragraph("Datos del trabajo:",
                   FontFactory.getFont("arial",   // fuente
@@ -215,15 +250,21 @@ public class ImpresionFactura {
 		    PdfPTable table = new PdfPTable(5);
 		    table.setWidthPercentage(100);
 		    table.setTotalWidth(90);
+		    
+		    float[] columnWidths = new float[] {10f, 40f, 5f, 13f,13f};
+            table.setWidths(columnWidths);
+		    
 		    //Añadir CABECERA
-		    PdfPCell cell = new PdfPCell(new Phrase("xxxxx"));
-		    cell.setColspan(5);
-		    cell.setBackgroundColor(BaseColor.GRAY);
-		    table.addCell(cell);
+		    //PdfPCell cell = new PdfPCell(new Phrase("xxxxx"));
+		    //cell.setColspan(5);
+		    //cell.setBackgroundColor(BaseColor.GRAY);
+		    //table.addCell(cell);
 		    //Añadir dos filas de celdas sin formato
 		    
+		      
+		    
 		    PdfPCell cellcodigo = new PdfPCell(new Phrase("Código"));
-		    cellcodigo.setBackgroundColor(BaseColor.BLUE);		    
+		    cellcodigo.setBackgroundColor(BaseColor.GREEN);		    
 		    table.addCell(cellcodigo);
 		    
 		    PdfPCell celldescripcion = new PdfPCell(new Phrase("Descripción"));
@@ -243,17 +284,77 @@ public class ImpresionFactura {
 		    table.addCell(cellimporteeur);
 	
 	
-	        for (int i=0; i < lienasfactura -1; i++){
+	        for (int i=0; i <= lienasfactura -1; i++){
 	        	
-			    table.addCell(facturaimpDetalle[i].getCodproducto());
+			    Font font = new Font(FontFamily.COURIER, 10, Font.ITALIC);
+			    	    
+	        	
+			    //table.addCell(facturaimpDetalle[i].getCodproducto());
 			    
-			    table.addCell(facturaimpDetalle[i].getDescproducto());
+			    Paragraph para1 = new Paragraph(facturaimpDetalle[i].getCodproducto() , font );
+		        PdfPCell cell1 = new PdfPCell();		        
+		        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell1.addElement(para1);
+		        cell1.setBorderWidthTop(0);
+		        cell1.setBorderWidthBottom(0);
+		        cell1.setBorderWidthLeft(1);
+		        cell1.setBorderWidthRight(0);		        	        
+		        table.addCell(cell1);			    
 			    
-			    table.addCell( Integer.toString(facturaimpDetalle[i].getCantidad()) );
 			    
-			    table.addCell( Float.toString(  facturaimpDetalle[i].getPreciounidad()));
+			    //table.addCell(facturaimpDetalle[i].getDescproducto());
 			    
-			    table.addCell( Float.toString(  facturaimpDetalle[i].getImporte()));
+			    Paragraph para2 = new Paragraph(facturaimpDetalle[i].getDescproducto() , font );
+		        PdfPCell cell2 = new PdfPCell();		        
+		        cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell2.addElement(para2);
+		        cell2.setBorderWidthTop(0);
+		        cell2.setBorderWidthBottom(0);
+		        cell2.setBorderWidthLeft(1);
+		        cell2.setBorderWidthRight(0);
+		        	        
+		        table.addCell(cell2);
+			    
+			    
+		      //table.addCell( Integer.toString(facturaimpDetalle[i].getCantidad()) );
+
+			    Paragraph para3 = new Paragraph(Integer.toString(facturaimpDetalle[i].getCantidad()) , font );
+		        PdfPCell cell3 = new PdfPCell();		        
+		        cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell3.addElement(para3);
+		        cell3.setBorderWidthTop(0);
+		        cell3.setBorderWidthBottom(0);
+		        cell3.setBorderWidthLeft(1);
+		        cell3.setBorderWidthRight(0);		        		        
+		        table.addCell(cell3);
+		        
+		        //table.addCell( Float.toString(  facturaimpDetalle[i].getPreciounidad()));
+
+			    Paragraph para4 = new Paragraph(Float.toString(  facturaimpDetalle[i].getPreciounidad()) , font );
+		        PdfPCell cell4 = new PdfPCell();		        
+		        cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell4.addElement(para4);
+		        cell4.setBorderWidthTop(0);
+		        cell4.setBorderWidthBottom(0);
+		        cell4.setBorderWidthLeft(1);
+		        cell4.setBorderWidthRight(0);		        		        
+		        table.addCell(cell4);
+			    
+			    
+			    
+			    
+			    //table.addCell( Float.toString(  facturaimpDetalle[i].getImporte()));
+			    
+			    
+			    Paragraph para5 = new Paragraph(  Float.toString(  facturaimpDetalle[i].getImporte())  , font );
+		        PdfPCell cell5 = new PdfPCell();		        
+		        cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell5.addElement(para5);
+		        cell5.setBorderWidthTop(0);
+		        cell5.setBorderWidthBottom(0);
+		        cell5.setBorderWidthLeft(1);
+		        cell5.setBorderWidthRight(1);		        		        
+		        table.addCell(cell5);			    
 	        	
 	        }	    
 		    
@@ -262,12 +363,13 @@ public class ImpresionFactura {
 		    
 		
 		    documento.add(table);
+		    
 	    /*-----------------------------------------------------------*/
 	      
 	      
 		  //--------------------------------------------------------
-	        PdfContentByte cb = writer.getDirectContent();
-	        BaseFont bf = BaseFont.createFont();
+	      //  PdfContentByte cb = writer.getDirectContent();
+	      //  BaseFont bf = BaseFont.createFont();
 	        
 	        cb.beginText();
 	        cb.setFontAndSize(bf, 6);
@@ -302,9 +404,11 @@ public class ImpresionFactura {
 	   }
 	   
 	   }
-	   
-	   
+	
+
+
 	   
 }
+
 
  
