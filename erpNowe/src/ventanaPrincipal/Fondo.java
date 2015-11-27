@@ -19,16 +19,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
 
+@SuppressWarnings("serial")
 public class Fondo extends JDesktopPane  {
 	
 	private Image imagen;
+
 	
 	public Fondo() {
 		Toolkit t = Toolkit.getDefaultToolkit();
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension tamañoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLayout(null); 
 	    this.setToolTipText("ERP Nowe");
-	    this.setBounds(0, 0, screenSize.width, screenSize.height);
+	    this.setBounds(0, 0, tamañoPantalla.width, tamañoPantalla.height);
 	    
 	    try {
 	        imagen = ImageIO.read(getClass().getResource("/img/fondo_ventana_principal.png"));
@@ -43,9 +45,9 @@ public class Fondo extends JDesktopPane  {
 		  
 	   
 	   Toolkit t = Toolkit.getDefaultToolkit();
-	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	   Dimension tamañoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 	    
-	   g.drawImage(imagen, 0, 0,screenSize.width, screenSize.height, null);
+	   g.drawImage(imagen, 0, 0,tamañoPantalla.width, tamañoPantalla.height, null);
 	   setOpaque(false);
 	   
 	   super.paintComponent(g);
