@@ -25,7 +25,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 
 public class ImpresionFactura {
 	
-	   @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	public static void main(String[] a3d) throws FileNotFoundException, DocumentException
 	   {
 		   
