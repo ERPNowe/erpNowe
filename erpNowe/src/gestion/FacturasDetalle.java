@@ -1,4 +1,4 @@
-package utilidades;
+package gestion;
 
 /**
  * @author  Marcos Lueje Alonso
@@ -7,6 +7,8 @@ package utilidades;
 */
 
 public class FacturasDetalle {
+	
+	//private static idDetalleObj;
 	
 	private int idfacturasdetalle;
 	private String codproducto;
@@ -24,7 +26,7 @@ public class FacturasDetalle {
 	 */
 	
 	
-	public void FacturasDetalle(int idfacturasdetalle,
+	public  FacturasDetalle(int idfacturasdetalle,
 								String codproducto,
 								String descproducto,
 								int cantidad,

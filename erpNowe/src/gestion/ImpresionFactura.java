@@ -1,4 +1,4 @@
-package utilidades;
+package gestion;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -32,15 +32,60 @@ public class ImpresionFactura {
 		  final String TEXTOFINAL = "Puede realizar el pago por transferencia bancaria a la cuenta ES86 2038 1927 88 6000173219,a nombre de NOWE CREATIVE FORMACIÓN Y DISEÑO, S,L. - C/ Melilla 5.";
 		  final String TEXTOLATERAL ="NOWE CREATIVE FORMACIÓN Y DISEÑO S.L. CIF: B86250784 . Registro mercantil de Madrid. Tomo 29028. Libro 0. Folio 64. Sección 8. Hoja M522749. Inscripción 1";
 		  //número de factura que se saca de BD o se calcula 
-		  String NUMERO = "Número:" + "2005/2222";
+		  
 		  
 		   
+
+		  
+	      
+	      Factura facturaimp = new Factura(	1,//int idfactura, 
+	    		  							2015,//int anofactura, 
+	    		  							1,//int facturascont, 
+	    		  							100,//float totfactura, 
+	    		  							"10/11/2015",//String fechafact, 
+	    		  							"Casa S.A.",//String nomempresa,
+	    		  							"Antonio López 99",//String direccempresa, 
+	    		  							"A1234579",//String cifempresa, 
+	    		  							"Marcos Alonso",//String personacontacto, 
+	    		  							"98514414545",//String telffaxempresa, 
+	    		  							928,//float baseimponible,
+	    		  							"En Efectivo",//String formaPago
+	    		  							"juia@gajkl.es"
+	    		  							);
+	      
+	      
+	      
+	      FacturasDetalle[] facturaimpDetalle = new FacturasDetalle[2];
+	      
+	      FacturasDetalle   facturaimpDetalleVal =  new FacturasDetalle(1,//int idfacturasdetalle,
+																		"F3432C5",//String codproducto,
+																		"curso Java",//String descproducto,
+																		2,//int cantidad,
+																		8,//float preciounidad,
+																		99,//float importe,
+																		1//int fk_idfactura
+																		);
+	      
+	      FacturasDetalle   facturaimpDetalleVal2 =  new FacturasDetalle(2,//int idfacturasdetalle,
+					"F999C5",//String codproducto,
+					"curso joomla",//String descproducto,
+					1,//int cantidad,
+					333,//float preciounidad,
+					88,//float importe,
+					1//int fk_idfactura
+					);
+	      
+	      facturaimpDetalle[0]=facturaimpDetalleVal;
+	      facturaimpDetalle[1]=facturaimpDetalleVal2;
+	      
+	          
+	      String NUMERO = "Número:" + facturaimp.getAnoFactura() + "/" + facturaimp.getFacturasCont();
+	      
           Calendar fec = new GregorianCalendar();
           int año = fec.get(Calendar.YEAR);
           int mes = fec.get(Calendar.MONTH);
 	      int dia = fec.get(Calendar.DAY_OF_MONTH);
-	      String FECHATXT = "Fecha: " + dia + "/" + (mes+1) + "/" + año  ;
-		  
+	      String FECHATXT = "Fecha: " + dia + "/" + (mes+1) + "/" + año  ;                   
 		  
 		  
 		  try  {
@@ -94,7 +139,7 @@ public class ImpresionFactura {
 	      documento.add(datosClientetxt);           
 	      
 	      
-	      Paragraph nombreEmpresatxt = new Paragraph("Nombre de la empresa:" + "Marcos Lueje S.A.",
+	      Paragraph nombreEmpresatxt = new Paragraph("Nombre de la empresa:" + facturaimp.getNomempresa(),
                   FontFactory.getFont("arial",   // fuente
                   12,                            // tamaño
                   Font.ITALIC,                   // estilo
@@ -105,7 +150,7 @@ public class ImpresionFactura {
 	      documento.add(nombreEmpresatxt);
 	      
 	      
-	      Paragraph direcciontxt = new Paragraph("Dirección:" + "Antonio López 67",
+	      Paragraph direcciontxt = new Paragraph("Dirección:" + facturaimp.getDireccempresa(),
                   FontFactory.getFont("arial",   // fuente
                   12,                            // tamaño
                   Font.ITALIC,                   // estilo
@@ -115,7 +160,7 @@ public class ImpresionFactura {
 	      
 	      documento.add(direcciontxt);
 	      
-	      Paragraph ciftxt = new Paragraph("C.I.F.:" + "10800136T",
+	      Paragraph ciftxt = new Paragraph("C.I.F.:" + facturaimp.getCifempresa(),
                   FontFactory.getFont("arial",   // fuente
                   12,                            // tamaño
                   Font.ITALIC,                   // estilo
@@ -126,7 +171,7 @@ public class ImpresionFactura {
 	      documento.add(ciftxt);	      
 	      
 	      
-	      Paragraph personacontactotxt = new Paragraph("Persona de contacto:" + "Sonia Cuervo",
+	      Paragraph personacontactotxt = new Paragraph("Persona de contacto:" + facturaimp.getPersonacontacto(),
                   FontFactory.getFont("arial",   // fuente
                   12,                            // tamaño
                   Font.ITALIC,                   // estilo
@@ -135,7 +180,7 @@ public class ImpresionFactura {
 	      documento.add(personacontactotxt);	      	      
 	      
 	      
-	      Paragraph telefonoFaxtxt = new Paragraph("Teléfono/Fax:" + "985144095",
+	      Paragraph telefonoFaxtxt = new Paragraph("Teléfono/Fax:" + facturaimp.getTelffaxempresa(),
                   FontFactory.getFont("arial",   // fuente
                   12,                            // tamaño
                   Font.ITALIC,                   // estilo
@@ -143,7 +188,7 @@ public class ImpresionFactura {
 	      telefonoFaxtxt.setAlignment(Element.ALIGN_CENTER);
 	      documento.add(telefonoFaxtxt);	 
 	      
-	      Paragraph correoElectronicoxtxt = new Paragraph("Correo electrónico::" + "mluejeal@gmial.com",
+	      Paragraph correoElectronicoxtxt = new Paragraph("Correo electrónico::" +facturaimp.getEmailempresa() ,
                   FontFactory.getFont("arial",   // fuente
                   12,                            // tamaño
                   Font.ITALIC,                   // estilo

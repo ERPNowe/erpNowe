@@ -1,4 +1,4 @@
-package utilidades;
+package gestion;
 
 /**
  * @author  Marcos Lueje Alonso
@@ -18,6 +18,7 @@ public class Factura {
 	private String cifempresa;
 	private String personacontacto;
 	private String telffaxempresa;
+	private String emailempresa;
 	private float baseimponible = 0.0F;
 	private String formaPago;
 	
@@ -25,11 +26,11 @@ public class Factura {
 	 * Metodo constructor Factura
 	 * @param int idfactura, int anofactura, int facturascont, float totfactura, String fechafact, String nomempresa,
 	 * @param String direccempresa, String cifempresa, String personacontacto, String telffaxempresa, float baseimponible,
-	 * @param String formaPago
+	 * @param String formaPago, String emailempresa
 	 * @return void
 	 */
 	
-	public void Factura(int idfactura,
+	public Factura(int idfactura,
 						int anofactura,
 						int facturascont,
 						float totfactura,
@@ -40,7 +41,8 @@ public class Factura {
 						String personacontacto,
 						String telffaxempresa,
 						float baseimponible,
-						String formaPago
+						String formaPago,
+						String emailempresa
 						){
 		this.idfactura = idfactura ;
 		this.anofactura =anofactura ;
@@ -54,6 +56,7 @@ public class Factura {
 		this.telffaxempresa =telffaxempresa;
 		this.baseimponible = baseimponible;
 		this.formaPago = formaPago;
+		this.emailempresa=emailempresa;
 	}
 
 	
@@ -95,43 +98,50 @@ public class Factura {
 		this.formaPago = formaPago;
 	}
 	
+	public void setEmailempresa(String emailempresa) {
+		this.emailempresa = emailempresa;
+	}
 	
 	
-	public int getIdfactura(int idfactura) {
+	
+	public int getIdfactura() {
 		return this.idfactura;
 	} 	
-	public int getAnoFactura(int anofactura) {
+	public int getAnoFactura() {
 		return this.anofactura;
 	} 
-	public int getFacturasCont(int facturascont) {
+	public int getFacturasCont() {
 		return this.facturascont;
 	}
-	public float getTotFactura(float totfactura) {
+	public float getTotFacturaa) {
 		return this.totfactura;
 	}	
-	public String getFechafact(String fechafact) {
+	public String getFechafact() {
 		return this.fechafact;
 	}
-	public String getNomempresa(String nomempresa) {
+	public String getNomempresa() {
 		return this.nomempresa;
 	}	
-	public String getDireccempresa(String direccempresa) {
+	public String getDireccempresa() {
 		return this.direccempresa;
 	}
-	public String getCifempresa(String cifempresa) {
+	public String getCifempresa() {
 		return this.cifempresa;
 	}	
-	public String getPersonacontacto(String personacontacto) {
+	public String getPersonacontacto() {
 		return this.personacontacto;
 	}
-	public String getTelffaxempresa(String telffaxempresa) {
+	public String getTelffaxempresa() {
 		return this.telffaxempresa;
 	}	
-	public Float getBaseimponible(Float baseimponible) {
+	public Float getBaseimponible() {
 		return this.baseimponible;
 	}
-	public String getFormaPago(String formaPago) {
+	public String getFormaPago() {
 		return this.formaPago;
+	}
+	public String getEmailempresa() {
+		return this.emailempresa;
 	}
 	
 	
