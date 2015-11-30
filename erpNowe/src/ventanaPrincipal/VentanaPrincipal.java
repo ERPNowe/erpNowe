@@ -110,14 +110,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		barraMenu.add(menuAyuda);
 		
 		ayuda = new JMenuItem("?");
-		matricula.addActionListener(this);
+		ayuda.addActionListener(this);
 		menuAyuda.add(ayuda);
 		
 		menuSalir = new JMenu ("Salir");
 		barraMenu.add(menuSalir);
 		
 		salir = new JMenuItem("Salir");
-		matricula.addActionListener(this);
+		salir.addActionListener(this);
 		menuSalir.add(salir);}
 	
 	public void actionPerformed(ActionEvent e) {
