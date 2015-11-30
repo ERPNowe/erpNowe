@@ -61,7 +61,7 @@ public class VentanaCursos extends JFrame {
 			  {
 			   System.out.println("Cerrando la conexión...");
 			   VentanaPrincipal.conexion.cerrarConexion();
-			    System.exit(0);
+//			    System.exit(0);
 			  }
 		}
 			
