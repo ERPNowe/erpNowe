@@ -25,18 +25,19 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+import alumnos.VentanaCalificaciones;
 //import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
-import matricula.VentanaFormaPago;
 import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private JMenuBar barraMenu;
 	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
-	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, formaPago, ayuda, salir;
+	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, ayuda, salir;
 	
 	public static String usuario = "root";
 		 public static String pwd = "root";
@@ -100,24 +101,20 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		
 		matricula = new JMenuItem("Matrícula");
 		matricula.addActionListener(this);
-		menuMatricula.add(matricula);
-		
-		formaPago = new JMenuItem("Forma de Pago");
-		formaPago.addActionListener(this);
-		menuMatricula.add(formaPago);
+		menuMatricula.add(matricula);	
 		
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
 		
 		ayuda = new JMenuItem("?");
-		ayuda.addActionListener(this);
+		matricula.addActionListener(this);
 		menuAyuda.add(ayuda);
 		
 		menuSalir = new JMenu ("Salir");
 		barraMenu.add(menuSalir);
 		
 		salir = new JMenuItem("Salir");
-		salir.addActionListener(this);
+		matricula.addActionListener(this);
 		menuSalir.add(salir);}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -148,12 +145,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaMatricula ventana = new VentanaMatricula();
 			ventana.setVisible(true);
-        }
-		if (e.getSource()== formaPago){
+		}
+		if (e.getSource()== calificacion){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
-			VentanaFormaPago ventana = new VentanaFormaPago();
+			VentanaCalificaciones ventana = new VentanaCalificaciones();
 			ventana.setVisible(true);
-        }
-}
+		
+		}
+	}
 }
 
