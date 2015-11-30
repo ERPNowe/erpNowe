@@ -28,6 +28,7 @@ import ventanaPrincipal.VentanaPrincipal;
 		 private static String usuario = "root";
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
+		 static ResultSet filas = null;
 		 //static ConexionBaseDatos conexion = null;
 		 //static Scanner scanner = new Scanner(System.in);
 
@@ -78,19 +79,31 @@ import ventanaPrincipal.VentanaPrincipal;
 		this.nombre = nombre;
 	}
 	
+	public static void menu(){
+		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
+		 try {
+		      while(filas.next()){
+		    	  ventanaModulo.combo1.addItem(filas.getString("idModulo"));
+		      }	
+		    }
+		    catch (SQLException e) { e.printStackTrace();
+		   }
+		
+	}
+	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
 	 * @return
 	 */
 	public static String consultar(String idModulo){
 		ResultSet datos;
-	    String campo1, campo2, resultado ="";
+	    String idMo, nombre, resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos WHERE idModulo = '"+idModulo+"'");
 	    try {
 	      while(datos.next()){
-	    	  campo1 = datos.getString("idModulo"); 
-	    	  campo2 = datos.getString("nombre");
-	    	  resultado = campo1 + "\t" + campo2; 
+	    	  idMo = datos.getString("idModulo"); 
+	    	  nombre = datos.getString("nombre");
+	    	  resultado = idMo + "\t" + nombre;  
 	      }
 	      ventanaModulo.modificar.setEnabled(true);
 		     ventanaModulo.borrar.setEnabled(true);
@@ -106,13 +119,13 @@ import ventanaPrincipal.VentanaPrincipal;
 	 */
 	public static String listar(){
 		ResultSet datos;
-	    String campo1, campo2, resultado ="";
+	    String idModulo, nombre, resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos");
 	    try {
 	      while(datos.next()){
-	    	  campo1 = datos.getString("idModulo"); 
-	    	  campo2 = datos.getString("nombre");
-	    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2; 
+	    	  idModulo = datos.getString("idModulo"); 
+	    	  nombre = datos.getString("nombre");
+	    	  resultado = resultado +"\n"+ idModulo + "\t" + nombre; 
 	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();
