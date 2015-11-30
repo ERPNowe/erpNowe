@@ -1,6 +1,6 @@
 /** 
  * Clase Modulos
- * @author curso14/7803
+ * @author Victor
  * @since 19/11/2015
  * @version 1.0
  * <br>
@@ -78,7 +78,9 @@ import ventanaPrincipal.VentanaPrincipal;
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+	/**
+	 * Metodo para cargar en el combo los IdModulo
+	 */
 	public static void menu(){
 		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
 		 try {
@@ -93,8 +95,10 @@ import ventanaPrincipal.VentanaPrincipal;
 	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
-	 * @return
+	 * @param idModulo
+	 * @return la consulta completa
 	 */
+	 
 	public static String consultar(String idModulo){
 		ResultSet datos;
 	    String idMo, nombre, resultado ="";
@@ -115,7 +119,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	
 	/**
 	 * Metodo para listar la tabla
-	 * @return
+	 * @return el listado completo de la tabla
 	 */
 	public static String listar(){
 		ResultSet datos;
@@ -137,7 +141,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	 * Metodo para insertar un nuevo registro en la tabla
 	 * @param idModulo
 	 * @param nombre
-	 * @return
+	 * @return se se puede o no insertar el nuevo registro
 	 */
 	public static String insertar(String idModulo, String nombre){
 		 boolean ok = false;
@@ -160,7 +164,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	 * Metodo para modificar entradas de la base de datos
 	 * @param idModulo
 	 * @param nombre
-	 * @return
+	 * @return si se puede o no modificar el registro
 	 */
 	public static String modificar(String idModulo, String nombre){
 		 boolean ok = false;
@@ -180,7 +184,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	/**
 	 * Metodo para borrar registros de la base de datos
 	 * @param idModulo
-	 * @return
+	 * @return si se puede o no borrar el registro
 	 */
 	public static String eliminar(String idModulo){
 		 boolean ok = false;
