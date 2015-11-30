@@ -2,8 +2,6 @@ package cursos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
-
 import cursos.VentanaCursos.Panel;
 import ventanaPrincipal.VentanaPrincipal;
 
@@ -35,7 +33,7 @@ import ventanaPrincipal.VentanaPrincipal;
 			 * @return
 			 */
 
-		public static String Consultar(){
+		public static void Consultar(Panel panel){
 		 	ResultSet datos;
 		    String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM cursos;");
@@ -45,17 +43,17 @@ import ventanaPrincipal.VentanaPrincipal;
 		    	  campo2 = datos.getString("CodigoCurso");
 		    	  campo3 = datos.getString("Nombre");
 		    	  campo4 = datos.getString("Categoria");
-		    	  campo5 = datos.getString("Descripcion");
+//		    	  campo5 = datos.getString("Descripcion");
 		    	  campo6 = datos.getString("Precio");
 		    	  campo7 = datos.getString("Duracion");
 		    	  campo8 = datos.getString("Privado");
-		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3
-		    			  + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
+//		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3 + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
+		    	  panel.getModelo().addRow( new Object[] {campo1, campo2, campo3, campo4, campo6, campo7, campo8} );                
 		      }
 		    }
 		    catch (SQLException e) { e.printStackTrace();
 		   }
-		    return resultado; 
+//		    return resultado; 
 	 }
 			
 		/**
@@ -163,8 +161,6 @@ import ventanaPrincipal.VentanaPrincipal;
 	
 		
 	}
-	
-
 	
 		
 	
