@@ -40,7 +40,7 @@ public class VentanaMatricula extends JFrame {
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 			    setIconImage(icon);
 			    setSize(780,455); // Ancho*Alto
-			    setTitle("Gestión Matriculas Nowe");
+			    setTitle("GestiÃ³n Matriculas Nowe");
 			    setLocationRelativeTo(null);
 		        Panel p = new Panel(); //crear la clase panel como en marcoprincipal
 				add(p); 
@@ -70,7 +70,7 @@ public class VentanaMatricula extends JFrame {
 		         add(Consultaid);
 		         Consultaid.addActionListener(this);
 		         
-		         ConsultaGR=new JButton("<html>Consulta<br>GRUPO</html>");
+		         ConsultaGR=new JButton("<html>Consulta<br>grupo</html>");
 		         ConsultaGR.setBounds(10,130,120,50);
 		         add(ConsultaGR);
 		         ConsultaGR.addActionListener(this);
