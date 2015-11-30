@@ -1,3 +1,15 @@
+/** 
+ * Clase Modulos
+ * @author curso14/7803
+ * @since 19/11/2015
+ * @version 1.0
+ * <br>
+ * <p>
+ * Esta clase se corresponde con los metodos principales 
+ * de acceso y gestión de la tabla modulo de la base de datos mysql "nowedb"
+ * </p>
+ */
+
 package cursos;
 
 
@@ -8,11 +20,7 @@ import java.util.Scanner;
 import basedatos.ConexionBaseDatos;
 import ventanaPrincipal.VentanaPrincipal;
 
-/** 
- * @author Victor Jimenez
- * @since 19/11/2015
- * @version 1.0
- */
+
 	
 	public class Modulos {
 		private String idModulo, nombre;
