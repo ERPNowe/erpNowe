@@ -20,6 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+import ventanaPrincipal.VentanaPrincipal;
 
 /**
  * @author Alberto Jaén
@@ -57,7 +60,7 @@ public class VentanaCursos extends JFrame {
 			   public void windowClosing(WindowEvent e)
 			  {
 			   System.out.println("Cerrando la conexión...");
-//			   VentanaPrincipal.conexion.cerrarConexion();
+			   VentanaPrincipal.conexion.cerrarConexion();
 			    System.exit(0);
 			  }
 		}
@@ -152,6 +155,20 @@ public class VentanaCursos extends JFrame {
 		         tblcursos.setFillsViewportHeight(true);        
 		         
 		         tblcursos.setModel(modelo);
+		         TableColumn col1 = tblcursos.getColumn("id");
+		         col1.setPreferredWidth(20);
+		         TableColumn col2 = tblcursos.getColumn("Código");
+		         col2.setPreferredWidth(70);
+		         TableColumn col3 = tblcursos.getColumn("Nombre");
+		         col3.setPreferredWidth(200);
+		         TableColumn col4 = tblcursos.getColumn("Categoría");
+		         col4.setPreferredWidth(165);
+		         TableColumn col5 = tblcursos.getColumn("Precio");
+		         col5.setPreferredWidth(55);
+		         TableColumn col6 = tblcursos.getColumn("Duración");
+		         col6.setPreferredWidth(55);
+		         TableColumn col7 = tblcursos.getColumn("Privado");
+		         col7.setPreferredWidth(35);
 		         add(scrollArea, BorderLayout.NORTH);
 			 
 		         /**
