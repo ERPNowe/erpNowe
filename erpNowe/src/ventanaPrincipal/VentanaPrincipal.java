@@ -29,6 +29,7 @@ import javax.swing.JPanel;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
+import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
@@ -138,6 +139,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			VentanaGrupos ne = new VentanaGrupos();
 			ne.setVisible(true);
 		}
+		if (e.getSource()== matricula){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaMatricula ventana = new VentanaMatricula();
+			ventana.setVisible(true);
         }
+}
 }
 

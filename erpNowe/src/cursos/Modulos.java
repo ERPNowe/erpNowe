@@ -1,3 +1,15 @@
+/** 
+ * Clase Modulos
+ * @author Victor
+ * @since 19/11/2015
+ * @version 1.0
+ * <br>
+ * <p>
+ * Esta clase se corresponde con los metodos principales 
+ * de acceso y gestión de la tabla modulo de la base de datos mysql "nowedb"
+ * </p>
+ */
+
 package cursos;
 
 
@@ -8,11 +20,7 @@ import java.util.Scanner;
 import basedatos.ConexionBaseDatos;
 import ventanaPrincipal.VentanaPrincipal;
 
-/** 
- * @author Victor Jimenez
- * @since 19/11/2015
- * @version 1.0
- */
+
 	
 	public class Modulos {
 		private String idModulo, nombre;
@@ -20,6 +28,7 @@ import ventanaPrincipal.VentanaPrincipal;
 		 private static String usuario = "root";
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
+		 static ResultSet filas = null;
 		 //static ConexionBaseDatos conexion = null;
 		 //static Scanner scanner = new Scanner(System.in);
 
@@ -69,20 +78,36 @@ import ventanaPrincipal.VentanaPrincipal;
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	/**
+	 * Metodo para cargar en el combo los IdModulo
+	 */
+	public static void menu(){
+		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
+		 try {
+		      while(filas.next()){
+		    	  ventanaModulo.combo1.addItem(filas.getString("idModulo"));
+		      }	
+		    }
+		    catch (SQLException e) { e.printStackTrace();
+		   }
+		
+	}
 	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
-	 * @return
+	 * @param idModulo
+	 * @return la consulta completa
 	 */
+	 
 	public static String consultar(String idModulo){
 		ResultSet datos;
-	    String campo1, campo2, resultado ="";
+	    String idMo, nombre, resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos WHERE idModulo = '"+idModulo+"'");
 	    try {
 	      while(datos.next()){
-	    	  campo1 = datos.getString("idModulo"); 
-	    	  campo2 = datos.getString("nombre");
-	    	  resultado = campo1 + "\t" + campo2; 
+	    	  idMo = datos.getString("idModulo"); 
+	    	  nombre = datos.getString("nombre");
+	    	  resultado = idMo + "\t" + nombre;  
 	      }
 	      ventanaModulo.modificar.setEnabled(true);
 		     ventanaModulo.borrar.setEnabled(true);
@@ -94,17 +119,17 @@ import ventanaPrincipal.VentanaPrincipal;
 	
 	/**
 	 * Metodo para listar la tabla
-	 * @return
+	 * @return el listado completo de la tabla
 	 */
 	public static String listar(){
 		ResultSet datos;
-	    String campo1, campo2, resultado ="";
+	    String idModulo, nombre, resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos");
 	    try {
 	      while(datos.next()){
-	    	  campo1 = datos.getString("idModulo"); 
-	    	  campo2 = datos.getString("nombre");
-	    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2; 
+	    	  idModulo = datos.getString("idModulo"); 
+	    	  nombre = datos.getString("nombre");
+	    	  resultado = resultado +"\n"+ idModulo + "\t" + nombre; 
 	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();
@@ -116,7 +141,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	 * Metodo para insertar un nuevo registro en la tabla
 	 * @param idModulo
 	 * @param nombre
-	 * @return
+	 * @return se se puede o no insertar el nuevo registro
 	 */
 	public static String insertar(String idModulo, String nombre){
 		 boolean ok = false;
@@ -139,7 +164,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	 * Metodo para modificar entradas de la base de datos
 	 * @param idModulo
 	 * @param nombre
-	 * @return
+	 * @return si se puede o no modificar el registro
 	 */
 	public static String modificar(String idModulo, String nombre){
 		 boolean ok = false;
@@ -159,7 +184,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	/**
 	 * Metodo para borrar registros de la base de datos
 	 * @param idModulo
-	 * @return
+	 * @return si se puede o no borrar el registro
 	 */
 	public static String eliminar(String idModulo){
 		 boolean ok = false;

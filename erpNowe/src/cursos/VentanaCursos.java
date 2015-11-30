@@ -1,20 +1,26 @@
 package cursos;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
-import ventanaPrincipal.VentanaPrincipal;
 /**
  * @author Alberto Jaén
  * @since 20/11/2015
@@ -32,24 +38,39 @@ public class VentanaCursos extends JFrame {
 		    	//para ponerle el icono a la app
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		    	setIconImage(icon);
-			    setSize(900,370); // Ancho*Alto
+			    setSize(900,550); // Ancho*Alto
 			    setTitle("Gestión Cursos Nowe");
 			    setLocationRelativeTo(null);
+				addWindowListener(new FrameListener());
 		        Panel p = new Panel(); //crear la clase panel como en marcoprincipal
 				add(p); 
 			    }
 
+			/**
+			 * @author Jesús Hernando
+			 * @since 28/11/2015
+			 * @version 1.0
+			*/
+
+			class FrameListener extends WindowAdapter
+			{
+			   public void windowClosing(WindowEvent e)
+			  {
+			   System.out.println("Cerrando la conexión...");
+//			   VentanaPrincipal.conexion.cerrarConexion();
+			    System.exit(0);
+			  }
+		}
+			
 		 class Panel extends JPanel implements ActionListener{
 
-			 JButton consultar, insertar;
-			
-			JButton limpiar;
-			JButton cerrar;
-			JButton consultar1;
-			 JTextArea textareaconsulta; 
-			 JTextField textfield1, textfield2,textfield3,textfield4,textfield5,textfield6,textfield7,textfield8;
+			 JButton listar, insertar, limpiar, cerrar, consultar;
+			 JTextArea textareaconsulta,textarea5; 
+			 JTextField textfield1, textfield2,textfield3,textfield4,textfield6,textfield7,textfield8;
 			 JLabel label1,label2,label3,label4,label5,label6,label7,label8;
 			 JScrollPane scrollArea;
+			 private JTable tblcursos = null;
+			 DefaultTableModel modelo = null;
 			 /**
 			  * Constructor del panel
 			  */
@@ -62,58 +83,76 @@ public class VentanaCursos extends JFrame {
 		    	 /**
 		    	  * Creacion de los botones
 		    	  */
-		    	 consultar=new JButton("Listado");
-		    	 consultar.setBounds(10,10,100,50); //Padding_Left, Padding_Top, Ancho, Alto
+		         consultar=new JButton("Consultar");
+		    	 consultar.setBounds(125,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(consultar);
 		         consultar.addActionListener(this);
 		         
-		         consultar1=new JButton("Consultar id");
-		    	 consultar1.setBounds(10,250,120,50); //Padding_Left, Padding_Top, Ancho, Alto
-		         add(consultar1);
-		         consultar1.addActionListener(this);
-		         
 		         
 		         insertar=new JButton("Insertar");
-		         insertar.setBounds(10,70,100,50);
+		         insertar.setBounds(770,170,100,50);
 		         add(insertar);
 		         insertar.addActionListener(this);
 		         
 		         modificar=new JButton("Modificar");
-		         modificar.setBounds(10,130,100,50);
+		         modificar.setBounds(770,230,100,50);
 		         add(modificar);
 		         modificar.setEnabled(false);
 		         modificar.addActionListener(this);
 		         
 		         borrar=new JButton("Eliminar");
-		         borrar.setBounds(10,190,100,50);
+		         borrar.setBounds(770,290,100,50);
 		         add(borrar);
 		         borrar.setEnabled(false);
 		         borrar.addActionListener(this); 
 		         
 		         limpiar=new JButton("Limpiar");
-		         limpiar.setBounds(140,250,100,25);
+		         limpiar.setBounds(610,170,100,25);
 		         add(limpiar);
 		         limpiar.addActionListener(this); 
 		         
-		         cerrar=new JButton("Cerrar");
+/*		         cerrar=new JButton("Cerrar");
 		         cerrar.setBounds(470,250,100,25);
 		         add(cerrar);
-		         cerrar.addActionListener(this);
+		         cerrar.addActionListener(this);*/
 		         
 		         
-		         /**
-		          * Creacion del TextArea
+		         listar=new JButton("Listado");
+		         listar.setBounds(10,145,100,50); //Padding_Left, Padding_Top, Ancho, Alto
+		         add(listar);
+		         listar.addActionListener(this);
+		         
+		     	/**
+		     	 * @author Jesús Hernando
+		     	 * @since 28/11/2015
+		     	 * @version 1.0
+		          * Creacion del TextArea con resultado
 		          */
 		       
-		         textareaconsulta = new JTextArea();	 
-		         textareaconsulta.setBackground(new Color(224,224,224));
+		         textareaconsulta = new JTextArea("Resuldado");	 
+		         textareaconsulta.setBackground(new Color(192,192,192));
+		         textareaconsulta.setForeground(Color.blue);
+		         Font negrita = new Font("Verdana", Font.BOLD, 12);
+		         textareaconsulta.setFont(negrita);
+		         textareaconsulta.setBounds(265,450,500,50); //Padding_Left, Padding_Top, Ancho, Alto
+		         add(textareaconsulta);
 		         
 		         /**
-		          * Creacion del panel scroll
+		          * Creacion del panel scroll con tabla de cursos
 		          */ 
-		         scrollArea.setViewportView(textareaconsulta);
-		         scrollArea.setBounds(120,10,450,230); //posiciona dentro de la ventana
-		         add(scrollArea);
+		         String[] columnas = {"id", "Código", "Nombre", "Categoría", "Precio", "Duración", "Privado"};
+		         tblcursos = new JTable();
+		         modelo = new DefaultTableModel();
+		         tblcursos.setBackground(new Color(224,224,224));
+		         scrollArea.setViewportView(tblcursos);
+		         scrollArea.setBounds(10,205,550,230); //posiciona dentro de la ventana
+		         modelo.setColumnIdentifiers(columnas);
+		         scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		         tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		         tblcursos.setFillsViewportHeight(true);        
+		         
+		         tblcursos.setModel(modelo);
+		         add(scrollArea, BorderLayout.NORTH);
 			 
 		         /**
 		          * Creacion de los TextFields y Labels
@@ -121,74 +160,74 @@ public class VentanaCursos extends JFrame {
  
 		         
 		         label1=new JLabel("idCurso");
-		         label1.setBounds(635,30,100,20);
+		         label1.setBounds(65,30,100,20);
 		         add(label1);
 		         
 		         textfield1=new JTextField();
-		         textfield1.setBounds(580,10,100,20);
+		         textfield1.setBounds(10,10,100,20);
 		         add(textfield1);
 		         textfield1.setBackground( new Color(224,224,224) );
 		         
 		         label2=new JLabel("CódigoCurso");
-		         label2.setBounds(605,90,100,20);
+		         label2.setBounds(265,10,100,20);
 		         add(label2);
 		         
 		         textfield2=new JTextField();
-		         textfield2.setBounds(580,70,100,20);
+		         textfield2.setBounds(265,30,100,20);
 		         add(textfield2);
 		         textfield2.setBackground( new Color(224,224,224) );
 		         
 		         label3=new JLabel("Nombre");
-		         label3.setBounds(635,150,100,20);
+		         label3.setBounds(380,10,100,20);
 		         add(label3);
 		         
 		         textfield3=new JTextField();
-		         textfield3.setBounds(580,130,100,20);
+		         textfield3.setBounds(380,30,100,20);
 		         add(textfield3);
 		         textfield3.setBackground( new Color(224,224,224) );
 		         
 		         label4=new JLabel("Categoria");
-		         label4.setBounds(625,210,100,20);
+		         label4.setBounds(495,10,100,20);
 		         add(label4);
 		         
 		         textfield4=new JTextField();
-		         textfield4.setBounds(580,190,100,20);
+		         textfield4.setBounds(495,30,100,20);
 		         add(textfield4);
 		         textfield4.setBackground( new Color(224,224,224) );
 		         
 		         label5=new JLabel("Descripcion");
-		         label5.setBounds(770,30,100,20);
+		         label5.setBounds(610,10,100,20);
 		         add(label5);
 		         
-		         textfield5=new JTextField();
-		         textfield5.setBounds(740,10,100,20);
-		         add(textfield5);
-		         textfield5.setBackground( new Color(224,224,224) );
+		         textarea5=new JTextArea();
+		         textarea5.setBounds(610,30,260,120);
+		         textarea5.setBackground( new Color(224,224,224) );
+		         add(textarea5, BorderLayout.NORTH);
 		         
 		         label6=new JLabel("Precio");
-		         label6.setBounds(800,90,100,20);
+		         label6.setBounds(265,65,100,20);
 		         add(label6);
 		         
 		         textfield6=new JTextField();
-		         textfield6.setBounds(740,70,100,20);
+		         textfield6.setBounds(265,85,100,20);
 		         add(textfield6);
 		         textfield6.setBackground( new Color(224,224,224) );
 		         
 		         label7=new JLabel("Duración");
-		         label7.setBounds(785,150,100,20);
+		         label7.setBounds(380,65,100,20);
 		         add(label7);
 		         
 		         textfield7=new JTextField();
-		         textfield7.setBounds(740,130,100,20);
+		         textfield7.setBounds(380,85,100,20);
 		         add(textfield7);
 		         textfield7.setBackground( new Color(224,224,224) );
 		         
 		         label8=new JLabel("Privado");
-		         label8.setBounds(795,210,100,20);
+		         label8.setBounds(495,65,100,20);
 		         add(label8);
 		         
 		         textfield8=new JTextField();
-		         textfield8.setBounds(740,190,100,20);
+		         textfield8.setBounds(495,85,100,20);
 		         add(textfield8);
 		         textfield8.setBackground( new Color(224,224,224) );
 		         
@@ -201,11 +240,12 @@ public class VentanaCursos extends JFrame {
 			 public void actionPerformed(ActionEvent e) {
 		         	Object botonPulsado = e.getSource();
 		         	
-		             if (botonPulsado==consultar) {
-		            	 textareaconsulta.setText(Cursos.Consultar());}
+		             if (botonPulsado==listar) {
+		            	 clearCursos();
+		            	 Cursos.Consultar(this);}
 		             
 		             
-		             if (botonPulsado==consultar1){
+		             if (botonPulsado==consultar){
 		            	 String idcurso1 = textfield1.getText();
 		            	 int intidcurso = Integer.parseInt(idcurso1);
 		            	 
@@ -218,7 +258,7 @@ public class VentanaCursos extends JFrame {
 		            	 String CodigoCurso1 = textfield2.getText();
 		            	 String Nombre1 = textfield3.getText();
 		            	 String Categoria1 = textfield4.getText();
-		            	 String Descripcion1 = textfield5.getText();
+		            	 String Descripcion1 = textarea5.getText();
 		            	 String Precio1 = textfield6.getText();
 		            	 float flprecio = Float.parseFloat(Precio1);
 		            	 String Duracion1 = textfield7.getText();
@@ -239,7 +279,7 @@ public class VentanaCursos extends JFrame {
 		            	 String CodigoCurso2 = textfield2.getText();
 		            	 String Nombre2 = textfield3.getText();
 		            	 String Categoria2 = textfield4.getText();
-		            	 String Descripcion2 = textfield5.getText();
+		            	 String Descripcion2 = textarea5.getText();
 		            	 String Precio2 = textfield6.getText();
 		            	 float flprecio1 = Float.parseFloat(Precio2);
 		            	 String Duracion2 = textfield7.getText();
@@ -270,19 +310,37 @@ public class VentanaCursos extends JFrame {
 		            	 textfield2.setText("");
 		            	 textfield3.setText("");
 		            	 textfield4.setText("");
-		            	 textfield5.setText("");
+		            	 textarea5.setText("");
 		            	 textfield6.setText("");
 		            	 textfield7.setText("");
 		            	 textfield8.setText("");
 		            	
 		            	 textareaconsulta.setText("");}
 		             
-		             if (botonPulsado==cerrar) {
+/*		             if (botonPulsado==cerrar) {
 		            	 VentanaPrincipal.conexion.cerrarConexion();
-		            	 textareaconsulta.setText("conexion cerrada");}
+		            	 textareaconsulta.setText("conexion cerrada");}*/
 		            	 
 		           }
-			 }}
+				/**
+				 * @author Jesús Hernando
+				 * @since 28/11/2015
+				 * @version 1.0
+				*/
+			 private void clearCursos(){
+			       for (int i = 0; i < tblcursos.getRowCount(); i++) {
+			           modelo.removeRow(i);
+			           i-=1;
+			       }
+			   }
+			 public DefaultTableModel getModelo() {
+				 return modelo;
+			 }
+			 public void setModelo(DefaultTableModel modelo) {
+				 this.modelo = modelo;
+			 }
+			 }
+		 }
 
 		
 
