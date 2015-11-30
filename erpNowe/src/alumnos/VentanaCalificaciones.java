@@ -208,5 +208,4 @@ public class VentanaCalificaciones extends JFrame{
 		}
 
 	}
-
 }
