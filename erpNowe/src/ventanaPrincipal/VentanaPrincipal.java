@@ -29,13 +29,14 @@ import javax.swing.JPanel;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
+import matricula.VentanaFormaPago;
 import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private JMenuBar barraMenu;
 	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
-	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, ayuda, salir;
+	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, formaPago, ayuda, salir;
 	
 	public static String usuario = "root";
 		 public static String pwd = "root";
@@ -99,7 +100,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		
 		matricula = new JMenuItem("Matrícula");
 		matricula.addActionListener(this);
-		menuMatricula.add(matricula);	
+		menuMatricula.add(matricula);
+		
+		formaPago = new JMenuItem("Forma de Pago");
+		formaPago.addActionListener(this);
+		menuMatricula.add(formaPago);
 		
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
@@ -142,6 +147,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		if (e.getSource()== matricula){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaMatricula ventana = new VentanaMatricula();
+			ventana.setVisible(true);
+        }
+		if (e.getSource()== formaPago){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaFormaPago ventana = new VentanaFormaPago();
 			ventana.setVisible(true);
         }
 }
