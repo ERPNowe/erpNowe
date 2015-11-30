@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import basedatos.ConexionBaseDatos;
+import ventanaPrincipal.VentanaPrincipal;
 
 
 /**
@@ -34,11 +35,11 @@ public class Matricula {
 	 private static String usuario = "root";
 	 private static String pwd = "root";
 	 private static String bd = "nowedb";
-	 public static ConexionBaseDatos conexion = null;
+	 //public static ConexionBaseDatos conexion = null;
 	 static ResultSet filas = null;
 	
 	 public static void main(String[] args) {
-	   conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+	   //conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 	   VentanaMatricula ventana = new VentanaMatricula();
 	   ventana.setVisible(true);
 
@@ -99,7 +100,7 @@ public class Matricula {
 	}
 	
 	public static void menuAlumno(){
-		filas = conexion.getQuery("SELECT idAlumno FROM alumnos ORDER BY idAlumno");
+		filas = VentanaPrincipal.conexion.getQuery("SELECT idAlumno FROM alumnos ORDER BY idAlumno");
 		try {
 			while(filas.next()){
 				VentanaMatricula.alumno.addItem(filas.getString("idAlumno"));
@@ -109,7 +110,7 @@ public class Matricula {
 		}
 	}
 	public static void menuGrupo(){
-		filas = conexion.getQuery("Select g.idOficial from cursos c, grupos g where c.idCurso = g.idCurso");
+		filas = VentanaPrincipal.conexion.getQuery("Select g.idOficial from cursos c, grupos g where c.idCurso = g.idCurso");
 		try {
 			while(filas.next()){
 				VentanaMatricula.grupo.addItem(filas.getString("idOficial"));
@@ -119,7 +120,7 @@ public class Matricula {
 		}
 	}
 	public static void menuFormaPago(){
-		filas = conexion.getQuery("SELECT descripcion FROM formapago");
+		filas = VentanaPrincipal.conexion.getQuery("SELECT descripcion FROM formapago");
 		try {
 			while(filas.next()){
 				VentanaMatricula.formaPago.addItem(filas.getString("descripcion"));
@@ -130,7 +131,7 @@ public class Matricula {
 	}
 
 	public static void menuPromociones(){
-		filas = conexion.getQuery("SELECT promociones FROM matricula");
+		filas = VentanaPrincipal.conexion.getQuery("SELECT promociones FROM matricula");
 		try {
 			while(filas.next()){
 				VentanaMatricula.promociones.addItem(filas.getString("promociones"));
@@ -140,7 +141,7 @@ public class Matricula {
 		}
 	}
 	public static void menuPagado(){
-		filas = conexion.getQuery("SELECT pagado FROM matricula");
+		filas = VentanaPrincipal.conexion.getQuery("SELECT pagado FROM matricula");
 		try {
 			while(filas.next()){
 				VentanaMatricula.pagado.addItem(filas.getString("pagado"));
@@ -162,7 +163,7 @@ public class Matricula {
 		
 			String Precio = null;
 			int idCurso = 0;
-		    datos1 = Matricula.conexion.getQuery("SELECT idCurso  FROM grupos where idGrupo =" +idGrupo);	  
+		    datos1 = VentanaPrincipal.conexion.getQuery("SELECT idCurso  FROM grupos where idGrupo =" +idGrupo);	  
 		    try {
 			      while(datos1.next()){
 			    	  idCurso = datos1.getInt("idCurso");} 
@@ -171,7 +172,7 @@ public class Matricula {
 						e1.printStackTrace();
 					}	
 		    
-		    datos2 = Matricula.conexion.getQuery("SELECT Precio FROM cursos where idCurso =" +idCurso);
+		    datos2 = VentanaPrincipal.conexion.getQuery("SELECT Precio FROM cursos where idCurso =" +idCurso);
 		    try {
 			      while(datos2.next()){
 			    	  Precio = datos2.getString("Precio");
@@ -211,7 +212,7 @@ public class Matricula {
 	public static String Consultarid(String idAlumno){
 		ResultSet datos;
 	    String idMatricula, idAlumno1, idGrupo, FormaPago, desempleado,promociones, Pagado,resultado ="";
-	    datos = Matricula.conexion.getQuery("SELECT * FROM matricula where idAlumno =" + idAlumno);
+	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula where idAlumno =" + idAlumno);
 	    try {
 	      while(datos.next()){
 	    	  idMatricula = datos.getString("idMatricula");
@@ -274,7 +275,7 @@ public class Matricula {
 		public static String ConsultarGR(String idGrupo){
 			ResultSet datos;
 			 String idMatricula,idAlumno, idGrupo1, FormaPago, desempleado,promociones, Pagado,resultado ="";
-		    datos = Matricula.conexion.getQuery("SELECT * FROM matricula where idGrupo =" + idGrupo);
+		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula where idGrupo =" + idGrupo);
 		    try {
 		      while(datos.next()){
 		    	  idMatricula = datos.getString("idMatricula");
@@ -340,7 +341,7 @@ public class Matricula {
 		public static String Consultar(){
 			ResultSet datos;
 			 String idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado,promociones, Pagado,resultado ="";
-		    datos = Matricula.conexion.getQuery("SELECT * FROM matricula");
+		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula");
 		    try {
 		      while(datos.next()){
 		    	  idMatricula = datos.getString("idMatricula");
@@ -410,7 +411,7 @@ public class Matricula {
 			 boolean ok = false;
 			 String resultado = null;
 			 try {
-					 ok = Matricula.conexion.setQuery("INSERT INTO matricula (idMatricula,idAlumno, idGrupo,FormaPago,Desempleado,Promociones,Pagado)"
+					 ok = VentanaPrincipal.conexion.setQuery("INSERT INTO matricula (idMatricula,idAlumno, idGrupo,FormaPago,Desempleado,Promociones,Pagado)"
 							+ " VALUES ('" +idMatricula+"','"+ idAlumno + "','" + idGrupo + "','"+FormaPago+  "','"+Desempleado+ "','"+Promociones+ "','"+  Pagado +"')");
 					 if (ok) 
 						 resultado = "Se insertó la matricula correctamente";
@@ -448,7 +449,7 @@ public class Matricula {
 			 String resultado = null;
 			 
 			 try{
-				 ok = Matricula.conexion.setQuery("UPDATE matricula set idAlumno = '"+idAlumno+"',idGrupo = '"+ idGrupo
+				 ok = VentanaPrincipal.conexion.setQuery("UPDATE matricula set idAlumno = '"+idAlumno+"',idGrupo = '"+ idGrupo
 						 + "',FormaPago = '"+FormaPago +"', Desempleado = '"+Desempleado +"',Promociones = '"+Promociones +"',Pagado = '"+Pagado +"' where idMatricula= '"+idMatricula+"'");
 				 if (ok) 
 					 resultado = "Se modificó la matricula correctamente";

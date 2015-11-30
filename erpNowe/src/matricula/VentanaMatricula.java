@@ -24,6 +24,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import ventanaPrincipal.VentanaPrincipal;
+
 @SuppressWarnings("serial")
 public class VentanaMatricula extends JFrame {
 	
@@ -204,7 +206,7 @@ public class VentanaMatricula extends JFrame {
 		            	 textareaconsulta.setText(Matricula.Consultarid((String)alumno.getSelectedItem()));}
 		             
 		             if (botonPulsado==ConsultaGR) {
-		            	 ResultSet datos = Matricula.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
+		            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
 		            	 String idGrupo = "";
 							try {
 								while(datos.next())
@@ -216,7 +218,7 @@ public class VentanaMatricula extends JFrame {
 		            	 textareaconsulta.setText((Matricula.ConsultarGR(idGrupo)));}
 		             
 		             if (botonPulsado==Presupuesto) {
-		            	 ResultSet datos = Matricula.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
+		            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
 		            	 String idGrupo = "";
 						try {
 							while(datos.next())
@@ -234,7 +236,7 @@ public class VentanaMatricula extends JFrame {
 		            	 int Alumno = Integer.parseInt(idAlumno);
 		            	 String Matricul = idMatricula.getText();
 		            	
-		            	 ResultSet datos = Matricula.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
+		            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
 		            	 String idGrupo = "";
 						try {
 							while(datos.next())
@@ -245,7 +247,7 @@ public class VentanaMatricula extends JFrame {
 		            	 int grupo = Integer.parseInt(idGrupo);
 		            	 
 		            	
-		            	 ResultSet datos2 = Matricula.conexion.getQuery("SELECT idFormaPago FROM formapago WHERE descripcion = '"+formaPago.getSelectedItem()+"'");
+		            	 ResultSet datos2 = VentanaPrincipal.conexion.getQuery("SELECT idFormaPago FROM formapago WHERE descripcion = '"+formaPago.getSelectedItem()+"'");
 		            	 String idFormaPago = "";
 							try {
 								while(datos2.next())
@@ -281,7 +283,7 @@ public class VentanaMatricula extends JFrame {
 	            	 
 	            	 String Matricul = idMatricula.getText();
 	            	
-	            	 ResultSet datos = Matricula.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
+	            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
 	            	 String idGrupo = "";
 					try {
 						while(datos.next())
@@ -292,7 +294,7 @@ public class VentanaMatricula extends JFrame {
 	            	 int grupo = Integer.parseInt(idGrupo);
 	            	 
 	            	
-	            	 ResultSet datos2 = Matricula.conexion.getQuery("SELECT idFormaPago FROM formapago WHERE descripcion = '"+formaPago.getSelectedItem()+"'");
+	            	 ResultSet datos2 = VentanaPrincipal.conexion.getQuery("SELECT idFormaPago FROM formapago WHERE descripcion = '"+formaPago.getSelectedItem()+"'");
 	            	 String idFormaPago = "";
 						try {
 							while(datos2.next())
@@ -325,7 +327,7 @@ public class VentanaMatricula extends JFrame {
 		            	 textareaconsulta.setText("");}
 		             
 		             if (botonPulsado==cerrar) {
-		            	 Matricula.conexion.cerrarConexion();
+		            	 VentanaPrincipal.conexion.cerrarConexion();
 		            	 textareaconsulta.setText("conexion cerrada");}
 		            	 
 		           }
