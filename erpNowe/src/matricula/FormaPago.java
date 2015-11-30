@@ -9,7 +9,7 @@
  * </p> 
  */
 
-package Matricula;
+package matricula;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
