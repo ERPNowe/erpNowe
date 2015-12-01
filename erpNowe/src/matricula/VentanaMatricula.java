@@ -1,5 +1,7 @@
 package matricula;
 
+import java.awt.BorderLayout;
+
 /**
  * 
  * @author Vanessa
@@ -15,6 +17,9 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,6 +28,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+
+
+
+import javax.swing.JTable;
 
 import ventanaPrincipal.VentanaPrincipal;
 
@@ -52,6 +63,8 @@ public class VentanaMatricula extends JFrame {
 			 JTextArea textareaconsulta; 
 			 JLabel label1,label2,label3, label4, label5, label6, label7;
 			 JScrollPane scrollArea;
+			 private JTable tblcursos = null;
+			 DefaultTableModel modelo = null;
 			 
 			 public Panel() {
 		    	 setLayout(null);
@@ -106,10 +119,34 @@ public class VentanaMatricula extends JFrame {
 		         textareaconsulta = new JTextArea();
 		         textareaconsulta.setBackground(new Color(224,224,224));
 		         
-		         scrollArea.setViewportView(textareaconsulta);
+		      /*   scrollArea.setViewportView(textareaconsulta);
 		         scrollArea.setBounds(140,10,430,350); 
-		         add(scrollArea);
+		         add(scrollArea);*/
  
+		         /**
+		          * Creacion del panel scroll con tabla de cursos
+		          */ 
+		         String[] columnas = {"idMatricula", "idlumno", "idGrupo", "F.Pago", "Desempleado", "Promociones", "Pagado"};
+		         tblcursos = new JTable();
+		         modelo = new DefaultTableModel();
+		         tblcursos.setBackground(new Color(224,224,224));
+		         scrollArea.setViewportView(tblcursos);
+		         scrollArea.setBounds(140,10,430,350); //posiciona dentro de la ventana
+		         modelo.setColumnIdentifiers(columnas);
+		         scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		         tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		         tblcursos.setFillsViewportHeight(true);        
+		         
+		         tblcursos.setModel(modelo);
+		         tblcursos.getColumnModel().getColumn(0).setPreferredWidth(80);
+		         tblcursos.getColumnModel().getColumn(1).setPreferredWidth(60);
+		         tblcursos.getColumnModel().getColumn(2).setPreferredWidth(60);
+		         tblcursos.getColumnModel().getColumn(3).setPreferredWidth(60);
+		         tblcursos.getColumnModel().getColumn(4).setPreferredWidth(100);
+		         tblcursos.getColumnModel().getColumn(5).setPreferredWidth(80);
+		         tblcursos.getColumnModel().getColumn(6).setPreferredWidth(35);
+		         add(scrollArea, BorderLayout.NORTH);
+			 
 		         label1=new JLabel("idAlumno");
 		         label1.setBounds(580,30,100,20);
 		         add(label1);
@@ -192,7 +229,7 @@ public class VentanaMatricula extends JFrame {
 		         	Object botonPulsado = e.getSource();
 		         	
 		             if (botonPulsado==consultar) {
-		            	 textareaconsulta.setText(Matricula.Consultar());}
+		            	 Matricula.Consultar(this);}
 		             
 		             if (botonPulsado==Consultaid) {
 		            	 textareaconsulta.setText(Matricula.Consultarid((String)alumno.getSelectedItem()));}
@@ -322,5 +359,11 @@ public class VentanaMatricula extends JFrame {
 		            	 textareaconsulta.setText("conexion cerrada");}
 		            	 
 		           }
+			 public DefaultTableModel getModelo() {
+				 return modelo;
+			 }
+			 public void setModelo(DefaultTableModel modelo) {
+				 this.modelo = modelo;
+			 }
 		         }
 }

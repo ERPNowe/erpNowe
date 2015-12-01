@@ -2,6 +2,8 @@ package matricula;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import matricula.VentanaMatricula.Panel;
 import ventanaPrincipal.VentanaPrincipal;
 
 
@@ -331,7 +333,7 @@ public class Matricula {
 	 * @return el resultado de la consulta
 	 */
 
-		public static String Consultar(){
+		public static void Consultar(Panel panel){
 			ResultSet datos;
 			 String idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado,promociones, Pagado,resultado ="";
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula");
@@ -368,13 +370,13 @@ public class Matricula {
 		    		  promociones = "0";
 		    		  break; 
 		    	  }
-		    		
-		    	  resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno1 + "\n" 
+		    	  panel.getModelo().addRow( new Object[] {idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado, promociones, Pagado} ); 
+		    	 /*resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno1 + "\n" 
 		    	    	  +"Grupo: " + idGrupo1 + "\n"
 		    	    	  +"forma de pago: " + FormaPago + "\n"
 		    	    	  + desempleado + "\n"
 		    	    	  +"promocion: "+ promociones + "%\n"
-		    	    	  + Pagado + "\n"; 
+		    	    	  + Pagado + "\n"; */
 		      }
 		      VentanaMatricula.Insertar.setEnabled(true);
 		      VentanaMatricula.Presupuesto.setEnabled(true);
@@ -382,7 +384,7 @@ public class Matricula {
 		    }
 		    catch (SQLException e) { e.printStackTrace();
 		   }
-		    return resultado; }
+		    }
 	
 		/**
 		 * Metodo para insertar un nuevo registro en la tabla
