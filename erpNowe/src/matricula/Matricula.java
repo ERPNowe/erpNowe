@@ -28,8 +28,7 @@ public class Matricula {
 	private String formaPago;
 	private String promociones;
 	private int pagado;
-		 
-	 
+		  
  static ResultSet filas = null;
 	
  public static void main(String[] args) {
