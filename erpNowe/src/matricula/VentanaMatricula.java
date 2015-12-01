@@ -33,16 +33,16 @@ public class VentanaMatricula extends JFrame {
 	public static JComboBox alumno, grupo, formaPago, desempleado, promociones, pagado;
 	public static JTextField idMatricula;
 	
-	//creo el constructor del panel donde pongo todas sus propiedades//
+	
 	
 		 public VentanaMatricula() {
-		    	//para ponerle el icono a la app
+		    	
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 			    setIconImage(icon);
-			    setSize(780,455); // Ancho*Alto
+			    setSize(780,455); 
 			    setTitle("Gestión Matriculas Nowe");
 			    setLocationRelativeTo(null);
-		        Panel p = new Panel(); //crear la clase panel como en marcoprincipal
+		        Panel p = new Panel(); 
 				add(p); 
 			    }
 
@@ -59,7 +59,7 @@ public class VentanaMatricula extends JFrame {
 		    	 setBackground(new Color(192,192,192));
 		    	 scrollArea = new JScrollPane();
 		    	
-		    	 //creo los botones
+		    	
 		    	 consultar=new JButton("Listado");
 		    	 consultar.setBounds(10,10,120,50); 
 		         add(consultar);
@@ -93,8 +93,6 @@ public class VentanaMatricula extends JFrame {
 		         Presupuesto.setEnabled(false);
 		         Presupuesto.addActionListener(this);
 		         
-		         
-		         
 		         limpiar=new JButton("Limpiar");
 		         limpiar.setBounds(140,380,100,25);
 		         add(limpiar);
@@ -105,19 +103,13 @@ public class VentanaMatricula extends JFrame {
 		         add(cerrar);
 		         cerrar.addActionListener(this);
 		         
-		         
-			 //pongo el textarea
 		         textareaconsulta = new JTextArea();
 		         textareaconsulta.setBackground(new Color(224,224,224));
 		         
 		         scrollArea.setViewportView(textareaconsulta);
-		         scrollArea.setBounds(140,10,430,350); //posiciona dentro de la ventana
+		         scrollArea.setBounds(140,10,430,350); 
 		         add(scrollArea);
-			 
-			 
-			 //pongo los texfileds y jlabel
  
-		         
 		         label1=new JLabel("idAlumno");
 		         label1.setBounds(580,30,100,20);
 		         add(label1);
@@ -195,7 +187,7 @@ public class VentanaMatricula extends JFrame {
 		         
 		         
 			 }
-		          //creo las acciones
+		          
 			 public void actionPerformed(ActionEvent e) {
 		         	Object botonPulsado = e.getSource();
 		         	
@@ -275,7 +267,6 @@ public class VentanaMatricula extends JFrame {
 		            	 
 		            	 textareaconsulta.setText(Matricula.insertar(Matricul,Alumno,grupo,formaPago,desemplead,promocion,pagad));
 		            	 }
-		             // MODIFICAR ****************************************************************************************************
 		             
 	            	 if (botonPulsado==Modificar) {
 		             String idAlumno = (String) alumno.getSelectedItem();

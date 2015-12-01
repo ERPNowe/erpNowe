@@ -28,10 +28,7 @@ public class Matricula {
 	private String formaPago;
 	private String promociones;
 	private int pagado;
-		 
-	 private static String usuario = "root";
-	 private static String pwd = "root";
-	 private static String bd = "nowedb";	 
+		  
  static ResultSet filas = null;
 	
  public static void main(String[] args) {
