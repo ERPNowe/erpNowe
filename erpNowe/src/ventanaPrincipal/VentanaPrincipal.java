@@ -112,8 +112,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		
 		formaPago = new JMenuItem("Forma de Pago");
 		formaPago.addActionListener(this);
-		menuMatricula.add(formaPago);
-		menuMatricula.add(matricula);
+		menuMatricula.add(formaPago);		
 		
 		
 		menuAyuda = new JMenu ("Ayuda");
