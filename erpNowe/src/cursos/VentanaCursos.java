@@ -61,7 +61,7 @@ public class VentanaCursos extends JFrame {
 			  {
 			   System.out.println("Cerrando la conexión...");
 			   VentanaPrincipal.conexion.cerrarConexion();
-			    System.exit(0);
+//			    System.exit(0);
 			  }
 		}
 			
@@ -137,7 +137,7 @@ public class VentanaCursos extends JFrame {
 		         textareaconsulta.setForeground(Color.blue);
 		         Font negrita = new Font("Verdana", Font.BOLD, 12);
 		         textareaconsulta.setFont(negrita);
-		         textareaconsulta.setBounds(265,450,500,50); //Padding_Left, Padding_Top, Ancho, Alto
+		         textareaconsulta.setBounds(265,450,600,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(textareaconsulta);
 		         
 		         /**
@@ -148,27 +148,20 @@ public class VentanaCursos extends JFrame {
 		         modelo = new DefaultTableModel();
 		         tblcursos.setBackground(new Color(224,224,224));
 		         scrollArea.setViewportView(tblcursos);
-		         scrollArea.setBounds(10,205,550,230); //posiciona dentro de la ventana
+		         scrollArea.setBounds(10,205,585,230); //posiciona dentro de la ventana
 		         modelo.setColumnIdentifiers(columnas);
 		         scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		         tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		         tblcursos.setFillsViewportHeight(true);        
 		         
 		         tblcursos.setModel(modelo);
-		         TableColumn col1 = tblcursos.getColumn("id");
-		         col1.setPreferredWidth(20);
-		         TableColumn col2 = tblcursos.getColumn("Código");
-		         col2.setPreferredWidth(70);
-		         TableColumn col3 = tblcursos.getColumn("Nombre");
-		         col3.setPreferredWidth(200);
-		         TableColumn col4 = tblcursos.getColumn("Categoría");
-		         col4.setPreferredWidth(165);
-		         TableColumn col5 = tblcursos.getColumn("Precio");
-		         col5.setPreferredWidth(55);
-		         TableColumn col6 = tblcursos.getColumn("Duración");
-		         col6.setPreferredWidth(55);
-		         TableColumn col7 = tblcursos.getColumn("Privado");
-		         col7.setPreferredWidth(35);
+		         tblcursos.getColumnModel().getColumn(0).setPreferredWidth(20);
+		         tblcursos.getColumnModel().getColumn(1).setPreferredWidth(70);
+		         tblcursos.getColumnModel().getColumn(2).setPreferredWidth(200);
+		         tblcursos.getColumnModel().getColumn(3).setPreferredWidth(150);
+		         tblcursos.getColumnModel().getColumn(4).setPreferredWidth(55);
+		         tblcursos.getColumnModel().getColumn(5).setPreferredWidth(55);
+		         tblcursos.getColumnModel().getColumn(6).setPreferredWidth(35);
 		         add(scrollArea, BorderLayout.NORTH);
 			 
 		         /**
