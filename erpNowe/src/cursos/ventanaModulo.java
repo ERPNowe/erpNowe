@@ -1,5 +1,6 @@
 package cursos;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,9 +13,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
+import cursos.VentanaCursos.FrameListener;
 import ventanaPrincipal.VentanaPrincipal;
 
 /** 
@@ -31,6 +35,7 @@ public class ventanaModulo extends JFrame {
 	public static JButton modificar;
 	public static JButton borrar;
 	public static JComboBox combo1;
+	
 	public ventanaModulo() {
 	    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		    setIconImage(icon);
@@ -48,7 +53,6 @@ public class ventanaModulo extends JFrame {
 		 JTextField textfield1, textfield2, textfield3;
 		 JLabel label1, label2, label3;
 		 JScrollPane scrollArea;
-			
 		 
 		 /**
 		  * Constructor del panel
@@ -58,6 +62,7 @@ public class ventanaModulo extends JFrame {
 	    	 setSize(930,400);
 	    	 setBackground(new Color(192,192,192));
 	    	 scrollArea = new JScrollPane();
+	    	 
 	    	 /**
 	    	  * Creacion de los botones
 	    	  */
@@ -107,7 +112,6 @@ public class ventanaModulo extends JFrame {
 	         //add(textareaconsulta);
 	         textareaconsulta.setBackground(new Color(224,224,224));
 		 
-		 
 	         /**
 	          * Creacion de los TextFields y Labels
 	          */
@@ -156,12 +160,12 @@ public class ventanaModulo extends JFrame {
 	            	 textareaconsulta.setText(Modulos.consultar((String)combo1.getSelectedItem()));}
 	             
 	             if (botonPulsado == listado) {
+	            	 
 	            	 textareaconsulta.setText(Modulos.listar());}
 	             
 	             if (botonPulsado == insertar) {
 	            	 textareaconsulta.setText(Modulos.insertar(textfield3.getText(), textfield2.getText()));}
 	             	
-	             
 	             if (botonPulsado == modificar) {
 	            	 textareaconsulta.setText(Modulos.modificar(textfield1.getText(), textfield2.getText()));}
 	            	 
