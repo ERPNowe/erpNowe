@@ -37,7 +37,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private JMenuBar barraMenu;
 	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
-	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, ayuda, salir;
+	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, formaPago, ayuda, salir;
 	
 	public static String usuario = "root";
 		 public static String pwd = "root";
@@ -72,9 +72,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		matriculado = new JMenuItem("Matriculado");
 		matriculado.addActionListener(this);
 		menuAlumnos.add(matriculado);
+		
 		interesado = new JMenuItem("Interesado");
 		interesado.addActionListener(this);
 		menuAlumnos.add(interesado);
+		
 		
 		menuCursos = new JMenu ("Cursos");
 		barraMenu.add(menuCursos);		
@@ -82,19 +84,24 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		cursos = new JMenuItem("Cursos");
 		cursos.addActionListener(this);
 		menuCursos.add(cursos);
+		
 		grupos = new JMenuItem("Grupos");
 		grupos.addActionListener(this);
 		menuCursos.add(grupos);
+		
 		modulos = new JMenuItem("Módulos");
 		modulos.addActionListener(this);
 		menuCursos.add(modulos);
+		
+		
 		
 		menuCalificacion = new JMenu ("Calificación");
 		barraMenu.add(menuCalificacion);
 		
 		calificacion = new JMenuItem("Calificación");
 		calificacion.addActionListener(this);
-		menuCalificacion.add(calificacion);		
+		menuCalificacion.add(calificacion);	
+		
 		
 		menuMatricula = new JMenu ("Matrícula");
 		barraMenu.add(menuMatricula);
@@ -102,6 +109,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		matricula = new JMenuItem("Matrícula");
 		matricula.addActionListener(this);
 		menuMatricula.add(matricula);	
+		
+		formaPago = new JMenuItem("Forma de Pago");
+		formaPago.addActionListener(this);
+		menuMatricula.add(formaPago);
+		menuMatricula.add(matricula);
+		
 		
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
