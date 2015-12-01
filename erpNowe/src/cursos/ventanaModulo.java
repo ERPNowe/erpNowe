@@ -142,6 +142,8 @@ public class ventanaModulo extends JFrame {
 	         add(textfield3);
 	         textfield3.setBackground( new Color(224,224,224) );
 	         
+	        
+	         
 	         /**
 	          * Creacion del panel scroll
 	          */
@@ -181,5 +183,6 @@ public class ventanaModulo extends JFrame {
 	            	 VentanaPrincipal.conexion.cerrarConexion();
 	            	 textareaconsulta.setText("conexion cerrada");}
 	           }
+		
 	         }
 }
