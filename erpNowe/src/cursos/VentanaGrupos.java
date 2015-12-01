@@ -165,7 +165,7 @@ public Paneles()  {
 	btModificar.addActionListener(this);
 	add(btModificar);
 	/*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
-	btBorrar = new JButton("Borrar");
+	btBorrar = new JButton("Limpiar");
 	btBorrar.setBounds(10,190,120,50);
 	btBorrar.addActionListener(this);
 	add(btBorrar);
@@ -311,11 +311,17 @@ void cargarCombo() throws SQLException {
 			 Grupos.modificar( intidGrupo, stidAcademia,stidOficial, sthorario,stfechaInicio,stfechaFin, staula,
 								intidCurso);
 			 }
-/*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
+
 		 if(botonPulsado == btBorrar){
-			 String idGrupo = cidGrupo.getText();
-			 int intidGrupo = Integer.parseInt(idGrupo);			 
-			 area.setText(Grupos.eliminar( intidGrupo));	 
+			 cidGrupo.setText("");
+			 cidAcademia.setText("");
+			 cidOficial.setText("");
+			 chorario.setText("");
+			 cfechaInicio.setText("");
+			 cfechaFin.setText("");
+			 caula.setText("");
+			 cidCurso.setText("");	 
+			 area.setText("");	 
 		 }
 		 
 		
