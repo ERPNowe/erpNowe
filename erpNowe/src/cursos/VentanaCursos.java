@@ -137,7 +137,7 @@ public class VentanaCursos extends JFrame {
 		         textareaconsulta.setForeground(Color.blue);
 		         Font negrita = new Font("Verdana", Font.BOLD, 12);
 		         textareaconsulta.setFont(negrita);
-		         textareaconsulta.setBounds(265,450,500,50); //Padding_Left, Padding_Top, Ancho, Alto
+		         textareaconsulta.setBounds(265,450,600,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(textareaconsulta);
 		         
 		         /**
@@ -148,7 +148,7 @@ public class VentanaCursos extends JFrame {
 		         modelo = new DefaultTableModel();
 		         tblcursos.setBackground(new Color(224,224,224));
 		         scrollArea.setViewportView(tblcursos);
-		         scrollArea.setBounds(10,205,550,230); //posiciona dentro de la ventana
+		         scrollArea.setBounds(10,205,585,230); //posiciona dentro de la ventana
 		         modelo.setColumnIdentifiers(columnas);
 		         scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		         tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -158,7 +158,7 @@ public class VentanaCursos extends JFrame {
 		         tblcursos.getColumnModel().getColumn(0).setPreferredWidth(20);
 		         tblcursos.getColumnModel().getColumn(1).setPreferredWidth(70);
 		         tblcursos.getColumnModel().getColumn(2).setPreferredWidth(200);
-		         tblcursos.getColumnModel().getColumn(3).setPreferredWidth(165);
+		         tblcursos.getColumnModel().getColumn(3).setPreferredWidth(150);
 		         tblcursos.getColumnModel().getColumn(4).setPreferredWidth(55);
 		         tblcursos.getColumnModel().getColumn(5).setPreferredWidth(55);
 		         tblcursos.getColumnModel().getColumn(6).setPreferredWidth(35);
