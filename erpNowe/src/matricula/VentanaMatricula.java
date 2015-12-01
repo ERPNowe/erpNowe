@@ -40,7 +40,7 @@ public class VentanaMatricula extends JFrame {
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 			    setIconImage(icon);
 			    setSize(780,455); 
-			    setTitle("GestiÃ³n Matriculas Nowe");
+			    setTitle("Gestión Matriculas Nowe");
 			    setLocationRelativeTo(null);
 		        Panel p = new Panel(); 
 				add(p); 

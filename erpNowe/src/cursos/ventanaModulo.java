@@ -35,7 +35,7 @@ public class ventanaModulo extends JFrame {
 	    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		    setIconImage(icon);
 		    setSize(930,400); 
-		    setTitle("Gestión Alumnos Nowe");
+		    setTitle("Gestión Modulos Nowe");
 		    setLocationRelativeTo(null);
 	        Panel p = new Panel(); 
 			add(p); 

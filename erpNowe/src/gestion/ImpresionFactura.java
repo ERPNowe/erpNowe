@@ -24,6 +24,12 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 
+
+/**
+ * @author  Marcos Lueje Alonso
+ * @since 28/11/2015
+ * @version 1.0
+*/
 public class ImpresionFactura {
 	
 	@SuppressWarnings("deprecation")
@@ -32,7 +38,7 @@ public class ImpresionFactura {
 		   
 		  final String TEXTOFINAL = "Puede realizar el pago por transferencia bancaria a la cuenta ES86 2038 1927 88 6000173219,a nombre de NOWE CREATIVE FORMACIÓN Y DISEÑO, S,L. - C/ Melilla 5.";
 		  final String TEXTOLATERAL ="NOWE CREATIVE FORMACIÓN Y DISEÑO S.L. CIF: B86250784 . Registro mercantil de Madrid. Tomo 29028. Libro 0. Folio 64. Sección 8. Hoja M522749. Inscripción 1";
-		  final int TOTALLINEASTABLA=3;
+		 
 		  //número de factura que se saca de BD o se calcula 
 		  
 		  
@@ -121,6 +127,20 @@ public class ImpresionFactura {
 	      
 	      try
 	      {
+	          Image foto = Image.getInstance("C:\\temp\\datosCli.png");
+	          foto.scaleToFit(160, 160);
+	          foto.setAbsolutePosition(120, 560);
+	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
+	          documento.add(foto);
+	      }
+	      catch ( Exception e )
+	      {
+	          e.printStackTrace();
+	      }	      
+	      
+	      
+	      try
+	      {
 	          Image foto = Image.getInstance("C:\\temp\\piepagina.png");
 	          foto.scaleToFit(600, 600);
 	          foto.setAbsolutePosition(0, 0);
@@ -131,6 +151,22 @@ public class ImpresionFactura {
 	      {
 	          e.printStackTrace();
 	      }
+	      
+	      
+	      try
+	      {
+	          Image foto = Image.getInstance("C:\\temp\\lineasfact.png");
+	          foto.scaleToFit(520, 490);
+	          foto.setAbsolutePosition(32, 225);
+	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
+	          documento.add(foto);
+	      }
+	      catch ( Exception e )
+	      {
+	          e.printStackTrace();
+	      }
+	      	      
+	      
 	      
 	      try
 	      {
@@ -173,21 +209,13 @@ public class ImpresionFactura {
 	        //--------------------------------------------------------
 
 	        
-	  
-	        cb.saveState();
-	        cb.beginText();
-	        cb.moveText(120, 700);
-	        cb.setFontAndSize(bf, 17);
-	        cb.showText("Datos del cliente:");
-	        cb.endText();
-	        cb.restoreState();
 
 	        
 	        cb.saveState();
 	        cb.beginText();
-	        cb.moveText(130, 675);
+	        cb.moveText(280, 681);
 	        cb.setFontAndSize(bf, 12);
-	        cb.showText("Nombre de la empresa:    " + facturaimp.getNomempresa());
+	        cb.showText( facturaimp.getNomempresa());
 	        cb.endText();
 	        cb.restoreState();
           
@@ -195,45 +223,45 @@ public class ImpresionFactura {
 	        
 	        cb.saveState();
 	        cb.beginText();
-	        cb.moveText(130, 655);
+	        cb.moveText(280, 659);
 	        cb.setFontAndSize(bf, 12);
-	        cb.showText("Dirección:               " + facturaimp.getDireccempresa());	        
+	        cb.showText(facturaimp.getDireccempresa());	        
 	        cb.endText();
 	        cb.restoreState();
 	        
 	        
 	        cb.saveState();
 	        cb.beginText();
-	        cb.moveText(130, 635);
+	        cb.moveText(280, 636);
 	        cb.setFontAndSize(bf, 12);
-	        cb.showText("C.I.F. :                 " + facturaimp.getCifempresa());	        
+	        cb.showText(facturaimp.getCifempresa());	        
 	        cb.endText();
 	        cb.restoreState();	  
 	        
 	        
 	        cb.saveState();
 	        cb.beginText();
-	        cb.moveText(130, 615);
+	        cb.moveText(280, 614);
 	        cb.setFontAndSize(bf, 12);
-	        cb.showText("Persona de contacto :     " + facturaimp.getPersonacontacto());	        
+	        cb.showText( facturaimp.getPersonacontacto());	        
 	        cb.endText();
 	        cb.restoreState();	        
 	      
 	        
 	        cb.saveState();
 	        cb.beginText();
-	        cb.moveText(130, 595);
+	        cb.moveText(280, 591);
 	        cb.setFontAndSize(bf, 12);
-	        cb.showText("Teléfono/Fax :           " + facturaimp.getTelffaxempresa());	        
+	        cb.showText(facturaimp.getTelffaxempresa());	        
 	        cb.endText();
 	        cb.restoreState();	
 	        
 	        
 	        cb.saveState();
 	        cb.beginText();
-	        cb.moveText(130, 575);
+	        cb.moveText(280, 570);
 	        cb.setFontAndSize(bf, 12);
-	        cb.showText("Correo electrónico :     " + facturaimp.getTelffaxempresa());	        
+	        cb.showText(facturaimp.getEmailempresa());	        
 	        cb.endText();
 	        cb.restoreState();		        
 	        
@@ -255,7 +283,7 @@ public class ImpresionFactura {
 	        documento.add(new Paragraph(" "));
 	        documento.add(new Paragraph(" "));
 	        
-	      
+	      /*
 	      Paragraph datosTrabajotxt = new Paragraph("Datos del trabajo:",
                   FontFactory.getFont("arial",   // fuente
                   15,                            // tamaño
@@ -263,16 +291,17 @@ public class ImpresionFactura {
                   BaseColor.BLUE)); // color
 	      	      
 	      documento.add(datosTrabajotxt);  
-	      
+	      */
 	      documento.add(new Paragraph(" "));
-	      
+	      documento.add(new Paragraph(" "));
+	      documento.add(new Paragraph(" "));
 	      
 	      /*-----------------------------------------------------------*/
 		    PdfPTable table = new PdfPTable(5);
 		    table.setWidthPercentage(100);
-		    table.setTotalWidth(90);
+		    table.setTotalWidth(100);
 		    
-		    float[] columnWidths = new float[] {10f, 40f, 6f, 13f,13f};
+		    float[] columnWidths = new float[] {15f, 40f, 6f, 13f,13f};
             table.setWidths(columnWidths);
 		    
 		    //Añadir CABECERA
@@ -283,7 +312,7 @@ public class ImpresionFactura {
 		    //Añadir dos filas de celdas sin formato
 		    
 		      
-		    
+		    /*
 		    PdfPCell cellcodigo = new PdfPCell(new Phrase("Código"));
 		    cellcodigo.setBackgroundColor(BaseColor.GRAY);		    
 		    table.addCell(cellcodigo);
@@ -303,7 +332,7 @@ public class ImpresionFactura {
 		    PdfPCell cellimporteeur = new PdfPCell(new Phrase("Importe (€)"));
 		    cellimporteeur.setBackgroundColor(BaseColor.GRAY);		    
 		    table.addCell(cellimporteeur);
-	
+	        */
 		    Font font = new Font(FontFamily.COURIER, 10, Font.ITALIC);
 		    
 	        for (int i=0; i <= lienasfactura -1; i++){
@@ -317,7 +346,8 @@ public class ImpresionFactura {
 		        cell1.addElement(para1);
 		        cell1.setBorderWidthTop(0);
 		        cell1.setBorderWidthBottom(0);
-		        cell1.setBorderWidthLeft(1);
+		        //cell1.setBorderWidthLeft(1);
+		        cell1.setBorderWidthLeft(0);
 		        cell1.setBorderWidthRight(0);		        	        
 		        table.addCell(cell1);			    
 			    
@@ -330,7 +360,7 @@ public class ImpresionFactura {
 		        cell2.addElement(para2);
 		        cell2.setBorderWidthTop(0);
 		        cell2.setBorderWidthBottom(0);
-		        cell2.setBorderWidthLeft(1);
+		        cell2.setBorderWidthLeft(0);
 		        cell2.setBorderWidthRight(0);
 		        	        
 		        table.addCell(cell2);
@@ -344,7 +374,7 @@ public class ImpresionFactura {
 		        cell3.addElement(para3);
 		        cell3.setBorderWidthTop(0);
 		        cell3.setBorderWidthBottom(0);
-		        cell3.setBorderWidthLeft(1);
+		        cell3.setBorderWidthLeft(0);
 		        cell3.setBorderWidthRight(0);		        		        
 		        table.addCell(cell3);
 		        
@@ -356,7 +386,7 @@ public class ImpresionFactura {
 		        cell4.addElement(para4);
 		        cell4.setBorderWidthTop(0);
 		        cell4.setBorderWidthBottom(0);
-		        cell4.setBorderWidthLeft(1);
+		        cell4.setBorderWidthLeft(0);
 		        cell4.setBorderWidthRight(0);		        		        
 		        table.addCell(cell4);
 			    
@@ -372,131 +402,21 @@ public class ImpresionFactura {
 		        cell5.addElement(para5);
 		        cell5.setBorderWidthTop(0);
 		        cell5.setBorderWidthBottom(0);
-		        cell5.setBorderWidthLeft(1);
-		        cell5.setBorderWidthRight(1);		        		        
+		        cell5.setBorderWidthLeft(0);
+		        cell5.setBorderWidthRight(0);		        		        
 		        table.addCell(cell5);			    
 	        	
 	        }	    
 		    
 	        
 	       
-	        
-	        
-	        for (int i=0; i <= (TOTALLINEASTABLA - lienasfactura) ; i++){
-	        	
-			    //table.addCell(facturaimpDetalle[i].getCodproducto());
-		        Paragraph vacio = new Paragraph(  " "  , font );
-		        PdfPCell cellvacia = new PdfPCell();
-				        		        
-	        	cellvacia.addElement(vacio);
-	        	cellvacia.setBorderWidthTop(0);
-	        	cellvacia.setBorderWidthBottom(0);
-	        	cellvacia.setBorderWidthLeft(1);
-	        	cellvacia.setBorderWidthRight(0);		        	        
-		        table.addCell(cellvacia);			    
-			    
-			    
-			    //table.addCell(facturaimpDetalle[i].getDescproducto());
-			    
-
-		        
-	
-		        cellvacia.addElement(vacio);
-		        cellvacia.setBorderWidthTop(0);
-		        cellvacia.setBorderWidthBottom(0);
-		        cellvacia.setBorderWidthLeft(1);
-		        cellvacia.setBorderWidthRight(0);
-		        	        
-		        table.addCell(cellvacia);
-			    
-
-		        cellvacia.addElement(vacio);
-		        cellvacia.setBorderWidthTop(0);
-		        cellvacia.setBorderWidthBottom(0);
-		        cellvacia.setBorderWidthLeft(1);
-		        cellvacia.setBorderWidthRight(0);		        		        
-		        table.addCell(cellvacia);
-		        
 
 
-		        cellvacia.addElement(vacio);
-		        cellvacia.setBorderWidthTop(0);
-		        cellvacia.setBorderWidthBottom(0);
-		        cellvacia.setBorderWidthLeft(1);
-		        cellvacia.setBorderWidthRight(0);		        		        
-		        table.addCell(cellvacia);
-			    
-
-			        
-		        cellvacia.addElement(vacio);
-		        cellvacia.setBorderWidthTop(0);
-		        cellvacia.setBorderWidthBottom(0);
-		        cellvacia.setBorderWidthLeft(1);
-		        cellvacia.setBorderWidthRight(1);		        		        
-		        table.addCell(cellvacia);			 
-	        	
-	        }
-		    
-	        
-	        
-		    //table.addCell(facturaimpDetalle[i].getCodproducto());
-	        Paragraph vacio = new Paragraph(  " "  , font );
-	        PdfPCell cellvacia = new PdfPCell();
-			        		        
-        	cellvacia.addElement(vacio);
-        	cellvacia.setBorderWidthTop(0);
-        	cellvacia.setBorderWidthBottom(1);
-        	cellvacia.setBorderWidthLeft(1);
-        	cellvacia.setBorderWidthRight(0);		        	        
-	        table.addCell(cellvacia);			    
-		    
-		    
-		    //table.addCell(facturaimpDetalle[i].getDescproducto());
-		    
-
-	        
-
-	        cellvacia.addElement(vacio);
-	        cellvacia.setBorderWidthTop(0);
-	        cellvacia.setBorderWidthBottom(1);
-	        cellvacia.setBorderWidthLeft(1);
-	        cellvacia.setBorderWidthRight(0);
-	        	        
-	        table.addCell(cellvacia);
-		    
-
-	        cellvacia.addElement(vacio);
-	        cellvacia.setBorderWidthTop(0);
-	        cellvacia.setBorderWidthBottom(1);
-	        cellvacia.setBorderWidthLeft(1);
-	        cellvacia.setBorderWidthRight(0);		        		        
-	        table.addCell(cellvacia);
-	        
-
-
-	        cellvacia.addElement(vacio);
-	        cellvacia.setBorderWidthTop(0);
-	        cellvacia.setBorderWidthBottom(1);
-	        cellvacia.setBorderWidthLeft(1);
-	        cellvacia.setBorderWidthRight(0);		        		        
-	        table.addCell(cellvacia);
-		    
-
-		        
-	        cellvacia.addElement(vacio);
-	        cellvacia.setBorderWidthTop(0);
-	        cellvacia.setBorderWidthBottom(1);
-	        cellvacia.setBorderWidthLeft(1);
-	        cellvacia.setBorderWidthRight(1);		        		        
-	        table.addCell(cellvacia);	
-		    
 		
 		    documento.add(table);
 		    
 	    /*------------Fomra de pago-------------------*/
 	          
-		    //cb.roundRectangle(35f, 140f, 150f, 70f, 20f);
-		    //cb.stroke();
 		    
 	        cb.saveState();
 	        cb.beginText();
@@ -510,15 +430,40 @@ public class ImpresionFactura {
 	        
 	  
 		    
-		
-	      
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(240, 155);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText(Float.toString(facturaimp.getBaseimponible()));
+	        cb.endText();
+	        cb.restoreState();
+	        
+	        
+	 
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(350, 155);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText(Float.toString(  Math.round (facturaimp.getBaseimponible()  * 0.21F)      ));
+	        cb.endText();
+	        cb.restoreState();	        
+	        
+	        
+	        cb.saveState();
+	        cb.beginText();
+	        cb.moveText(450, 155);
+	        cb.setFontAndSize(bf, 12);
+	        cb.showText(Float.toString(  Math.round (facturaimp.getTotFactura())      ));
+	        cb.endText();
+	        cb.restoreState();	        
+	        	        
+
 		  //--------------------------------------------------------
-	      //  PdfContentByte cb = writer.getDirectContent();
-	      //  BaseFont bf = BaseFont.createFont();
+
 	        
 	        cb.beginText();
 	        cb.setFontAndSize(bf, 6);
-	        cb.setTextMatrix(0, 1, -1, 0, 20, 50);
+	        cb.setTextMatrix(0, 1, -1, 0, 20, 150);
 	        cb.showText(TEXTOLATERAL);
 	        
 	        //--------------------------------------------------------
@@ -539,10 +484,15 @@ public class ImpresionFactura {
 		    //         BaseColor.BLACK)); // color
 		      	      
 		    //  documento.add(texfinal);   
+		    
+		    
+
+		    
+		    
 	
 		  cb.endText();
 		  documento.close(); 
-		  System.out.print( documento.isOpen());
+		
 		  
 		  
 	      

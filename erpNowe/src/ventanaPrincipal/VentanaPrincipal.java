@@ -31,6 +31,7 @@ import alumnos.VentanaCalificaciones;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
+import matricula.VentanaFormaPago;
 import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
@@ -119,14 +120,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		barraMenu.add(menuAyuda);
 		
 		ayuda = new JMenuItem("?");
-		matricula.addActionListener(this);
+		ayuda.addActionListener(this);
 		menuAyuda.add(ayuda);
 		
 		menuSalir = new JMenu ("Salir");
 		barraMenu.add(menuSalir);
 		
 		salir = new JMenuItem("Salir");
-		matricula.addActionListener(this);
+		salir.addActionListener(this);
 		menuSalir.add(salir);}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -140,8 +141,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		if (e.getSource()== modulos){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			 ventanaModulo ventana = new ventanaModulo();
-			 ventana.setVisible(true);   
-			
+			 ventana.setVisible(true);   	
 		}
 		/*if (e.getSource()== interesado){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
@@ -162,7 +162,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaCalificaciones ventana = new VentanaCalificaciones();
 			ventana.setVisible(true);
-		
+		}
+		if (e.getSource()== formaPago){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaFormaPago ventana = new VentanaFormaPago();
+			ventana.setVisible(true);
 		}
 	}
 }
