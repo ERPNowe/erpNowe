@@ -1,10 +1,14 @@
 package cursos;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -23,10 +27,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import cursos.Grupos;
 import utilidades.Fecha;
+import ventanaPrincipal.VentanaPrincipal;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -46,7 +55,16 @@ public class VentanaGrupos extends JFrame {
 			Paneles p = new Paneles();
 			add(p);
 		}
-}
+		class FrameListener extends WindowAdapter
+		{
+		   public void windowClosing(WindowEvent e)
+		  {
+		   System.out.println("Cerrando la conexión...");
+		   VentanaPrincipal.conexion.cerrarConexion();
+		    System.exit(0);
+		  }
+	}
+
 
 @SuppressWarnings("serial")
 class Paneles extends JPanel implements ActionListener{
@@ -57,6 +75,8 @@ class Paneles extends JPanel implements ActionListener{
  	TextArea area;
  	JScrollPane scrollArea;
  	JComboBox comboidCurso;
+ 	private JTable tblcursos = null;
+	DefaultTableModel modelo = null;
  
  @SuppressWarnings("rawtypes")
 public Paneles()  {
@@ -156,6 +176,38 @@ public Paneles()  {
 	btListado.addActionListener(this);
 	add(btListado);
 	
+	/**
+     * Creacion del panel scroll con tabla de cursos
+     */ 
+    String[] columnas = {"IdGrupo","idAcademia", "IdOficial", "Horario", "Fecha Inicio", "Fecha Fin", "Aula", "IdCurso"};
+    tblcursos = new JTable();
+    modelo = new DefaultTableModel();
+    tblcursos.setBackground(new Color(224,224,224));
+    scrollArea.setViewportView(tblcursos);
+    scrollArea.setBounds(10,500,550,230); //posiciona dentro de la ventana
+    modelo.setColumnIdentifiers(columnas);
+    scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    tblcursos.setFillsViewportHeight(true);        
+    
+    tblcursos.setModel(modelo);
+    TableColumn col1 = tblcursos.getColumn("IdGrupo");
+    col1.setPreferredWidth(20);
+    TableColumn col2 = tblcursos.getColumn("idAcademia");
+    col2.setPreferredWidth(70);
+    TableColumn col3 = tblcursos.getColumn("IdOficial");
+    col3.setPreferredWidth(55);
+    TableColumn col4 = tblcursos.getColumn("Horario");
+    col4.setPreferredWidth(55);
+    TableColumn col5 = tblcursos.getColumn("Fecha Inicio");
+    col5.setPreferredWidth(55);
+    TableColumn col6 = tblcursos.getColumn("Fecha Fin");
+    col6.setPreferredWidth(55);
+    TableColumn col7 = tblcursos.getColumn("Aula");
+    col7.setPreferredWidth(35);
+    TableColumn col8 = tblcursos.getColumn("IdCurso");
+    col8.setPreferredWidth(35);
+    add(scrollArea, BorderLayout.NORTH);
  }
  
  @SuppressWarnings("unchecked")
@@ -224,8 +276,9 @@ void cargarCombo() throws SQLException {
 		}
 			if(botonPulsado == btListado){
 				
-				 area.setText(Grupos.listar());}
-				
+				 //area.setText(Grupos.listar());}
+				clearCursos();
+           	 Grupos.listar(this);}
 	
 			if(botonPulsado == btInsertar){
 				 
@@ -264,7 +317,22 @@ void cargarCombo() throws SQLException {
 			 int intidGrupo = Integer.parseInt(idGrupo);			 
 			 area.setText(Grupos.eliminar( intidGrupo));	 
 		 }
+		 
+		
  	}
+ private void clearCursos(){
+     for (int i = 0; i < tblcursos.getRowCount(); i++) {
+         modelo.removeRow(i);
+         i-=1;
+     }
+ }
+public DefaultTableModel getModelo() {
+	 return modelo;
+}
 
+public void setModelo(DefaultTableModel modelo) {
+	 this.modelo = modelo;
+}
+}
 }
 

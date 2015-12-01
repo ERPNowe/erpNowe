@@ -25,11 +25,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+import alumnos.VentanaCalificaciones;
 //import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
-import matricula.VentanaFormaPago;
 import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
@@ -71,9 +72,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		matriculado = new JMenuItem("Matriculado");
 		matriculado.addActionListener(this);
 		menuAlumnos.add(matriculado);
+		
 		interesado = new JMenuItem("Interesado");
 		interesado.addActionListener(this);
 		menuAlumnos.add(interesado);
+		
 		
 		menuCursos = new JMenu ("Cursos");
 		barraMenu.add(menuCursos);		
@@ -81,30 +84,36 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		cursos = new JMenuItem("Cursos");
 		cursos.addActionListener(this);
 		menuCursos.add(cursos);
+		
 		grupos = new JMenuItem("Grupos");
 		grupos.addActionListener(this);
 		menuCursos.add(grupos);
+		
 		modulos = new JMenuItem("Módulos");
 		modulos.addActionListener(this);
 		menuCursos.add(modulos);
+		
+		
 		
 		menuCalificacion = new JMenu ("Calificación");
 		barraMenu.add(menuCalificacion);
 		
 		calificacion = new JMenuItem("Calificación");
 		calificacion.addActionListener(this);
-		menuCalificacion.add(calificacion);		
+		menuCalificacion.add(calificacion);	
+		
 		
 		menuMatricula = new JMenu ("Matrícula");
 		barraMenu.add(menuMatricula);
 		
 		matricula = new JMenuItem("Matrícula");
 		matricula.addActionListener(this);
-		menuMatricula.add(matricula);
+		menuMatricula.add(matricula);	
 		
 		formaPago = new JMenuItem("Forma de Pago");
 		formaPago.addActionListener(this);
-		menuMatricula.add(formaPago);
+		menuMatricula.add(formaPago);		
+		
 		
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
@@ -148,12 +157,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaMatricula ventana = new VentanaMatricula();
 			ventana.setVisible(true);
-        }
-		if (e.getSource()== formaPago){
+		}
+		if (e.getSource()== calificacion){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
-			VentanaFormaPago ventana = new VentanaFormaPago();
+			VentanaCalificaciones ventana = new VentanaCalificaciones();
 			ventana.setVisible(true);
-        }
-}
+		
+		}
+	}
 }
 

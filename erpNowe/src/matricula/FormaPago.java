@@ -35,8 +35,6 @@ public class FormaPago {
 	  ventana.setVisible(true);
  }
  
- //-----------------------------------------------------------------------------------
- //-----------------------------------------------------------------------------------
  /**
   * metodo para consultar las formas de pago
   * @return la consulta
@@ -59,7 +57,11 @@ public class FormaPago {
 	   }
 	    return resultado; 
  }
- 
+ /**
+  * metodo para consultar una forma de pago, dependiendo del id
+  * @param idFormaPago
+  * @return la consulta
+  */
  public static String consultar(String idFormaPago){
 	 
 	 	ResultSet datos;
@@ -75,7 +77,12 @@ public class FormaPago {
 	    catch (SQLException e) { e.printStackTrace();}
 	    return resultado; 
 }
- 
+ /**
+  * metodo para modificar una forma de pago
+  * @param idFormaPago
+  * @param descripcion
+  * @return si se ha hecho o no la modificacion
+  */
  public static String modificar(String idFormaPago, String descripcion ){
 		
 		 boolean ok = false;
@@ -91,7 +98,12 @@ public class FormaPago {
 		 catch(Exception e){ e.printStackTrace(); }
 		 return resultado;
 	}
- 
+ /**
+  * metodo para insertar una nueva forma de pago
+  * @param idFormaPago
+  * @param descripcion
+  * @return si se ha podido insertar o no
+  */
  public static String insertar(String idFormaPago, String descripcion ){
 		
 	 boolean ok = false;
@@ -107,7 +119,11 @@ public class FormaPago {
 	 catch(Exception e){ e.printStackTrace(); }
 	 return resultado;
 } 
- 
+ /**
+  * metodo para borrar una forma de pago
+  * @param idFormaPago
+  * @return si se ha podido borrar o no
+  */
  public static String borrar(String idFormaPago){
 		
 	 boolean ok = false;
