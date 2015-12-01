@@ -204,7 +204,7 @@ public class Matricula {
  * @return el resultado de la consulta
  */
 
-	public static String Consultarid(String idAlumno){
+	public static String Consultarid(String idAlumno,Panel panel){
 		ResultSet datos;
 	    String idMatricula, idAlumno1, idGrupo, FormaPago, desempleado,promociones, Pagado,resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula where idAlumno =" + idAlumno);
@@ -241,12 +241,14 @@ public class Matricula {
 	    		  promociones = "0";
 	    		  break; 
 	    	  }
-	    	  resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno1 + "\n" 
+	    	  panel.getModelo().addRow( new Object[] {idMatricula, idAlumno, idGrupo, FormaPago, desempleado, promociones, Pagado} );
+		    	
+	    	  /*resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno1 + "\n" 
 	    	    	  +"Grupo: " + idGrupo + "\n"
 	    	    	  +"forma de pago: " + FormaPago + "\n"
 	    	    	  + desempleado + "\n"
 	    	    	  +"promocion: "+ promociones + "%\n"
-	    	    	  + Pagado + "\n"; 
+	    	    	  + Pagado + "\n"; */
 	      }
 	      VentanaMatricula.Insertar.setEnabled(true);
 	      VentanaMatricula.Presupuesto.setEnabled(true);
@@ -267,7 +269,7 @@ public class Matricula {
 	 * @return el resultado de la consulta
 	 */
 
-		public static String ConsultarGR(String idGrupo){
+		public static String ConsultarGR(String idGrupo,Panel panel){
 			ResultSet datos;
 			 String idMatricula,idAlumno, idGrupo1, FormaPago, desempleado,promociones, Pagado,resultado ="";
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula where idGrupo =" + idGrupo);
@@ -304,12 +306,13 @@ public class Matricula {
 		    		  promociones = "0";
 		    		  break; 
 		    	  }
-		    	  resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno + "\n" 
+		    	  panel.getModelo().addRow( new Object[] {idMatricula, idAlumno, idGrupo1, FormaPago, desempleado, promociones, Pagado} );
+		    	 /* resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno + "\n" 
 		    	    	  +"Grupo: " + idGrupo1 + "\n"
 		    	    	  +"forma de pago: " + FormaPago + "\n"
 		    	    	  + desempleado + "\n"
 		    	    	  +"promocion: "+ promociones + "%\n"
-		    	    	  + Pagado + "\n"; 
+		    	    	  + Pagado + "\n"; */
 		      }
 		      VentanaMatricula.Insertar.setEnabled(true);
 		      VentanaMatricula.Presupuesto.setEnabled(true);
@@ -370,13 +373,9 @@ public class Matricula {
 		    		  promociones = "0";
 		    		  break; 
 		    	  }
+ /*----------------------------*/
 		    	  panel.getModelo().addRow( new Object[] {idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado, promociones, Pagado} ); 
-		    	 /*resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno1 + "\n" 
-		    	    	  +"Grupo: " + idGrupo1 + "\n"
-		    	    	  +"forma de pago: " + FormaPago + "\n"
-		    	    	  + desempleado + "\n"
-		    	    	  +"promocion: "+ promociones + "%\n"
-		    	    	  + Pagado + "\n"; */
+		    	
 		      }
 		      VentanaMatricula.Insertar.setEnabled(true);
 		      VentanaMatricula.Presupuesto.setEnabled(true);
