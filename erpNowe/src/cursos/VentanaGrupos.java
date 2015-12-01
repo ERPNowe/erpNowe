@@ -43,13 +43,12 @@ import java.util.GregorianCalendar;
 public class VentanaGrupos extends JFrame {
 	
 	 public VentanaGrupos() {
-			setSize(1200,800);  
+			setSize(780,550);  
 			Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 	    	setIconImage(icon);
-			setTitle("Ventana Grupos");
-			//setResizable(false);
+			setTitle("Gestión Grupos Nowe");
+			setResizable(false);
 			setLocationRelativeTo(null);
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setVisible(true);
 			
 			Paneles p = new Paneles();
@@ -82,62 +81,63 @@ class Paneles extends JPanel implements ActionListener{
 public Paneles()  {
 	setLayout(null);
 	scrollArea = new JScrollPane();
+	setBackground(new Color(192,192,192));
 	
-	lbidGrupo = new JLabel("idGrupo: ");
-	lbidGrupo.setBounds(50, 20, 100, 30);
+	lbidGrupo = new JLabel("idGrupo ");
+	lbidGrupo.setBounds(600,30,100,20);
 	add(lbidGrupo);
-	lbidAcademia = new JLabel("idAcademia: ");
-	lbidAcademia.setBounds(50, 60, 100, 30);
+	lbidAcademia = new JLabel("idAcademia ");
+	lbidAcademia.setBounds(600,90,100,20);
 	add(lbidAcademia);
-	lbidOficial = new JLabel("idOficial: ");
-	lbidOficial.setBounds(50, 100, 100, 30);
+	lbidOficial = new JLabel("idOficial ");
+	lbidOficial.setBounds(600,150,100,20);
 	add(lbidOficial);
-	lbhorario = new JLabel("horario: ");
-	lbhorario.setBounds(50, 140, 100, 30);
+	lbhorario = new JLabel("horario ");
+	lbhorario.setBounds(600,210,100,20);
 	add(lbhorario);
-	lbfechaInicio = new JLabel("fecha inicio: ");
-	lbfechaInicio.setBounds(50, 180, 100, 30);
+	lbfechaInicio = new JLabel("fecha inicio ");
+	lbfechaInicio.setBounds(600,270,100,20);
 	add(lbfechaInicio);
-	lbfechaFin = new JLabel("fecha fin: ");
-	lbfechaFin.setBounds(50, 220, 100, 30);
+	lbfechaFin = new JLabel("fecha fin ");
+	lbfechaFin.setBounds(600,330,100,20);
 	add(lbfechaFin);
-	lbaula = new JLabel("aula: ");
-	lbaula.setBounds(50, 260, 100, 30);
+	lbaula = new JLabel("aula ");
+	lbaula.setBounds(600,390,100,20);
 	add(lbaula);
-	lbidCurso = new JLabel("Id. Curso: ");
-	lbidCurso.setBounds(50, 300, 100, 30);
+	lbidCurso = new JLabel("Id. Curso ");
+	lbidCurso.setBounds(600,440,100,20);
 	add(lbidCurso);
-	lbcodCurso = new JLabel("Cod. Curso: ");
-	lbcodCurso.setBounds(50, 340, 100, 30);
+	lbcodCurso = new JLabel("Cod. Curso ");
+	lbcodCurso.setBounds(600,500,100,20);
 	add(lbcodCurso);
 	
 	cidGrupo = new JTextField();
-	cidGrupo.setBounds(130, 20, 60, 30);
+	cidGrupo.setBounds(600,10,150,20);
 	add(cidGrupo);
 	cidAcademia = new JTextField();
-	cidAcademia.setBounds(130, 60, 100, 30);
+	cidAcademia.setBounds(600,70,150,20);
 	add(cidAcademia);
 	cidOficial = new JTextField();
-	cidOficial.setBounds(130, 100, 100, 30);
+	cidOficial.setBounds(600,130,150,20);
 	add(cidOficial);
 	chorario = new JTextField();
-	chorario.setBounds(130, 140, 200, 30);
+	chorario.setBounds(600,190,150,20);
 	add(chorario);
 	cfechaInicio = new JTextField();
-	cfechaInicio.setBounds(130, 180, 200, 30);
+	cfechaInicio.setBounds(600,250,150,20);
 	add(cfechaInicio);
 	cfechaFin = new JTextField();
-	cfechaFin.setBounds(130, 220, 200, 30);
+	cfechaFin.setBounds(600,310,150,20);
 	add(cfechaFin);
 	caula = new JTextField();
-	caula.setBounds(130, 260, 200, 30);
+	caula.setBounds(600,370,150,20);
 	add(caula);
 	cidCurso = new JTextField();
-	cidCurso.setBounds(130, 300, 200, 30);
+	cidCurso.setBounds(600,420,150,20);
 	add(cidCurso);
 		
 	comboidCurso=new JComboBox();
-	comboidCurso.setBounds(130, 340, 200, 30);
+	comboidCurso.setBounds(600,480,150,20);
 	try {
 		cargarCombo();
 	} catch (SQLException e) {
@@ -149,30 +149,30 @@ public Paneles()  {
 		
 	area = new TextArea();	
 	scrollArea.setViewportView(area);	
-	scrollArea.setBounds(20,500,1000,200);
+	scrollArea.setBounds(140,380,430,350);
 	add(scrollArea);
 	
 	btConsultar = new JButton("Consultar");
-	btConsultar.setBounds(50,380,100,30);
+	btConsultar.setBounds(10,10,120,50);
 	btConsultar.addActionListener(this);
 	add(btConsultar);
 	btInsertar = new JButton("Insertar");
-	btInsertar.setBounds(150,380,100,30);
+	btInsertar.setBounds(10,70,120,50);
 	btInsertar.addActionListener(this);
 	add(btInsertar);		
 	btModificar = new JButton("Modificar");
-	btModificar.setBounds(50,420,100,30);
+	btModificar.setBounds(10,130,120,50);
 	btModificar.addActionListener(this);
 	add(btModificar);
 	/*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
 	btBorrar = new JButton("Borrar");
-	btBorrar.setBounds(150,420,100,30);
+	btBorrar.setBounds(10,190,120,50);
 	btBorrar.addActionListener(this);
 	add(btBorrar);
 	//btBorrar.setVisible(false);
 	
 	btListado = new JButton("Listado");
-	btListado.setBounds(50,460,100,30);
+	btListado.setBounds(10,250,120,50);
 	btListado.addActionListener(this);
 	add(btListado);
 	
@@ -184,7 +184,7 @@ public Paneles()  {
     modelo = new DefaultTableModel();
     tblcursos.setBackground(new Color(224,224,224));
     scrollArea.setViewportView(tblcursos);
-    scrollArea.setBounds(10,500,550,230); //posiciona dentro de la ventana
+    scrollArea.setBounds(140,10,450,420); //posiciona dentro de la ventana
     modelo.setColumnIdentifiers(columnas);
     scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
