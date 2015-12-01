@@ -2,8 +2,6 @@ package matricula;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import basedatos.ConexionBaseDatos;
 import ventanaPrincipal.VentanaPrincipal;
 
 
@@ -30,15 +28,11 @@ public class Matricula {
 	private String formaPago;
 	private String promociones;
 	private int pagado;
-	
+		 
 	 
-	 private static String usuario = "root";
-	 private static String pwd = "root";
-	 private static String bd = "nowedb";
-	 //public static ConexionBaseDatos conexion = null;
-	 static ResultSet filas = null;
+ static ResultSet filas = null;
 	
-	 public static void main(String[] args) {
+ public static void main(String[] args) {
 	   //conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 	   VentanaMatricula ventana = new VentanaMatricula();
 	   ventana.setVisible(true);
@@ -48,7 +42,7 @@ public class Matricula {
  * sobrecarga de constructotes constructor parametrizado
  */
 
-	public Matricula(int idAlumno, int idGrupo, String formaPago, String promociones, int pagado) {
+ 	public Matricula(int idAlumno, int idGrupo, String formaPago, String promociones, int pagado) {
 		this.idAlumno = idAlumno;
 		this.idGrupo = idGrupo;
 		this.formaPago = formaPago;
