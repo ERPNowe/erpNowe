@@ -41,20 +41,20 @@ public class VentanaCalificaciones extends JFrame{
 	public VentanaCalificaciones(){
 		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logoApp.gif"));
 		setIconImage(icon);
-		setSize(745,440); // Ancho*Alto
+		setSize(745,440);
 		setTitle("Gestión Calificaciones Nowe");
 		setLocationRelativeTo(null);
-		Panel c = new Panel(); //crear la clase panel como en marcoprincipal
+		Panel c = new Panel();
 		add(c);
 
 	} 
 	class Panel extends JPanel implements ActionListener{
 
-		JButton insertar,consultar,borrar,modificar,limpiar,cerrar;
+		JButton consultar,modificar,limpiar,cerrar;
 		JCheckBox recogido;
 		JTextArea textareaconsulta,textareaObservaciones; 
-		JTextField textfield1, textfield2, textfield3, textfield4, textfield5, textfield6;
-		JLabel label1,label2,label3, label4, label5;
+		JTextField textfield1, textfield2, textfield3;
+		JLabel label1,label2,label3, label4, label5, label6;
 		JScrollPane scrollArea1,scrollArea2;
 
 		public Panel(){
@@ -67,7 +67,7 @@ public class VentanaCalificaciones extends JFrame{
 			//botones
 
 			consultar=new JButton("Consultar");
-			consultar.setBounds(10,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
+			consultar.setBounds(10,10,120,50);
 			add(consultar);
 			consultar.addActionListener(this);
 
@@ -113,7 +113,7 @@ public class VentanaCalificaciones extends JFrame{
 			add(textfield3);
 			textfield3.setBackground( new Color(224,224,224) );
 
-			label3=new JLabel("Nota"); //Padding_Left, Padding_Top, Ancho, Alto
+			label3=new JLabel("Nota");
 			label3.setBounds(690,130,100,20);
 			add(label3);
 
@@ -123,20 +123,20 @@ public class VentanaCalificaciones extends JFrame{
 			textareaconsulta.setBackground(new Color(224,224,224));
 
 			scrollArea1.setViewportView(textareaconsulta);
-			scrollArea1.setBounds(150,10,450,230); //posiciona dentro de la ventana
+			scrollArea1.setBounds(150,10,450,230);
 			add(scrollArea1);
 
 			//Ventana de Observaciones
 
-			label3=new JLabel("Observaciones"); //Padding_Left, Padding_Top, Ancho, Alto
-			label3.setBounds(330,270,100,20);
-			add(label3);
+			label4=new JLabel("Observaciones");
+			label4.setBounds(330,270,100,20);
+			add(label4);
 
 			textareaObservaciones = new JTextArea();	 
 			textareaObservaciones.setBackground(new Color(224,224,224));
 
 			scrollArea2.setViewportView(textareaObservaciones);
-			scrollArea2.setBounds(150,290,450,100); //posiciona dentro de la ventana
+			scrollArea2.setBounds(150,290,450,100);
 			add(scrollArea2);
 
 
@@ -146,18 +146,18 @@ public class VentanaCalificaciones extends JFrame{
 			add(recogido);
 			if(Calificaciones.diploma) recogido.setSelected(true);
 
-			label3=new JLabel("Diploma"); //Padding_Left, Padding_Top, Ancho, Alto
-			label3.setBounds(620,155,100,20);
-			add(label3);
-			label3=new JLabel("Entregado"); //Padding_Left, Padding_Top, Ancho, Alto
-			label3.setBounds(635,175,100,20);
-			add(label3);
+			label5=new JLabel("Diploma");
+			label5.setBounds(620,155,100,20);
+			add(label5);
+			label6=new JLabel("Entregado");
+			label6.setBounds(635,175,100,20);
+			add(label6);
 		} 
 
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Object botonPulsado = e.getSource(); // podemos crearnos esta variable para preguntar luego por los botones
+			Object botonPulsado = e.getSource();
 
 			if (botonPulsado == consultar && (textfield1.getText().equals("")  && textfield2.getText().equals(""))){
 
