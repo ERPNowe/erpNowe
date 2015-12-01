@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 /**
  * importar librerías creadas por usuario*/
 import cursos.VentanaGrupos;
+import cursos.VentanaGrupos.Paneles;
+import cursos.VentanaCursos.Panel;
 import utilidades.Fecha;
 import ventanaPrincipal.VentanaPrincipal;
 /**@author Eva
@@ -158,7 +160,7 @@ public class Grupos {
 		return datos;
 	}
 	
-	public static String listar(){
+	public static String listar(Paneles paneles){
 		ResultSet datos;
 		String cidGrupo, cidAcademia, cidOficial,chorario,cfecInicio,cfecFin,caula,cidCurso, resultado ="";
 		 datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM grupos");
@@ -173,9 +175,10 @@ public class Grupos {
 		    	  cfecFin = datos.getString("fechaFin");
 		    	  caula = datos.getString("aula");
 		    	  cidCurso = datos.getString("idCurso");
-		    	  resultado = resultado +"\n"+ cidGrupo + "\t" + cidAcademia + "\t" + cidOficial
-		    			  + "\t" + chorario + "\t" + cfecInicio + "\t" + cfecFin + "\t" + caula + "\t" + cidCurso ; 
-		      }
+		    	  //resultado = resultado +"\n"+ cidGrupo + "\t" + cidAcademia + "\t" + cidOficial
+		    		//	  + "\t" + chorario + "\t" + cfecInicio + "\t" + cfecFin + "\t" + caula + "\t" + cidCurso ; 
+		    	  paneles.getModelo().addRow( new Object[] {cidGrupo, cidAcademia, cidOficial,chorario,cfecInicio,cfecFin,caula,cidCurso});} 
+		      
 		    }
 		    catch (SQLException e) { e.printStackTrace();
 		   }

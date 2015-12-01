@@ -25,16 +25,20 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
+import alumnos.VentanaCalificaciones;
 //import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
+import matricula.VentanaFormaPago;
+import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private JMenuBar barraMenu;
 	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
-	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, ayuda, salir;
+	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, formaPago, ayuda, salir;
 	
 	public static String usuario = "root";
 		 public static String pwd = "root";
@@ -69,9 +73,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		matriculado = new JMenuItem("Matriculado");
 		matriculado.addActionListener(this);
 		menuAlumnos.add(matriculado);
+		
 		interesado = new JMenuItem("Interesado");
 		interesado.addActionListener(this);
 		menuAlumnos.add(interesado);
+		
 		
 		menuCursos = new JMenu ("Cursos");
 		barraMenu.add(menuCursos);		
@@ -79,19 +85,24 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		cursos = new JMenuItem("Cursos");
 		cursos.addActionListener(this);
 		menuCursos.add(cursos);
+		
 		grupos = new JMenuItem("Grupos");
 		grupos.addActionListener(this);
 		menuCursos.add(grupos);
+		
 		modulos = new JMenuItem("Módulos");
 		modulos.addActionListener(this);
 		menuCursos.add(modulos);
+		
+		
 		
 		menuCalificacion = new JMenu ("Calificación");
 		barraMenu.add(menuCalificacion);
 		
 		calificacion = new JMenuItem("Calificación");
 		calificacion.addActionListener(this);
-		menuCalificacion.add(calificacion);		
+		menuCalificacion.add(calificacion);	
+		
 		
 		menuMatricula = new JMenu ("Matrícula");
 		barraMenu.add(menuMatricula);
@@ -100,18 +111,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		matricula.addActionListener(this);
 		menuMatricula.add(matricula);	
 		
+		formaPago = new JMenuItem("Forma de Pago");
+		formaPago.addActionListener(this);
+		menuMatricula.add(formaPago);		
+		
+		
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
 		
 		ayuda = new JMenuItem("?");
-		matricula.addActionListener(this);
+		ayuda.addActionListener(this);
 		menuAyuda.add(ayuda);
 		
 		menuSalir = new JMenu ("Salir");
 		barraMenu.add(menuSalir);
 		
 		salir = new JMenuItem("Salir");
-		matricula.addActionListener(this);
+		salir.addActionListener(this);
 		menuSalir.add(salir);}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -125,8 +141,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		if (e.getSource()== modulos){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			 ventanaModulo ventana = new ventanaModulo();
-			 ventana.setVisible(true);   
-			
+			 ventana.setVisible(true);   	
 		}
 		/*if (e.getSource()== interesado){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
@@ -138,6 +153,21 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			VentanaGrupos ne = new VentanaGrupos();
 			ne.setVisible(true);
 		}
-        }
+		if (e.getSource()== matricula){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaMatricula ventana = new VentanaMatricula();
+			ventana.setVisible(true);
+		}
+		if (e.getSource()== calificacion){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaCalificaciones ventana = new VentanaCalificaciones();
+			ventana.setVisible(true);
+		}
+		if (e.getSource()== formaPago){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaFormaPago ventana = new VentanaFormaPago();
+			ventana.setVisible(true);
+		}
+	}
 }
 
