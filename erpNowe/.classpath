@@ -10,7 +10,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="erpNowe/src"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Librerias/mysql-connector-java-5.1.37-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Librerias/iText-5.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/TEMP/iText-5.0.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
