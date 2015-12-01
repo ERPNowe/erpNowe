@@ -229,7 +229,9 @@ public class VentanaMatricula extends JFrame {
 		         	Object botonPulsado = e.getSource();
 		         	
 		             if (botonPulsado==consultar) {
-		            	 Matricula.Consultar(this);}
+		            	 clearmatricula();
+		            	 Matricula.Consultar(this);
+		            	 }
 		             
 		             if (botonPulsado==Consultaid) {
 		            	 textareaconsulta.setText(Matricula.Consultarid((String)alumno.getSelectedItem()));}
@@ -359,6 +361,12 @@ public class VentanaMatricula extends JFrame {
 		            	 textareaconsulta.setText("conexion cerrada");}
 		            	 
 		           }
+			 private void clearmatricula(){
+			       for (int i = 0; i < tblcursos.getRowCount(); i++) {
+			           modelo.removeRow(i);
+			           i-=1;
+			       }
+			   }
 			 public DefaultTableModel getModelo() {
 				 return modelo;
 			 }
