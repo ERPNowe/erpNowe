@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import cursos.VentanaCursos.FrameListener;
+import matricula.Matricula;
 import ventanaPrincipal.VentanaPrincipal;
 
 /** 
@@ -51,8 +52,10 @@ public class ventanaModulo extends JFrame {
 		 JButton consultar,listado, insertar, limpiar,cerrar;
 		 JTextArea textareaconsulta; 
 		 JTextField textfield1, textfield2, textfield3;
-		 JLabel label1, label2, label3;
+		 JLabel label1, label2, label3, label4;
 		 JScrollPane scrollArea;
+		 private JTable tblmodulos = null;
+		 DefaultTableModel modelo = null;
 		 
 		 /**
 		  * Constructor del panel
@@ -107,9 +110,13 @@ public class ventanaModulo extends JFrame {
 	         /**
 	          * Creacion del TextArea
 	          */
+	         label4 = new JLabel("Detalles");
+	         label4.setBounds(400,300,100,20);
+	         add(label4);
+	         
 	         textareaconsulta = new JTextArea();
-	         //textareaconsulta.setBounds(120,10,630,230);
-	         //add(textareaconsulta);
+	         textareaconsulta.setBounds(120,325,630,20);
+	         add(textareaconsulta);
 	         textareaconsulta.setBackground(new Color(224,224,224));
 		 
 	         /**
@@ -142,15 +149,31 @@ public class ventanaModulo extends JFrame {
 	         add(textfield3);
 	         textfield3.setBackground( new Color(224,224,224) );
 	         
+	         
+	         String[] columnas = {"idModulo", "Nombre"};
+	         tblmodulos = new JTable();
+	         modelo = new DefaultTableModel();
+	         tblmodulos.setBackground(new Color(224,224,224));
+	         scrollArea.setViewportView(tblmodulos);
+	         scrollArea.setBounds(120, 10, 630, 230); //posiciona dentro de la ventana
+	         modelo.setColumnIdentifiers(columnas);
+	         scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+	         tblmodulos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+	         tblmodulos.setFillsViewportHeight(true);        
+	         
+	         tblmodulos.setModel(modelo);
+	         tblmodulos.getColumnModel().getColumn(0).setPreferredWidth(60);
+	         tblmodulos.getColumnModel().getColumn(1).setPreferredWidth(570);
+	         add(scrollArea, BorderLayout.NORTH);
 	        
 	         
 	         /**
 	          * Creacion del panel scroll
 	          */
 	         
-			 scrollArea.setViewportView(textareaconsulta);
+			 /*scrollArea.setViewportView(textareaconsulta);
 			 scrollArea.setBounds(120, 10, 630, 230); 
-			 add(scrollArea);
+			 add(scrollArea);*/
 		 }
 		 /**
 		  * Acciones de los botones al ser pulsados
@@ -159,11 +182,16 @@ public class ventanaModulo extends JFrame {
 	         	Object botonPulsado = e.getSource();
 	         	
 	             if (botonPulsado == consultar) {
-	            	 textareaconsulta.setText(Modulos.consultar((String)combo1.getSelectedItem()));}
+	            	 clearModulo();
+	            	 Modulos.consultar((String)combo1.getSelectedItem(),this);
+	            	 //textareaconsulta.setText(Modulos.consultar((String)combo1.getSelectedItem()));
+	            	 }
 	             
 	             if (botonPulsado == listado) {
-	            	 
-	            	 textareaconsulta.setText(Modulos.listar());}
+	            	 clearModulo();
+	            	 Modulos.listar(this);
+	            	 //textareaconsulta.setText(Modulos.listar());
+	            	 }
 	             
 	             if (botonPulsado == insertar) {
 	            	 textareaconsulta.setText(Modulos.insertar(textfield3.getText(), textfield2.getText()));}
@@ -172,7 +200,7 @@ public class ventanaModulo extends JFrame {
 	            	 textareaconsulta.setText(Modulos.modificar(textfield1.getText(), textfield2.getText()));}
 	            	 
 	             if (botonPulsado == borrar) {
-	            	 textareaconsulta.setText(Modulos.eliminar(textfield1.getText()));}
+	            	 textareaconsulta.setText(Modulos.eliminar((String)combo1.getSelectedItem()));}
 	             
 	             if (botonPulsado == limpiar) {
 	            	 textfield1.setText("");
@@ -182,7 +210,20 @@ public class ventanaModulo extends JFrame {
 	             if (botonPulsado == cerrar) {
 	            	 VentanaPrincipal.conexion.cerrarConexion();
 	            	 textareaconsulta.setText("conexion cerrada");}
-	           }
+	             }
+	           
+	             private void clearModulo(){
+				       for (int i = 0; i < tblmodulos.getRowCount(); i++) {
+				           modelo.removeRow(i);
+				           i-=1;
+				       }
+				   }
+				 public DefaultTableModel getModelo() {
+					 return modelo;
+				 }
+				 public void setModelo(DefaultTableModel modelo) {
+					 this.modelo = modelo;
+				 }
 		
 	         }
 }

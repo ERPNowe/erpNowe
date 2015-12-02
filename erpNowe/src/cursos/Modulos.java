@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import basedatos.ConexionBaseDatos;
+import cursos.ventanaModulo.Panel;
 import ventanaPrincipal.VentanaPrincipal;
 
 
@@ -95,46 +96,50 @@ import ventanaPrincipal.VentanaPrincipal;
 	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
-	 * @param idModulo
+	 * @param panel
 	 * @return la consulta completa
 	 */
 	 
-	public static String consultar(String idModulo){
+	public static void consultar(String idModulo, Panel panel){
 		ResultSet datos;
-	    String idMo, nombre, resultado ="";
+	    String idMo = null, nombre = null;
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos WHERE idModulo = '"+idModulo+"'");
 	    try {
 	      while(datos.next()){
 	    	  idMo = datos.getString("idModulo"); 
-	    	  nombre = datos.getString("nombre");
-	    	  resultado = idMo + "\t" + nombre;  
-	      }
+	    	  nombre = datos.getString("nombre");  
+	      
 	      ventanaModulo.modificar.setEnabled(true);
-		     ventanaModulo.borrar.setEnabled(true);
+		  ventanaModulo.borrar.setEnabled(true);
+		  panel.getModelo().addRow( new Object[] {idMo, nombre} );
+	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();
-	   }
-	    return resultado; 
+	   }  
 	}
 	
 	/**
 	 * Metodo para listar la tabla
+	 * @param panel 
 	 * @return el listado completo de la tabla
 	 */
-	public static String listar(){
+	public static void listar(Panel panel){
 		ResultSet datos;
-	    String idModulo, nombre, resultado ="";
+	    String idModulo = null, nombre = null;
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM modulos");
 	    try {
 	      while(datos.next()){
 	    	  idModulo = datos.getString("idModulo"); 
 	    	  nombre = datos.getString("nombre");
-	    	  resultado = resultado +"\n"+ idModulo + "\t" + nombre; 
+	      
+	      ventanaModulo.modificar.setEnabled(true);
+		  ventanaModulo.borrar.setEnabled(true);
+	      panel.getModelo().addRow( new Object[] {idModulo, nombre} ); 
 	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();
 	   }
-	    return resultado; 
+	 
 	}
 	
 	/**
