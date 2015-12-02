@@ -11,6 +11,7 @@
 
 package matricula;
 
+import java.awt.Panel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -39,7 +40,7 @@ public class FormaPago {
   * metodo para consultar las formas de pago
   * @return la consulta
   */
- public static String listado(){
+ public static void listado(matricula.VentanaFormaPago.Panel panel){
 	 	ResultSet datos;
 	    String id, descripcion, resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM formapago");
@@ -48,21 +49,23 @@ public class FormaPago {
 	    	  id = datos.getString("idFormaPago"); 
 	    	  descripcion = datos.getString("descripcion");
 	    	  resultado = resultado +"\n"+ id + "\t" + descripcion; 
-	      }
+	      
 	      VentanaFormaPago.modificar.setEnabled(true);
 	      VentanaFormaPago.insertar.setEnabled(true);
 	      VentanaFormaPago.borrar.setEnabled(true);
+	      panel.getModelo().addRow( new Object[] {id, descripcion} );
+	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();
 	   }
-	    return resultado; 
+	    
  }
  /**
   * metodo para consultar una forma de pago, dependiendo del id
   * @param idFormaPago
   * @return la consulta
   */
- public static String consultar(String idFormaPago){
+ public static void consultar(String idFormaPago, matricula.VentanaFormaPago.Panel panel){
 	 
 	 	ResultSet datos;
 	    String id, descripcion, resultado ="";
@@ -72,10 +75,14 @@ public class FormaPago {
 	    	  id = datos.getString("idFormaPago"); //podemos poner el nombre o un numero
 	    	  descripcion = datos.getString("descripcion");
 	    	  resultado = resultado +"\n"+ id + "\t" + descripcion; 
+	    	  VentanaFormaPago.modificar.setEnabled(true);
+		      VentanaFormaPago.insertar.setEnabled(true);
+		      VentanaFormaPago.borrar.setEnabled(true);
+		      panel.getModelo().addRow( new Object[] {id, descripcion} );
 	      }
 	    }
 	    catch (SQLException e) { e.printStackTrace();}
-	    return resultado; 
+	    
 }
  /**
   * metodo para modificar una forma de pago
