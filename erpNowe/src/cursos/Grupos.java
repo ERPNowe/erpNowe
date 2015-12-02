@@ -100,11 +100,13 @@ public class Grupos {
 				ok = VentanaPrincipal.conexion.setQuery("INSERT INTO grupos(idAcademia, idOficial, horario, fechaInicio, fechaFin, aula, idCurso)"
 						+ " VALUES ('" + idAcademia+"','"+ idOficial+"','"+ horario+"','"+ stfechaInicio
 						+"','"+ stfechaFin+"','"+ aula+"',"+ idCurso + ")");
-				if(ok)
-					resultado = "Se insertó el grupo";
+				if(ok){
+					//resultado = "Se insertó el grupo";
 					//System.out.println("Se insertó el registro");
+				JOptionPane.showMessageDialog(null, "Se insertó el registro ");	}
 				else
-					resultado = "No se insertó el grupo";
+					//resultado = "No se insertó el grupo";
+				JOptionPane.showMessageDialog(null, "No se insertó el registro ");
 					//System.out.println("No se insertó");
 			} 
 		catch(Exception e){ e.printStackTrace(); }
@@ -126,10 +128,12 @@ public class Grupos {
 														+ "idCurso = " + idCurso 
 														+ " WHERE idGrupo = " + idGrupo+";");    
 				if(ok)
-					resultado = "Se modificó el grupo";
+					JOptionPane.showMessageDialog(null, "Se modificó el registro ");
+					//resultado = "Se modificó el grupo";
 					//System.out.println("Se modificó");
 				else
-					resultado = "No se modificó el grupo";
+					JOptionPane.showMessageDialog(null, "No se modificó el registro ");
+					//resultado = "No se modificó el grupo";
 					//System.out.println("No se modificó");
 			} 
 		catch(Exception e){ e.printStackTrace(); }
@@ -144,9 +148,11 @@ public class Grupos {
 		try {
 				ok = VentanaPrincipal.conexion.setQuery("DELETE FROM grupos WHERE idGrupo = "+ idGrupo );
 				if(ok)
-					resultado = "Se borró el grupo";
+					JOptionPane.showMessageDialog(null, "Se borró el registro ");
+					//resultado = "Se borró el grupo";
 				else
-					resultado = "No se borró el grupo";
+					JOptionPane.showMessageDialog(null, "No se borró el registro ");
+					//resultado = "No se borró el grupo";
 					} 
 		catch(Exception e){ e.printStackTrace(); }	
 	return resultado;}

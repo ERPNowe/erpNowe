@@ -267,6 +267,7 @@ void cargarCombo() throws SQLException {
 					caula.setText(filas.getString("aula"));
 					cidCurso.setText(filas.getString("idCurso"));
 					
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "no existe el registro");
 				}
@@ -293,7 +294,8 @@ void cargarCombo() throws SQLException {
 				 String stidCurso = (String) cidCurso.getText();
 				 int intidCurso = Integer.parseInt(stidCurso);
 				 Grupos.insertar( stidAcademia,stidOficial, sthorario, stfechaInicio, stfechaFin, staula,
-								intidCurso);	 
+								intidCurso);	
+					
 				 }
 		 
 		 
