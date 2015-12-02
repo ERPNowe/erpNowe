@@ -10,10 +10,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -74,6 +80,7 @@ public class VentanaCursos extends JFrame {
 			 JScrollPane scrollArea;
 			 private JTable tblcursos = null;
 			 DefaultTableModel modelo = null;
+			 JComboBox comboidCurso,combocategoria;
 			 /**
 			  * Constructor del panel
 			  */
@@ -132,7 +139,7 @@ public class VentanaCursos extends JFrame {
 		          * Creacion del TextArea con resultado
 		          */
 		       
-		         textareaconsulta = new JTextArea("Resuldado");	 
+		         textareaconsulta = new JTextArea("Resultado");	 
 		         textareaconsulta.setBackground(new Color(192,192,192));
 		         textareaconsulta.setForeground(Color.blue);
 		         Font negrita = new Font("Verdana", Font.BOLD, 12);
@@ -182,10 +189,10 @@ public class VentanaCursos extends JFrame {
 		         label2.setBounds(265,10,100,20);
 		         add(label2);
 		         
-		         textfield2=new JTextField();
-		         textfield2.setBounds(265,30,100,20);
-		         add(textfield2);
-		         textfield2.setBackground( new Color(224,224,224) );
+		         //textfield2=new JTextField();
+		         //textfield2.setBounds(265,30,100,20);
+		         //add(textfield2);
+		         //textfield2.setBackground( new Color(224,224,224) );
 		         
 		         label3=new JLabel("Nombre");
 		         label3.setBounds(380,10,100,20);
@@ -200,10 +207,10 @@ public class VentanaCursos extends JFrame {
 		         label4.setBounds(495,10,100,20);
 		         add(label4);
 		         
-		         textfield4=new JTextField();
-		         textfield4.setBounds(495,30,100,20);
-		         add(textfield4);
-		         textfield4.setBackground( new Color(224,224,224) );
+		         //textfield4=new JTextField();
+		         //textfield4.setBounds(495,30,100,20);
+		         //add(textfield4);
+		         //textfield4.setBackground( new Color(224,224,224) );
 		         
 		         label5=new JLabel("Descripcion");
 		         label5.setBounds(610,10,100,20);
@@ -240,10 +247,70 @@ public class VentanaCursos extends JFrame {
 		         textfield8.setBounds(495,85,100,20);
 		         add(textfield8);
 		         textfield8.setBackground( new Color(224,224,224) );
-		         
+		     
+		         comboidCurso=new JComboBox();
+		     	comboidCurso.setBounds(265,30,100,20);
+		     	try {
+		     		cargarCombo();
+		     	} catch (SQLException e) {
+		     		e.printStackTrace();
+		     	}
+		     	comboidCurso.addActionListener(this);
+		         add(comboidCurso);
 		         
 			 
+			
+			 combocategoria=new JComboBox();
+		     	combocategoria.setBounds(495,30,100,20);
+		     	try {
+		     		cargarCombo1();
+		     	} catch (SQLException e) {
+		     		e.printStackTrace();
+		     	}
+		     	combocategoria.addActionListener(this);
+		         add(combocategoria);
+			 
+			 
 			 }
+			 
+			 @SuppressWarnings("unchecked")
+			 void cargarCombo() throws SQLException {
+			 	 String usuario = "root";
+			 	 String pwd = "root";
+			 	 String bd = "jdbc:mysql://localhost/nowedb";
+			 	 
+			 	 Connection conexion = DriverManager.getConnection(bd, usuario, pwd);
+			 	 Statement sentenciaSql = conexion.createStatement();
+			      ResultSet filas = sentenciaSql.executeQuery("Select CodigoCurso From cursos");
+			      try {
+			 			while(filas.next()){
+			 				comboidCurso.addItem(filas.getString("CodigoCurso"));
+			 			}
+			 		} catch (SQLException ex) {
+			 		
+			 			ex.printStackTrace();
+			 		}   		
+			  }
+			 
+			 
+			 void cargarCombo1() throws SQLException {
+			 	 String usuario = "root";
+			 	 String pwd = "root";
+			 	 String bd = "jdbc:mysql://localhost/nowedb";
+			 	 
+			 	 Connection conexion = DriverManager.getConnection(bd, usuario, pwd);
+			 	 Statement sentenciaSql = conexion.createStatement();
+			      ResultSet filas = sentenciaSql.executeQuery("Select categoria From cursos");
+			      try {
+			 			while(filas.next()){
+			 				combocategoria.addItem(filas.getString("Categoria"));
+			 			}
+			 		} catch (SQLException ex) {
+			 		
+			 			ex.printStackTrace();
+			 		}   		
+			  }
+			 
 			 /**
 			  * Acciones de los botones al ser pulsados
 			  */
