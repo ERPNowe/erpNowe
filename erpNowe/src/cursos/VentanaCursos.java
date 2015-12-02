@@ -22,12 +22,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import utilidades.Fecha;
 import ventanaPrincipal.VentanaPrincipal;
 
 /**
@@ -139,7 +141,7 @@ public class VentanaCursos extends JFrame {
 		          * Creacion del TextArea con resultado
 		          */
 		       
-		         textareaconsulta = new JTextArea("Resultado");	 
+		         /*textareaconsulta = new JTextArea("Resultado");	 
 		         textareaconsulta.setBackground(new Color(192,192,192));
 		         textareaconsulta.setForeground(Color.blue);
 		         Font negrita = new Font("Verdana", Font.BOLD, 12);
@@ -323,11 +325,30 @@ public class VentanaCursos extends JFrame {
 		             
 		             
 		             if (botonPulsado==consultar){
-		            	 String idcurso1 = textfield1.getText();
-		            	 int intidcurso = Integer.parseInt(idcurso1);
-		            	 
-		            	 textareaconsulta.setText(Cursos.Consultarip(intidcurso));
-		             }
+		            	
+		            	 ResultSet filas;
+		     			filas = Cursos.Consultarip(textfield1.getText());
+		     	        
+		     			try {
+		     				if (filas.next()){
+		     					
+		     					comboidCurso.setToolTipText(filas.getString("CodigoCurso"));
+		     					textfield3.setText(filas.getString("Nombre"));
+		     					combocategoria.setToolTipText(filas.getString("Categoria"));
+		     					textarea5.setText(filas.getString("Descripcion"));
+		     					textfield6.setText(filas.getString("Precio"));
+		     					textfield7.setText(filas.getString("Duracion"));
+		     					textfield8.setText(filas.getString("Privado"));
+		     					
+		     					
+		     				} else {
+		     					JOptionPane.showMessageDialog(null, "no existe el registro");
+		     				}
+		     			} catch (SQLException e1) {
+		     				e1.printStackTrace();
+		     			}
+		     		}
+	
 		             //----------------------------------
 		             if (botonPulsado==insertar) {
 		            	 

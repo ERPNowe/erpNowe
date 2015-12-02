@@ -60,32 +60,17 @@ import ventanaPrincipal.VentanaPrincipal;
 		 * Metodo para consultar todos los datos de la tabla cursos
 		 * @return
 		 */
-		public static String Consultarip(int idCurso) {
+		public static ResultSet Consultarip(String idCurso) {
 			ResultSet datos;
-		    String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM cursos where idCurso = '"+idCurso+"'");
-		    try {
-		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
-		    	  campo1 = datos.getString("idCurso"); //podemos poner el nombre o un numero
-		    	  campo2 = datos.getString("CodigoCurso");
-		    	  campo3 = datos.getString("Nombre");
-		    	  campo4 = datos.getString("Categoria");
-		    	  campo5 = datos.getString("Descripcion");
-		    	  campo6 = datos.getString("Precio");
-		    	  campo7 = datos.getString("Duracion");
-		    	  campo8 = datos.getString("Privado");
-		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3
-		    			  + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
-		      }
+		 
 		     VentanaCursos.modificar.setEnabled(true);
 		     VentanaCursos.borrar.setEnabled(true);
-		      
+		      return datos;
 		    }
-		    catch (SQLException e) { e.printStackTrace();
-		   }
-		    return resultado; 
+		 
 	 
-		}
+		
 
 		/**
 		 * Metodo para insertar un nuevo registro en la tabla
