@@ -46,7 +46,7 @@ import ventanaPrincipal.VentanaPrincipal;
 //		    	  campo5 = datos.getString("Descripcion");
 		    	  campo6 = datos.getString("Precio");
 		    	  campo7 = datos.getString("Duracion");
-		    	  campo8 = datos.getString("Privado");
+		    	  campo8 = (datos.getString("Privado").equals("1")) ? "Si":"No";
 //		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3 + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
 		    	  panel.getModelo().addRow( new Object[] {campo1, campo2, campo3, campo4, campo6, campo7, campo8} );                
 		      }
