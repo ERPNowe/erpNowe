@@ -29,7 +29,7 @@ import ventanaPrincipal.VentanaPrincipal;
 		 private static String usuario = "root";
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
-		 static ResultSet filas = null;
+		 
 		 //static ConexionBaseDatos conexion = null;
 		 //static Scanner scanner = new Scanner(System.in);
 
@@ -196,6 +196,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	 * Metodo para cargar en el combo los IdModulo
 	 */
 	public static void menu(){
+		ResultSet filas = null;
 		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
 		 try {
 		      while(filas.next()){
