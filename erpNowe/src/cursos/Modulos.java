@@ -15,11 +15,9 @@ package cursos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
-
-import basedatos.ConexionBaseDatos;
-import cursos.ventanaModulo.Panel;
 import ventanaPrincipal.VentanaPrincipal;
+import cursos.ventanaModulo.Panel;
+
 
 
 	

@@ -11,13 +11,11 @@
 
 package matricula;
 
-import java.awt.Panel;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
-
-import basedatos.ConexionBaseDatos;
 import ventanaPrincipal.VentanaPrincipal;
+import matricula.VentanaFormaPago.Panel;
 
 
 public class FormaPago {
@@ -40,7 +38,7 @@ public class FormaPago {
   * metodo para consultar las formas de pago
   * @return la consulta
   */
- public static void listado(matricula.VentanaFormaPago.Panel panel){
+ public static void listado(Panel panel){
 	 	ResultSet datos;
 	    String id, descripcion, resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM formapago");
