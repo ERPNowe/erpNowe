@@ -31,7 +31,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.io.File;
-import com.sun.org.apache.xerces.internal.util.URI;
 import alumnos.VentanaCalificaciones;
 //import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
@@ -198,24 +197,19 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaGestion ventana = new VentanaGestion('C');
 			ventana.setVisible(true);
-		}
-		
-		/*if (e.getSource()== ayuda){			
-			Desktop desktop;
-		     File archivo = new File("../doc/index.html");
-		        if (Desktop.isDesktopSupported()){
-		           desktop = Desktop.getDesktop(); 
-		            try {
-		                desktop.open(archivo);
-		                }
-		            catch (IOException ex) {
-		                Logger.getLogger(MyFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
-		                }
-		        } else { 
-		    	   JOptionPane.showMessageDialog(null,"UPS! Ha ocurrido un error");
-		       }
-		}*/
-		
+		}		
+		if (e.getSource()== ayuda){	
+			String cadena;
+            File fichero = new File("file:///../doc/index.html");
+            cadena = fichero.getAbsolutePath();            
+            try{            	
+				Runtime rt = Runtime.getRuntime();
+				String[] callAndArgs = {"C:/WINDOWS/hh.exe",cadena};
+				Process child = rt.exec(callAndArgs);				
+			}catch(Exception eee){				
+				System.out.println("UPS! Ha ocurrido un error");
+			}			
+		}		
 		if (e.getSource()== salir){
 			System.exit(0);			
 		}
