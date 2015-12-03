@@ -38,48 +38,6 @@ import ventanaPrincipal.VentanaPrincipal;
 			 ventanaModulo ventana = new ventanaModulo();
 			 ventana.setVisible(true);   
 		}
-		
-	/**
-	 * Constructor parametrizado	
-	 * @param idModulo
-	 * @param nombre
-	 */
-	public  Modulos(String idModulo, String nombre){
-		this.idModulo = idModulo;
-		this.nombre = nombre;
-	}
-	/**
-	 * Getter de idModulo
-	 * @return
-	 */
-	public String getIdModulo() {
-		return idModulo;
-	}
-
-	/**
-	 * Setter de idModulo
-	 * @param idModulo
-	 */
-	public void setIdModulo(String idModulo) {
-		this.idModulo = idModulo;
-	}
-
-	/**
-	 * getter de nombre
-	 * @return
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * Setter de nombre
-	 * @param nombre
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
 	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
