@@ -160,11 +160,34 @@ public class Grupos {
 	 * <p>Método para consultar la información de un grupo </p>
 	 * @return datos
 	 */
-	public static ResultSet consultar(String idGrupo){
+	public static ResultSet consultar(String idGrupo,Paneles paneles){
 		ResultSet datos;
-		 datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM grupos WHERE idGrupo =" + idGrupo );
-		return datos;
-	}
+		String cidGrupo, cidAcademia, cidOficial,chorario,cfecInicio,cfecFin,caula,cidCurso, resultado ="";
+		datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM grupos WHERE idGrupo =" + idGrupo );
+		 try {
+		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
+		    	  //resultado = "idGrupo\t"+"idAcademia\t"+"idOficial \t"+"horario\t"+"fechaInicio\t"+"fechaFin\t"+"aula\t"+"idCurso\t";
+		    	  cidGrupo = datos.getString("idGrupo"); 
+		    	  cidAcademia = datos.getString("idAcademia");
+		    	  cidOficial = datos.getString("idOficial");
+		    	  chorario = datos.getString("horario");
+		    	  cfecInicio = datos.getString("fechaInicio");
+		    	  cfecFin = datos.getString("fechaFin");
+		    	  caula = datos.getString("aula");
+		    	  cidCurso = datos.getString("idCurso");
+		    	  //resultado = resultado +"\n"+ cidGrupo + "\t" + cidAcademia + "\t" + cidOficial
+		    		//	  + "\t" + chorario + "\t" + cfecInicio + "\t" + cfecFin + "\t" + caula + "\t" + cidCurso ; 
+		    	  paneles.getModelo().addRow( new Object[] {cidGrupo, cidAcademia, cidOficial,chorario,cfecInicio,cfecFin,caula,cidCurso});
+		 }}
+		      catch (SQLException e) { e.printStackTrace();
+			   }
+		datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM grupos WHERE idGrupo =" + idGrupo );
+		return datos;}
+		
+		
+		
+		
+	
 	
 	public static String listar(Paneles paneles){
 		ResultSet datos;

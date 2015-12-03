@@ -235,8 +235,9 @@ void cargarCombo() throws SQLException {
 		Object botonPulsado = e.getSource();
 		
 		if(botonPulsado == btConsultar){
+			clearCursos();
 			ResultSet filas;
-			filas = Grupos.consultar(cidGrupo.getText());
+			filas = Grupos.consultar(cidGrupo.getText(),this);
 	        
 			try {
 				if (filas.next()){

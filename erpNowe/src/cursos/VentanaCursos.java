@@ -187,7 +187,7 @@ public class VentanaCursos extends JFrame {
 		         add(textfield1);
 		         textfield1.setBackground( new Color(224,224,224) );
 		         
-		         label2=new JLabel("CódigoCurso");
+		         label2=new JLabel("Código Curso");
 		         label2.setBounds(265,10,100,20);
 		         add(label2);
 		         
@@ -325,9 +325,10 @@ public class VentanaCursos extends JFrame {
 		             
 		             
 		             if (botonPulsado==consultar){
+		            	clearCursos();
 		            	
-		            	 ResultSet filas;
-		     			filas = Cursos.Consultarip(textfield1.getText());
+		            	ResultSet filas;
+		     			filas = Cursos.Consultarid(textfield1.getText(), this);
 		     	        
 		     			try {
 		     				if (filas.next()){
@@ -366,10 +367,7 @@ public class VentanaCursos extends JFrame {
 		            	 
 		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,intprivado));}
 		            	 
-		             
-		            
-		             
-		    		 
+
 		             //------------------------------------------------------------------
 		             if (botonPulsado==modificar) {
 		            	 String idcurso1 = textfield1.getText();
@@ -387,12 +385,9 @@ public class VentanaCursos extends JFrame {
 		            	 
 		            	
 		            	 textareaconsulta.setText(Cursos.Modificar(intidcurso,CodigoCurso2,Nombre2,Categoria2,Descripcion2,flprecio1,intduracion1,intprivado1));
-		      
-		             
+		            	 
 		             }
-		 
-		             
-		             
+
 		             
 		             //----------------------------------------------------------------------------------------------------------
 		             if (botonPulsado==borrar) {
@@ -404,10 +399,8 @@ public class VentanaCursos extends JFrame {
 		        			 
 		        	//--------------------------------------------------------------------
 		             if (botonPulsado==limpiar) {
-		            	 textfield1.setText("");
-		            	 textfield2.setText("");
-		            	 textfield3.setText("");
-		            	 textfield4.setText("");
+		            	 textfield1.setText(""); 
+		            	 textfield3.setText("");		            
 		            	 textarea5.setText("");
 		            	 textfield6.setText("");
 		            	 textfield7.setText("");
