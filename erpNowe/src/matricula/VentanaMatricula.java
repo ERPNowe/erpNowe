@@ -362,7 +362,10 @@ public class VentanaMatricula extends JFrame {
 	            	 }
 		             
 		             if (botonPulsado==limpiar) {
-		            	 textarea2.setText("");}
+		            	 clearmatricula();
+		            	 textarea2.setText("");
+		            	 idMatricula.setText("");
+		            	 }
 		             
 		             if (botonPulsado==cerrar) {
 		            	 VentanaPrincipal.conexion.cerrarConexion();
