@@ -79,20 +79,7 @@ import ventanaPrincipal.VentanaPrincipal;
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	/**
-	 * Metodo para cargar en el combo los IdModulo
-	 */
-	public static void menu(){
-		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
-		 try {
-		      while(filas.next()){
-		    	  ventanaModulo.combo1.addItem(filas.getString("idModulo"));
-		      }	
-		    }
-		    catch (SQLException e) { e.printStackTrace();
-		   }
-		
-	}
+	
 	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
@@ -204,7 +191,21 @@ import ventanaPrincipal.VentanaPrincipal;
 		 }
 		 catch(Exception e){ e.printStackTrace(); }
 		 return resultado;
-	 }	
+	 }
+	/**
+	 * Metodo para cargar en el combo los IdModulo
+	 */
+	public static void menu(){
+		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
+		 try {
+		      while(filas.next()){
+		    	  ventanaModulo.combo1.addItem(filas.getString("idModulo"));
+		      }	
+		    }
+		    catch (SQLException e) { e.printStackTrace();
+		   }
+		
+	}
 }
 	
 	
