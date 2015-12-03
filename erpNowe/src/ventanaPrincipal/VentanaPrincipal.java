@@ -55,9 +55,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		this.setLayout(null);
 		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		setIconImage(icon);
-        this.setTitle("ERP Nowe");
+        this.setTitle("Programa de Gestión Nowe");
         setSize(tamañoPantalla.width, tamañoPantalla.height);
         setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         
         fondo = new Fondo();
@@ -167,6 +168,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaFormaPago ventana = new VentanaFormaPago();
 			ventana.setVisible(true);
+		}
+		
+		if (e.getSource()== salir){
+			System.exit(0);			
 		}
 	}
 }
