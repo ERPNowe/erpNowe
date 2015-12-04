@@ -22,11 +22,18 @@ import ventanaPrincipal.VentanaPrincipal;
 
 public class Calificaciones {
 
+//	private static String usuario = "root";
+//	private static String pwd = "root";
+//	private static String bd = "nowedb" + "";
+	//static VentanaPrincipal.conexionBaseDatos VentanaPrincipal.conexion = null;
 	static boolean diploma = false;
 	static String Obs;
 	static String N;
-
+	static int dRecibido;
+	static String dni, codAlumno, codModulo, nota,diplomaR,anotaciones,resultado ="";
+	public static ResultSet datos;
 	public static void main(String[] args) {
+//		VentanaPrincipal.conexion = new VentanaPrincipal.conexionBaseDatos(bd, usuario, pwd);
 		VentanaCalificaciones ventana=new VentanaCalificaciones();
 		ventana.setVisible(true);
 	}
@@ -35,124 +42,64 @@ public class Calificaciones {
 	 * Metodo de consultas en un solo boton.
 	 */
 
-	public static String Consultar(){
+	public static ResultSet Consultar(){
 		ResultSet datos;
-		String dni, codAlumno, codModulo, nota,diplomaR,anotaciones,resultado ="";
+		
 		datos = VentanaPrincipal.conexion.getQuery("SELECT a.DNI,c.* FROM alumnos a,calificaciones c WHERE a.idAlumno = c.idAlumno ORDER BY a.DNI;");
-		try {
-			while(datos.next()){
-				codAlumno = datos.getString("idAlumno");
-
-				dni = datos.getString("DNI");
-				codModulo = datos.getString("idModulo");
-				nota= datos.getString("Notas");
-				diplomaR= datos.getString("DiplomaRecogido");
-				anotaciones= datos.getString("Observaciones");
-				resultado = resultado +"\n"+ codAlumno + "\t"+ dni + "\t" + codModulo + "\t" + nota
-						+ "\t" + diplomaR + "\t" + anotaciones + "\t"  ;	   
-			}
-		}
-		catch (SQLException e) { 
-			e.printStackTrace();
-		}
-		return resultado; 
+		
+		return datos; 
 	}
 
-	public static String Consultar1(String alumno){
+	public static ResultSet Consultar1(String alumno){
 		ResultSet datos;
-		String dni,codAlumno, codModulo, nota,diplomaR,anotaciones,resultado ="";
+		
 		datos = VentanaPrincipal.conexion.getQuery("SELECT a.DNI,c.* FROM alumnos a,calificaciones c WHERE a.idAlumno = c.idAlumno AND c.idAlumno ='"+alumno+"' ORDER BY a.DNI;");
-		try {
-			while(datos.next()){
-				codAlumno = datos.getString("idAlumno");
-				dni = datos.getString("DNI");
-				codModulo = datos.getString("idModulo");
-				nota= datos.getString("Notas");
-				diplomaR= datos.getString("DiplomaRecogido");
-				anotaciones= datos.getString("Observaciones");
-				resultado = resultado +"\n"+ codAlumno + "\t" + dni + "\t" + codModulo + "\t" + nota
-						+ "\t" + diplomaR + "\t" + anotaciones + "\t"  ; 
-			}
-		}
-		catch (SQLException e) { 
-			e.printStackTrace();
-		}
-		return resultado; 
+		//datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM calificaciones where idAlumno ='"+idAlumno+"';");
+		
+		return datos; 
 	}
 
-	public static String Consultar2(String idModulo) {
+	public static ResultSet Consultar2(String idModulo) {
 		ResultSet datos;
-		String dni,codAlumno, codModulo, nota,diplomaR,anotaciones,resultado ="";
+		
 		datos = VentanaPrincipal.conexion.getQuery("SELECT a.DNI,c.* FROM alumnos a,calificaciones c WHERE a.idAlumno = c.idAlumno AND c.idModulo ='"+idModulo+"' ORDER BY a.DNI;");
 
-		try {
-			while(datos.next()){
-				codAlumno = datos.getString("idAlumno");
-				dni = datos.getString("DNI");
-				codModulo = datos.getString("idModulo");
-				nota= datos.getString("Notas");
-				diplomaR= datos.getString("DiplomaRecogido");
-				anotaciones= datos.getString("Observaciones");
-				resultado = resultado +"\n"+ codAlumno + "\t" + dni + "\t" + codModulo + "\t" + nota
-						+ "\t" + diplomaR + "\t" + anotaciones + "\t"  ;  
-			}
-		}
-		catch (SQLException e) { 
-			e.printStackTrace();
-		}
-		return resultado; 
+		return datos; 
 	}	
 
-	public static String Consultar3(String alumno,String idModulo){
+	public static ResultSet Consultar3(String alumno,String idModulo){
 		ResultSet datos;
-		String dni,codAlumno, codModulo, nota,diplomaR,anotaciones,resultado ="";
+		
+		//  datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM calificaciones where idAlumno ='"+alumno+"' AND idModulo ='"+idModulo+"';");
 		datos = VentanaPrincipal.conexion.getQuery("SELECT a.DNI,c.* FROM alumnos a,calificaciones c WHERE a.idAlumno = c.idAlumno AND C.idAlumno ='"+alumno+"'  AND c.idModulo ='"+idModulo+"' ORDER BY a.DNI;");
 
-		try {
-			while(datos.next()){
-				codAlumno = datos.getString("idAlumno");
-				dni = datos.getString("DNI");
-				codModulo = datos.getString("idModulo");
-				nota= datos.getString("Notas");
-				diplomaR= datos.getString("DiplomaRecogido");
-				anotaciones= datos.getString("Observaciones");
-				resultado = resultado +"\n"+ codAlumno + "\t" + dni + "\t" + codModulo + "\t" + nota
-						+ "\t" + diplomaR + "\t" + anotaciones + "\t"  ;  
-				if(diplomaR.equals("1")) diploma = true;
-				Obs = anotaciones;
-				N = nota;
-			}
-		}
-		catch (SQLException e) { 
-			e.printStackTrace();
-		}
-		return resultado; 
+		return datos; 
 	}
 
 	//---------------------------------------------------------------------	
-	/**
-	 * Metodo de actualizacion.
-	 */
-	
 	public static String ModificarCalificaciones(
 			String idAlumno,
 			String idModulo,
-			String nota,
-			String observaciones,
-			boolean recibido){
+			float nota,
+			boolean recibido,
+			String observaciones
+			) {
+		
 		int dRecibido = (recibido)? 1:0;
-		int nota2=Integer.parseInt(nota);
-		String resultado="";
+		
+		
 		boolean ok = false;
 
+
+
 		try {
-			ok= VentanaPrincipal.conexion.setQuery("UPDATE  calificaciones SET Notas = '"+nota2+"' Observaciones = '"+observaciones+"', diplomaRecogido = '" +dRecibido +"' WHERE idAlumno = '"+idAlumno+"'AND idModulo = '"+idModulo+"' ");
+			ok= VentanaPrincipal.conexion.setQuery("UPDATE  calificaciones SET Notas = '"+nota+"', diplomaRecogido = '" +dRecibido +"', Observaciones = '"+observaciones+"'  WHERE idAlumno = '"+idAlumno+"'AND idModulo = '"+idModulo+"' ");
 
 			if (ok)
-				resultado = "Se Modifico correctamente";
+				resultado = "Avisos: Se Modifico correctamente";
 
 			else
-				resultado = "Error";
+				resultado = "Avisos: Error";
 
 		} catch (Exception e) {
 			e.printStackTrace();
