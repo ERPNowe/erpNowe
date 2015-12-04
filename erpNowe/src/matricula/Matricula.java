@@ -94,6 +94,7 @@ public class Matricula {
 		this.pagado = pagado;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void menuAlumno(){
 		filas = VentanaPrincipal.conexion.getQuery("SELECT idAlumno FROM alumnos ORDER BY idAlumno");
 		try {
@@ -104,6 +105,7 @@ public class Matricula {
 		catch (SQLException e) {e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static void menuGrupo(){
 		filas = VentanaPrincipal.conexion.getQuery("Select g.idOficial from cursos c, grupos g where c.idCurso = g.idCurso");
 		try {
@@ -114,6 +116,7 @@ public class Matricula {
 		catch (SQLException e) {e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static void menuFormaPago(){
 		filas = VentanaPrincipal.conexion.getQuery("SELECT descripcion FROM formapago");
 		try {
@@ -125,6 +128,7 @@ public class Matricula {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void menuPromociones(){
 		filas = VentanaPrincipal.conexion.getQuery("SELECT promociones FROM matricula");
 		try {
@@ -135,6 +139,7 @@ public class Matricula {
 		catch (SQLException e) {e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static void menuPagado(){
 		filas = VentanaPrincipal.conexion.getQuery("SELECT pagado FROM matricula");
 		try {
@@ -154,7 +159,7 @@ public class Matricula {
 	 */
 	
 	public static String crearPresupuesto(int idGrupo, String promociones){
-		ResultSet datos, datos1, datos2;
+		ResultSet datos1, datos2;
 		
 			String Precio = null;
 			int idCurso = 0;
@@ -206,7 +211,8 @@ public class Matricula {
 
 	public static String Consultarid(String idAlumno,Panel panel){
 		ResultSet datos;
-	    String idMatricula, idAlumno1, idGrupo, FormaPago, desempleado,promociones, Pagado,resultado ="";
+	    @SuppressWarnings("unused")
+		String idMatricula, idAlumno1, idGrupo, FormaPago, desempleado,promociones, Pagado,resultado ="";
 	    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula where idAlumno =" + idAlumno);
 	    try {
 	      while(datos.next()){
@@ -307,12 +313,6 @@ public class Matricula {
 		    		  break; 
 		    	  }
 		    	  panel.getModelo().addRow( new Object[] {idMatricula, idAlumno, idGrupo1, FormaPago, desempleado, promociones, Pagado} );
-		    	 /* resultado = resultado +"\n" + "Matricula: " +idMatricula+ "\n" + "Alumno: "+idAlumno + "\n" 
-		    	    	  +"Grupo: " + idGrupo1 + "\n"
-		    	    	  +"forma de pago: " + FormaPago + "\n"
-		    	    	  + desempleado + "\n"
-		    	    	  +"promocion: "+ promociones + "%\n"
-		    	    	  + Pagado + "\n"; */
 		      }
 		      VentanaMatricula.Insertar.setEnabled(true);
 		      VentanaMatricula.Presupuesto.setEnabled(true);
@@ -338,7 +338,7 @@ public class Matricula {
 
 		public static void Consultar(Panel panel){
 			ResultSet datos;
-			 String idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado,promociones, Pagado,resultado ="";
+			 String idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado,promociones, Pagado;
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM matricula");
 		    try {
 		      while(datos.next()){
@@ -373,7 +373,7 @@ public class Matricula {
 		    		  promociones = "0";
 		    		  break; 
 		    	  }
- /*----------------------------*/
+
 		    	  panel.getModelo().addRow( new Object[] {idMatricula, idAlumno1, idGrupo1, FormaPago, desempleado, promociones, Pagado} ); 
 		    	
 		      }

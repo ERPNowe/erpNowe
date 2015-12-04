@@ -17,9 +17,6 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -29,10 +26,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-
-
-
 import javax.swing.JTable;
 
 import ventanaPrincipal.VentanaPrincipal;
@@ -41,6 +34,7 @@ import ventanaPrincipal.VentanaPrincipal;
 public class VentanaMatricula extends JFrame {
 	
 	public static JButton Insertar, Presupuesto,Modificar;
+	@SuppressWarnings("rawtypes")
 	public static JComboBox alumno, grupo, formaPago, desempleado, promociones, pagado;
 	public static JTextField idMatricula;
 	
@@ -66,7 +60,8 @@ public class VentanaMatricula extends JFrame {
 			 private JTable tblmatricula = null;
 			 DefaultTableModel modelo = null;
 			 
-			 public Panel() {
+			 @SuppressWarnings({ "rawtypes", "unchecked" })
+			public Panel() {
 		    	 setLayout(null);
 		    	 setSize(885,525);
 		    	 setBackground(new Color(192,192,192));
@@ -252,7 +247,8 @@ public class VentanaMatricula extends JFrame {
 							} catch (SQLException e1) {
 								e1.printStackTrace();
 							}
-			            	 int grupo = Integer.parseInt(idGrupo);
+			            	 @SuppressWarnings("unused")
+							int grupo = Integer.parseInt(idGrupo);
 			            clearmatricula();
 		            	Matricula.ConsultarGR(idGrupo,this);}
 		             
