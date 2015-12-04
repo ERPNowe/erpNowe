@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 /**
  * 
  * @author Vanessa
- * <p> clase ventana, aun se esta modificando <p>
+ * <p> clase ventana <p>
  *
  */
 
