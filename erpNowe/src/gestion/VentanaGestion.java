@@ -362,8 +362,14 @@ public class VentanaGestion extends JFrame{
 		         	
 		             if (botonPulsado==consulta) {		            	
 		            	 //gestion.Consultar(this);
-		            	 Gestion.consultar(fact, factDtll);
+		            	 prepararVentana("C");
+		            	 
+		            	 Gestion.consultar(fact);
+		            	 Gestion.consultarDetalle(Integer.parseInt(numFactura.getText()), factDtll);
+		            	 
 		            	 rellenarDatos();
+		            	 rellenarDatosDetalle();
+		            	 
 		            	 }
 		             
 		             
@@ -565,6 +571,8 @@ public class VentanaGestion extends JFrame{
 			 if (modoVentanta.equals("M")){					
 
 				 
+				    guardarFactura.setEnabled(true);
+				 
 					codigo.setVisible(true);				
 					descripcion.setVisible(true);
 					cantidad.setVisible(true);
@@ -585,18 +593,27 @@ public class VentanaGestion extends JFrame{
 		 public  void rellenarDatos(){
 			 
 			 numFactura.setText(  Integer.toString(fact.getIdfactura()) );
-			 fechaFactura.setText("33333333333");
-			 nombreEmpresa.setText("");
-			 direccionEmpresa.setText("");
-			 cifEempresa.setText("");
-			 personaContacto.setText("");
-			 telefonoEmpresa.setText("");
-			 emailEmpresa.setText("");
+			 fechaFactura.setText( fact.getFechafact());
+			 nombreEmpresa.setText(fact.getNomempresa());
+			 direccionEmpresa.setText(fact.getDireccempresa());
+			 cifEempresa.setText(fact.getCifempresa());
+			 personaContacto.setText(fact.getPersonacontacto());
+			 telefonoEmpresa.setText(fact.getTelffaxempresa());
+			 emailEmpresa.setText(fact.getEmailempresa());
+			 
+			
+			 
+			 
+		 }
+		 
+		 public  void rellenarDatosDetalle(){
+			 
+
 			 
 			 //me falta limpiar la tabla que no sé
 			 
 			 
-		 }
+		 }		 
 		 
 		 public  void limpiarVentana(){
 			 
