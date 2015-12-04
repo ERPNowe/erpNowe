@@ -10,16 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -35,9 +29,6 @@ import javax.swing.table.TableColumn;
 import cursos.Grupos;
 import utilidades.Fecha;
 import ventanaPrincipal.VentanaPrincipal;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 @SuppressWarnings("serial")
 public class VentanaGrupos extends JFrame {
@@ -63,7 +54,6 @@ public class VentanaGrupos extends JFrame {
 		    System.exit(0);
 		  }
 	}
-
 
 @SuppressWarnings("serial")
 class Paneles extends JPanel implements ActionListener{
@@ -95,10 +85,10 @@ public Paneles()  {
 	lbhorario = new JLabel("horario ");
 	lbhorario.setBounds(600,210,100,20);
 	add(lbhorario);
-	lbfechaInicio = new JLabel("fecha inicio ");
+	lbfechaInicio = new JLabel("fecha inicio (dd/mm/aaaa)");
 	lbfechaInicio.setBounds(600,270,100,20);
 	add(lbfechaInicio);
-	lbfechaFin = new JLabel("fecha fin ");
+	lbfechaFin = new JLabel("fecha fin (dd/mm/aaaa)");
 	lbfechaFin.setBounds(600,330,100,20);
 	add(lbfechaFin);
 	lbaula = new JLabel("aula ");
@@ -146,7 +136,6 @@ public Paneles()  {
 	comboidCurso.addActionListener(this);
     add(comboidCurso);
         
-		
 	area = new TextArea();	
 	scrollArea.setViewportView(area);	
 	scrollArea.setBounds(140,380,430,350);
@@ -164,12 +153,11 @@ public Paneles()  {
 	btModificar.setBounds(10,130,120,50);
 	btModificar.addActionListener(this);
 	add(btModificar);
-	/*Está desactivado el botón de borrado porque al contener claves foráneas da error al intentar borrar*/
+	
 	btBorrar = new JButton("Limpiar");
 	btBorrar.setBounds(10,190,120,50);
 	btBorrar.addActionListener(this);
 	add(btBorrar);
-	//btBorrar.setVisible(false);
 	
 	btListado = new JButton("Listado");
 	btListado.setBounds(10,250,120,50);
@@ -184,7 +172,7 @@ public Paneles()  {
     modelo = new DefaultTableModel();
     tblcursos.setBackground(new Color(224,224,224));
     scrollArea.setViewportView(tblcursos);
-    scrollArea.setBounds(140,10,450,420); //posiciona dentro de la ventana
+    scrollArea.setBounds(140,10,450,420); 
     modelo.setColumnIdentifiers(columnas);
     scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -235,8 +223,9 @@ void cargarCombo() throws SQLException {
 		Object botonPulsado = e.getSource();
 		
 		if(botonPulsado == btConsultar){
+			clearCursos();
 			ResultSet filas;
-			filas = Grupos.consultar(cidGrupo.getText());
+			filas = Grupos.consultar(cidGrupo.getText(),this);
 	        
 			try {
 				if (filas.next()){
@@ -259,9 +248,7 @@ void cargarCombo() throws SQLException {
 					cidAcademia.setText(filas.getString("idAcademia"));
 					cidOficial.setText(filas.getString("idOficial"));
 					chorario.setText(filas.getString("horario"));
-					/*String stfechaInicio = Fecha.darFormatoBD(cfechaInicio.getText());
-			 String stfechaFin = Fecha.darFormatoBD(cfechaFin.getText());
-					 * */
+					
 					cfechaInicio.setText(Fecha.devolverFormatoBD(filas.getString("fechaInicio")));
 					cfechaFin.setText(Fecha.devolverFormatoBD(filas.getString("fechaFin")));
 					caula.setText(filas.getString("aula"));
@@ -276,15 +263,12 @@ void cargarCombo() throws SQLException {
 			}
 		}
 			if(botonPulsado == btListado){
-				
-				 //area.setText(Grupos.listar());}
+								 
 				clearCursos();
-           	 Grupos.listar(this);}
+           	 	Grupos.listar(this);}
 	
 			if(botonPulsado == btInsertar){
 				 
-				 
-				 //String stidGrupo = cidGrupo.getText();
 				 String stidAcademia = cidAcademia.getText();
 				 String stidOficial = cidOficial.getText();
 				 String sthorario = chorario.getText();
@@ -295,10 +279,8 @@ void cargarCombo() throws SQLException {
 				 int intidCurso = Integer.parseInt(stidCurso);
 				 Grupos.insertar( stidAcademia,stidOficial, sthorario, stfechaInicio, stfechaFin, staula,
 								intidCurso);	
-					
 				 }
-		 
-		 
+		 		 
 		 if(botonPulsado == btModificar){
 			 String stidGrupo = cidGrupo.getText();
 			 int intidGrupo = Integer.parseInt(stidGrupo);
@@ -324,23 +306,22 @@ void cargarCombo() throws SQLException {
 			 caula.setText("");
 			 cidCurso.setText("");	 
 			 area.setText("");	 
-		 }
-		 
+		 }		 
 		
  	}
- private void clearCursos(){
-     for (int i = 0; i < tblcursos.getRowCount(); i++) {
+ 	private void clearCursos(){
+ 		for (int i = 0; i < tblcursos.getRowCount(); i++) {
          modelo.removeRow(i);
          i-=1;
-     }
- }
-public DefaultTableModel getModelo() {
+ 		}
+ 	}
+ 	public DefaultTableModel getModelo() {
 	 return modelo;
-}
+ 	}
 
-public void setModelo(DefaultTableModel modelo) {
+ 	public void setModelo(DefaultTableModel modelo) {
 	 this.modelo = modelo;
-}
+ 	}
 }
 }
 

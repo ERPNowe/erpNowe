@@ -13,37 +13,48 @@ package ventanaPrincipal;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import java.io.File;
 import alumnos.VentanaCalificaciones;
 //import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
+import gestion.VentanaGestion;
 import matricula.VentanaFormaPago;
 import matricula.VentanaMatricula;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 	private JMenuBar barraMenu;
-	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuAyuda, menuSalir;
-	private JMenuItem matriculado, interesado, cursos, grupos, modulos, calificacion, matricula, formaPago, ayuda, salir;
+	private JMenu menuAlumnos, menuCursos, menuCalificacion, menuMatricula, menuGestion, menuAyuda, menuSalir;
+	private JMenuItem matriculado, interesado, 
+					  cursos, grupos, modulos, 
+					  calificacion, 
+					  matricula, formaPago,
+					  consulta, modificacion,
+					  ayuda, salir;
 	
 	public static String usuario = "root";
-		 public static String pwd = "root";
-		 public static String bd = "nowedb";
-		 public static basedatos.ConexionBaseDatos conexion = null;
+	public static String pwd = "root";
+	public static String bd = "nowedb";
+	public static basedatos.ConexionBaseDatos conexion = null;
 	
 		 
 	public VentanaPrincipal () {		
@@ -67,6 +78,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 	
 		barraMenu = new JMenuBar();
 		setJMenuBar(barraMenu);
+		
 		
 		menuAlumnos = new JMenu ("Alumnos");
 		barraMenu.add(menuAlumnos);		
@@ -114,7 +126,19 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		
 		formaPago = new JMenuItem("Forma de Pago");
 		formaPago.addActionListener(this);
-		menuMatricula.add(formaPago);		
+		menuMatricula.add(formaPago);
+		
+		
+		menuGestion = new JMenu ("Gestión");
+		barraMenu.add(menuGestion);
+		
+		consulta = new JMenuItem("Consulta");
+		consulta.addActionListener(this);
+		menuGestion.add(consulta);	
+		
+		modificacion = new JMenuItem("Modificación");
+		modificacion.addActionListener(this);
+		menuGestion.add(modificacion);	
 		
 		
 		menuAyuda = new JMenu ("Ayuda");
@@ -169,7 +193,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			VentanaFormaPago ventana = new VentanaFormaPago();
 			ventana.setVisible(true);
 		}
-		
+		if (e.getSource()== consulta){
+			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			VentanaGestion ventana = new VentanaGestion('C');
+			ventana.setVisible(true);
+		}		
+		if (e.getSource()== ayuda){	
+			String cadena;
+            File fichero = new File("file:///../doc/index.html");
+            cadena = fichero.getAbsolutePath();            
+            try{            	
+				Runtime rt = Runtime.getRuntime();
+				String[] callAndArgs = {"C:/WINDOWS/hh.exe",cadena};
+				Process child = rt.exec(callAndArgs);				
+			}catch(Exception eee){				
+				System.out.println("UPS! Ha ocurrido un error");
+			}			
+		}		
 		if (e.getSource()== salir){
 			System.exit(0);			
 		}

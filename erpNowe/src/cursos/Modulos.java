@@ -15,11 +15,9 @@ package cursos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
-
-import basedatos.ConexionBaseDatos;
-import cursos.ventanaModulo.Panel;
 import ventanaPrincipal.VentanaPrincipal;
+import cursos.ventanaModulo.Panel;
+
 
 
 	
@@ -29,7 +27,7 @@ import ventanaPrincipal.VentanaPrincipal;
 		 private static String usuario = "root";
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
-		 static ResultSet filas = null;
+		 
 		 //static ConexionBaseDatos conexion = null;
 		 //static Scanner scanner = new Scanner(System.in);
 
@@ -38,61 +36,6 @@ import ventanaPrincipal.VentanaPrincipal;
 			 ventanaModulo ventana = new ventanaModulo();
 			 ventana.setVisible(true);   
 		}
-		
-	/**
-	 * Constructor parametrizado	
-	 * @param idModulo
-	 * @param nombre
-	 */
-	public  Modulos(String idModulo, String nombre){
-		this.idModulo = idModulo;
-		this.nombre = nombre;
-	}
-	/**
-	 * Getter de idModulo
-	 * @return
-	 */
-	public String getIdModulo() {
-		return idModulo;
-	}
-
-	/**
-	 * Setter de idModulo
-	 * @param idModulo
-	 */
-	public void setIdModulo(String idModulo) {
-		this.idModulo = idModulo;
-	}
-
-	/**
-	 * getter de nombre
-	 * @return
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * Setter de nombre
-	 * @param nombre
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	/**
-	 * Metodo para cargar en el combo los IdModulo
-	 */
-	public static void menu(){
-		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
-		 try {
-		      while(filas.next()){
-		    	  ventanaModulo.combo1.addItem(filas.getString("idModulo"));
-		      }	
-		    }
-		    catch (SQLException e) { e.printStackTrace();
-		   }
-		
-	}
 	
 	/**
 	 * Metodo para consultar todos los datos de la tabla modulos
@@ -204,7 +147,22 @@ import ventanaPrincipal.VentanaPrincipal;
 		 }
 		 catch(Exception e){ e.printStackTrace(); }
 		 return resultado;
-	 }	
+	 }
+	/**
+	 * Metodo para cargar en el combo los IdModulo
+	 */
+	public static void menu(){
+		ResultSet filas = null;
+		filas = VentanaPrincipal.conexion.getQuery("SELECT idModulo FROM modulos");
+		 try {
+		      while(filas.next()){
+		    	  ventanaModulo.combo1.addItem(filas.getString("idModulo"));
+		      }	
+		    }
+		    catch (SQLException e) { e.printStackTrace();
+		   }
+		
+	}
 }
 	
 	

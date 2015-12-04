@@ -1,4 +1,4 @@
-package gestion;
+package gestion; 
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
@@ -58,7 +58,7 @@ public class ImpresionFactura {
 	    		  							"98514414545",//String telffaxempresa, 
 	    		  							928,//float baseimponible,
 	    		  							"En Efectivo",//String formaPago
-	    		  							"juia@gajkl.es"
+	    		  							"juia@gajkl.es"//email
 	    		  							);
 	      
 	      
