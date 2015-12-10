@@ -46,10 +46,10 @@ public class VentanaCalificaciones extends JFrame{
 	public VentanaCalificaciones(){
 		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logoApp.gif"));
 		setIconImage(icon);
-		setSize(745,440); // Ancho*Alto
+		setSize(745,440);
 		setTitle("Gestión Calificaciones Nowe");
 		setLocationRelativeTo(null);
-		Panel c = new Panel(); //crear la clase panel como en marcoprincipal
+		Panel c = new Panel();
 		add(c);
 
 	} 
@@ -72,10 +72,8 @@ public class VentanaCalificaciones extends JFrame{
 			scrollArea1 = new JScrollPane();
 			scrollArea2 = new JScrollPane();
 
-			//botones
-
 			consultar=new JButton("Consultar");
-			consultar.setBounds(10,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
+			consultar.setBounds(10,10,120,50);
 			add(consultar);
 			consultar.addActionListener(this);
 
@@ -94,9 +92,6 @@ public class VentanaCalificaciones extends JFrame{
 			cerrar.setBounds(500,250,100,25);
 			add(cerrar);
 			cerrar.addActionListener(this);
-
-
-			//cajas de dialogo
 
 			textfield1=new JTextField();
 			textfield1.setBounds(620,10,100,20);
@@ -121,17 +116,13 @@ public class VentanaCalificaciones extends JFrame{
 			add(textfield3);
 			textfield3.setBackground( new Color(224,224,224) );
 
-			label3=new JLabel("Nota"); //Padding_Left, Padding_Top, Ancho, Alto
+			label3=new JLabel("Nota");
 			label3.setBounds(690,130,100,20);
 			add(label3);
-
-			//area de resultados
+			
 			textareaconsulta = new JTextArea();
 			textareaconsulta.setBackground(new Color(224, 224, 224));
 			textareaconsulta.setEditable(false);
-		//	textareaconsulta = new JTextArea();	 
-		//	textareaconsulta.setBackground(new Color(224,224,224));
-			
 			String[] columnas = {"DNI", "idAlumno","idModulo","Nota","Diploma","Observaciones"};
 		    table = new JTable();
 		    model = new DefaultTableModel(){
@@ -140,9 +131,8 @@ public class VentanaCalificaciones extends JFrame{
 		    	  }
 		    };
 		    table.setBackground(new Color(224,224,224));
-		    scrollArea1.setViewportView(table); // -- > así se ve que la tabla está bien insertada, pero no los datos recogidos en la BD
-		    										//		al poner (textareaconsulta) no sale la tabla, pero se ven todos los datos como anteriormente
-		    scrollArea1.setBounds(150,10,450,210);   // -- > posiciona dentro de la ventana
+		    scrollArea1.setViewportView(table); 
+		    scrollArea1.setBounds(150,10,450,210);
 		    model.setColumnIdentifiers(columnas);
 		    scrollArea1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		    scrollArea1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED ); 
@@ -167,9 +157,8 @@ public class VentanaCalificaciones extends JFrame{
 			
 		    add(scrollArea1, BorderLayout.NORTH);
 			
-			//Ventana de Observaciones
 
-			label3=new JLabel("Observaciones"); //Padding_Left, Padding_Top, Ancho, Alto
+			label3=new JLabel("Observaciones");
 			label3.setBounds(330,270,100,20);
 			add(label3);
 
@@ -177,7 +166,7 @@ public class VentanaCalificaciones extends JFrame{
 			textareaObservaciones.setBackground(new Color(224,224,224));
 
 			scrollArea2.setViewportView(textareaObservaciones);
-			scrollArea2.setBounds(150,290,450,100); //posiciona dentro de la ventana
+			scrollArea2.setBounds(150,290,450,100);
 			add(scrollArea2);
 
 
@@ -187,24 +176,26 @@ public class VentanaCalificaciones extends JFrame{
 			add(recogido);
 			if(Calificaciones.diploma) recogido.setSelected(true);
 
-			label3=new JLabel("Diploma"); //Padding_Left, Padding_Top, Ancho, Alto
+			label3=new JLabel("Diploma");
 			label3.setBounds(620,155,100,20);
 			add(label3);
-			label3=new JLabel("Entregado"); //Padding_Left, Padding_Top, Ancho, Alto
+			label3=new JLabel("Entregado");
 			label3.setBounds(635,175,100,20);
 			add(label3);
 		
-			avisos=new JLabel("Avisos:"); //Padding_Left, Padding_Top, Ancho, Alto
+			avisos=new JLabel("Avisos:");
 			avisos.setBounds(150,225,250,20);
 			add(avisos);
 		
 		} 
 
 
+		/**
+		 * Acciones de los botones al ser pulsados
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Object botonPulsado = e.getSource(); // podemos crearnos esta variable para preguntar luego por los botones
-
+			Object botonPulsado = e.getSource();
 			if (botonPulsado == consultar && (textfield1.getText().equals("")  && textfield2.getText().equals(""))){
 				clearCalificaciones();
 				ResultSet datos;
@@ -222,7 +213,6 @@ public class VentanaCalificaciones extends JFrame{
 				model.addRow( new Object[] {campo1,campo2,campo3,campo4,campo5,campo6});
 				textareaObservaciones.setText("");
 				recogido.setSelected(false);
-				//textareaconsulta.setText(Calificaciones.Consultar());	
 					}
 					
 				} catch (SQLException e1) {
@@ -249,12 +239,10 @@ public class VentanaCalificaciones extends JFrame{
 				model.addRow( new Object[] {campo1,campo2,campo3,campo4,campo5,campo6});
 				textareaObservaciones.setText("");
 				recogido.setSelected(false);
-				//textareaconsulta.setText(Calificaciones.Consultar());	
 					}
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
-				//textareaconsulta.setText(Calificaciones.Consultar1(textfield1.getText()));
 			}
 			}
 			else if (botonPulsado == consultar && (textfield1.getText().equals("") && !textfield2.getText().equals(""))){
@@ -274,12 +262,10 @@ public class VentanaCalificaciones extends JFrame{
 				model.addRow( new Object[] {campo1,campo2,campo3,campo4,campo5,campo6});
 				textareaObservaciones.setText("");
 				recogido.setSelected(false);
-				//textareaconsulta.setText(Calificaciones.Consultar());	
 					}
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
-				//textareaconsulta.setText(Calificaciones.Consultar1(textfield1.getText()));
 			}
 			}
 			else if (botonPulsado == consultar &&(!textfield1.getText().equals("") && !textfield2.getText().equals(""))){
@@ -298,7 +284,15 @@ public class VentanaCalificaciones extends JFrame{
 						campo6  = datos.getString("Observaciones");
 						model.addRow( new Object[] {campo1,campo2,campo3,campo4,campo5,campo6});
 						modificar.setEnabled(true);
-						if(campo5.equals("1")) Calificaciones.diploma = true;
+						if(campo5.equals("1")){
+     			    		
+								recogido.setSelected(true);
+ 			    	  }
+ 			    	  else {
+			    		  
+ 			    		 recogido.setSelected(false);
+
+ 			    	  }
 						Calificaciones.Obs = campo6;
 						Calificaciones.N = campo4;
 					}
