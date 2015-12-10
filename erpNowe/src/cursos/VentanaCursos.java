@@ -75,7 +75,7 @@ public class VentanaCursos extends JFrame {
 			
 		 class Panel extends JPanel implements ActionListener{
 
-			 JButton listar, insertar, limpiar, cerrar, consultar, editar;
+			 JButton listar, insertar, limpiar, cerrar, consultar,editar;
 			 JTextArea textareaconsulta,textarea5; 
 			 JTextField textfield1, textfield2,textfield3,textfield4,textfield6,textfield7,textfield8;
 			 JLabel label1,label2,label3,label4,label5,label6,label7,label8;
@@ -95,13 +95,12 @@ public class VentanaCursos extends JFrame {
 		    	 /**
 		    	  * Creacion de los botones
 		    	  */
-		         editar = new JButton("editar");
-		         editar.setBounds(610,230,100,50);
-		         add(editar);
-		    	 
-		    	 
-		    	 
-		    	 consultar=new JButton("Consultar");
+		    	 editar = new JButton("editar");
+					editar.setBounds(610,230,100,50);
+					add(editar);
+					editar.addActionListener(this);
+
+		         consultar=new JButton("Consultar");
 		    	 consultar.setBounds(125,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(consultar);
 		         consultar.addActionListener(this);
@@ -193,13 +192,13 @@ public class VentanaCursos extends JFrame {
 		         add(textfield1);
 		         textfield1.setBackground( new Color(224,224,224) );
 		         
-		         label2=new JLabel("CódigoCurso");
+		         label2=new JLabel("Código Curso");
 		         label2.setBounds(265,10,100,20);
 		         add(label2);
 		         
 		         textfield2=new JTextField();
 		         textfield2.setBounds(265,30,100,20);
-		         add(textfield2);
+		        add(textfield2);
 		         textfield2.setBackground( new Color(224,224,224) );
 		         
 		         label3=new JLabel("Nombre");
@@ -215,7 +214,7 @@ public class VentanaCursos extends JFrame {
 		         label4.setBounds(495,10,100,20);
 		         add(label4);
 		         
-		         textfield4=new JTextField();
+		        textfield4=new JTextField();
 		         textfield4.setBounds(495,30,100,20);
 		         add(textfield4);
 		         textfield4.setBackground( new Color(224,224,224) );
@@ -264,7 +263,6 @@ public class VentanaCursos extends JFrame {
 		     		e.printStackTrace();
 		     	}
 		     	comboidCurso.addActionListener(this);
-		        comboidCurso.setEnabled(false);
 		         add(comboidCurso);
 		         
 			 
@@ -277,7 +275,6 @@ public class VentanaCursos extends JFrame {
 		     		e.printStackTrace();
 		     	}
 		     	combocategoria.addActionListener(this);
-		     	combocategoria.setEnabled(false);
 		         add(combocategoria);
 			 
 			 
@@ -333,9 +330,10 @@ public class VentanaCursos extends JFrame {
 		             
 		             
 		             if (botonPulsado==consultar){
+		            	clearCursos();
 		            	
-		            	 ResultSet filas;
-		     			filas = Cursos.Consultarip(textfield1.getText());
+		            	ResultSet filas;
+		     			filas = Cursos.Consultarid(textfield1.getText(), this);
 		     	        
 		     			try {
 		     				if (filas.next()){
@@ -374,17 +372,14 @@ public class VentanaCursos extends JFrame {
 		            	 
 		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,intprivado));}
 		            	 
-		             
-		            
-		             
-		    		 
+
 		             //------------------------------------------------------------------
 		             if (botonPulsado==modificar) {
 		            	 String idcurso1 = textfield1.getText();
 		            	 int intidcurso = Integer.parseInt(idcurso1);
-		            	 String CodigoCurso2 = textfield2.getText();
+		            	 String CodigoCurso2 = (String)comboidCurso.getSelectedItem();
 		            	 String Nombre2 = textfield3.getText();
-		            	 String Categoria2 = textfield4.getText();
+		            	 String Categoria2 = (String)combocategoria.getSelectedItem();
 		            	 String Descripcion2 = textarea5.getText();
 		            	 String Precio2 = textfield6.getText();
 		            	 float flprecio1 = Float.parseFloat(Precio2);
@@ -395,12 +390,9 @@ public class VentanaCursos extends JFrame {
 		            	 
 		            	
 		            	 textareaconsulta.setText(Cursos.Modificar(intidcurso,CodigoCurso2,Nombre2,Categoria2,Descripcion2,flprecio1,intduracion1,intprivado1));
-		      
-		             
+		            	 
 		             }
-		 
-		             
-		             
+
 		             
 		             //----------------------------------------------------------------------------------------------------------
 		             if (botonPulsado==borrar) {
@@ -412,10 +404,8 @@ public class VentanaCursos extends JFrame {
 		        			 
 		        	//--------------------------------------------------------------------
 		             if (botonPulsado==limpiar) {
-		            	 textfield1.setText("");
-		            	 textfield2.setText("");
-		            	 textfield3.setText("");
-		            	 textfield4.setText("");
+		            	 textfield1.setText(""); 
+		            	 textfield3.setText("");		            
 		            	 textarea5.setText("");
 		            	 textfield6.setText("");
 		            	 textfield7.setText("");
@@ -423,16 +413,20 @@ public class VentanaCursos extends JFrame {
 		            	
 		            	 textareaconsulta.setText("");}
 		             
-		             if (botonPulsado==editar) {
-					modificar.setEnabled(true);
-					combocategoria.setEnabled(true);
-					comboidCurso.setEnabled(true);
-		           textfield2.setEnabled(false);
-		           label2.setEnabled(false);
-		           textfield4.setEnabled(false);
-		           label4.setEnabled(false);
+/*		             if (botonPulsado==cerrar) {
+		            	 VentanaPrincipal.conexion.cerrarConexion();
+		            	 textareaconsulta.setText("conexion cerrada");}*/
+		            	
+		 			if (botonPulsado==editar) {
+						modificar.setEnabled(true);
+						remove(textfield2);
+						remove(textfield4);
+						add(combocategoria);
+						add(comboidCurso);
+						combocategoria.setEnabled(true);
+						comboidCurso.setEnabled(true);
+
 					}
-		            	 
 		           }
 				/**
 				 * @author Jesús Hernando
