@@ -1,3 +1,14 @@
+/**
+ * Clase Calificaciones
+ * @author curso14/7803
+ * @version 1.0
+ * @since 26/11/2015
+ * <br>
+ * <p>
+ *
+ * </p>
+ */
+
 package alumnos;
 
 import java.sql.ResultSet;
@@ -5,17 +16,6 @@ import java.sql.SQLException;
 import ventanaPrincipal.VentanaPrincipal;
 
 public class Interesado {
-
-//	private static String usuario = "root";
-//	private static String pwd = "root";
-//	private static String bd = "nowedb" + "";
-//	static ConexionBaseDatos conexion = null;
-
-//	public static void main(String[] args) {
-//		VentanaPrincipal.conexion = new ConexionBaseDatos(bd, usuario, pwd);
-//		MarcoAlumnos ne = new MarcoAlumnos();
-//		ne.setVisible(true);
-//	}
 	
 	public static ResultSet consultaAlumno(String dni) {
 		ResultSet datos;
@@ -25,27 +25,27 @@ public class Interesado {
 
 	public static String consultaAlumnos() {
 		ResultSet datos;
-		String  campo1= null  , campo2 = null, campo3 = null, campo4 = null, campo5 = null, campo6 = null, campo7 = null,
-				campo8 = null, campo9 = null, campo10 = null, campo11 = null, campo12 = null;
+		String  idAlumno= null  , nombre = null, apellidos = null, dni = null, email = null, telefono = null, direccion = null,
+				codigoPostal = null, municipio = null, provincia = null, pais = null, fNacimiento = null;
 		String consulta = ("id \t Alumno \t Apellidos \t DNI \t Email \t Telefono \t Direccion \t CodigoPostal \t Municipio \t Provincia \t Pais \t FechaNacimiento\n \n ");
 		datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM alumnos;");
 		try {
 			while (datos.next()) {
-				campo1  = datos.getString("idAlumno");
-				campo2  = datos.getString("Nombre");
-				campo3  = datos.getString("Apellidos");
-				campo4  = datos.getString("DNI");
-				campo5  = datos.getString("Email");
-				campo6  = datos.getString("Telefono");
-				campo7  = datos.getString("Direccion");
-				campo8  = datos.getString("CodigoPostal");
-				campo9  = datos.getString("Municipio");
-				campo10 = datos.getString("Provincia");
-				campo11 = datos.getString("Pais");
-				campo12 = datos.getString("FechaNacimiento");
-				consulta += (campo1 + "\t" + campo2 + "\t" + campo3 + "\t" + campo4 + "\t" + campo5 + "\t" + campo6
-							+ "\t" + campo7 + "\t" + campo8 + "\t" + campo9 + "\t" + campo10 + "\t" + campo11 + "\t"
-						    + campo12 + "\n");
+				idAlumno 		= datos.getString("idAlumno");
+				nombre  		= datos.getString("Nombre");
+				apellidos  		= datos.getString("Apellidos");
+				dni  			= datos.getString("DNI");
+				email  			= datos.getString("Email");
+				telefono  		= datos.getString("Telefono");
+				direccion  		= datos.getString("Direccion");
+				codigoPostal  	= datos.getString("CodigoPostal");
+				municipio 		= datos.getString("Municipio");
+				provincia 		= datos.getString("Provincia");
+				pais 			= datos.getString("Pais");
+				fNacimiento 	= datos.getString("FechaNacimiento");
+				consulta = (idAlumno + "\t" + nombre + "\t" + apellidos + "\t" + dni + "\t" + email + "\t" + telefono
+							+ "\t" + direccion + "\t" + codigoPostal + "\t" + municipio + "\t" + provincia + "\t" + pais + "\t"
+						    + fNacimiento + "\n");
 			}
 			
 		} catch (SQLException e) {
