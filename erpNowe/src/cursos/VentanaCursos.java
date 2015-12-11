@@ -78,9 +78,9 @@ public class VentanaCursos extends JFrame {
 		 class Panel extends JPanel implements ActionListener{
 			 JCheckBox privadobox;
 			 JButton listar, insertar, limpiar, cerrar, consultar,editar;
-			 JTextArea textareaconsulta,textarea5; 
-			 JTextField textfield1, textfield2,textfield3,textfield4,textfield6,textfield7,textfield8;
-			 JLabel label1,label2,label3,label4,label5,label6,label7,label8;
+			 JTextArea textareaconsulta,textareades; 
+			 JTextField textfieldidCurso, textfieldcod,textfieldnombre,textfieldcat,textfieldprecio,textfielddur;
+			 JLabel labelidCurso,labelcod,labelnombre,labelcat,labeldes,labelprecio,labeldur,labelpriv;
 			 JScrollPane scrollArea;
 			 private JTable tblcursos = null;
 			 DefaultTableModel modelo = null;
@@ -98,13 +98,13 @@ public class VentanaCursos extends JFrame {
 		    	  * Creacion de los botones
 		    	  */
 		    	 editar = new JButton("editar");
-					editar.setBounds(610,230,100,50);
-					add(editar);
-					editar.setEnabled(false);
-					editar.addActionListener(this);
+		    	 editar.setBounds(610,230,100,50);
+		    	 add(editar);
+		    	 editar.setEnabled(false);
+		    	 editar.addActionListener(this);
 
 		         consultar=new JButton("Consultar");
-		    	 consultar.setBounds(125,10,120,50); //Padding_Left, Padding_Top, Ancho, Alto
+		    	 consultar.setBounds(125,10,120,50); 
 		         add(consultar);
 		         consultar.addActionListener(this);
 		         
@@ -173,72 +173,72 @@ public class VentanaCursos extends JFrame {
 		          */
  
 		         
-		         label1=new JLabel("idCurso");
-		         label1.setBounds(65,30,100,20);
-		         add(label1);
+		         labelidCurso=new JLabel("idCurso");
+		         labelidCurso.setBounds(65,30,100,20);
+		         add(labelidCurso);
 		         
-		         textfield1=new JTextField();
-		         textfield1.setBounds(10,10,100,20);
-		         add(textfield1);
-		         textfield1.setBackground( new Color(224,224,224) );
+		         textfieldidCurso=new JTextField();
+		         textfieldidCurso.setBounds(10,10,100,20);
+		         add(textfieldidCurso);
+		         textfieldidCurso.setBackground( new Color(224,224,224) );
 		         
-		         label2=new JLabel("Código Curso");
-		         label2.setBounds(265,10,100,20);
-		         add(label2);
+		         labelcod=new JLabel("Código Curso");
+		         labelcod.setBounds(265,10,100,20);
+		         add(labelcod);
 		         
-		         textfield2=new JTextField();
-		         textfield2.setBounds(265,30,100,20);
-		        add(textfield2);
-		         textfield2.setBackground( new Color(224,224,224) );
+		         textfieldcod=new JTextField();
+		         textfieldcod.setBounds(265,30,100,20);
+		        add(textfieldcod);
+		        textfieldcod.setBackground( new Color(224,224,224) );
 		         
-		         label3=new JLabel("Nombre");
-		         label3.setBounds(380,10,100,20);
-		         add(label3);
+		         labelnombre=new JLabel("Nombre");
+		         labelnombre.setBounds(380,10,100,20);
+		         add(labelnombre);
 		         
-		         textfield3=new JTextField();
-		         textfield3.setBounds(380,30,100,20);
-		         add(textfield3);
-		         textfield3.setBackground( new Color(224,224,224) );
+		         textfieldnombre=new JTextField();
+		         textfieldnombre.setBounds(380,30,100,20);
+		         add(textfieldnombre);
+		         textfieldnombre.setBackground( new Color(224,224,224) );
 		         
-		         label4=new JLabel("Categoria");
-		         label4.setBounds(495,10,100,20);
-		         add(label4);
+		         labelcat=new JLabel("Categoria");
+		         labelcat.setBounds(495,10,100,20);
+		         add(labelcat);
 		         
-		        textfield4=new JTextField();
-		         textfield4.setBounds(495,30,100,20);
-		         add(textfield4);
-		         textfield4.setBackground( new Color(224,224,224) );
+		        textfieldcat=new JTextField();
+		         textfieldcat.setBounds(495,30,100,20);
+		         add(textfieldcat);
+		         textfieldcat.setBackground( new Color(224,224,224) );
 		         
-		         label5=new JLabel("Descripcion");
-		         label5.setBounds(610,10,100,20);
-		         add(label5);
+		         labeldes=new JLabel("Descripcion");
+		         labeldes.setBounds(610,10,100,20);
+		         add(labeldes);
 		         
-		         textarea5=new JTextArea();
-		         textarea5.setBounds(610,30,260,120);
-		         textarea5.setBackground( new Color(224,224,224) );
-		         add(textarea5, BorderLayout.NORTH);
+		         textareades=new JTextArea();
+		         textareades.setBounds(610,30,260,120);
+		         textareades.setBackground( new Color(224,224,224) );
+		         add(textareades, BorderLayout.NORTH);
 		         
-		         label6=new JLabel("Precio");
-		         label6.setBounds(265,65,100,20);
-		         add(label6);
+		         labelprecio=new JLabel("Precio");
+		         labelprecio.setBounds(265,65,100,20);
+		         add(labelprecio);
 		         
-		         textfield6=new JTextField();
-		         textfield6.setBounds(265,85,100,20);
-		         add(textfield6);
-		         textfield6.setBackground( new Color(224,224,224) );
+		         textfieldprecio=new JTextField();
+		         textfieldprecio.setBounds(265,85,100,20);
+		         add(textfieldprecio);
+		         textfieldprecio.setBackground( new Color(224,224,224) );
 		         
-		         label7=new JLabel("Duración");
-		         label7.setBounds(380,65,100,20);
-		         add(label7);
+		         labeldur=new JLabel("Duración");
+		         labeldur.setBounds(380,65,100,20);
+		         add(labeldur);
 		         
-		         textfield7=new JTextField();
-		         textfield7.setBounds(380,85,100,20);
-		         add(textfield7);
-		         textfield7.setBackground( new Color(224,224,224) );
+		         textfielddur=new JTextField();
+		         textfielddur.setBounds(380,85,100,20);
+		         add(textfielddur);
+		         textfielddur.setBackground( new Color(224,224,224) );
 		         
-		         label8=new JLabel("Privado");
-		         label8.setBounds(495,65,100,20);
-		         add(label8);
+		         labelpriv=new JLabel("Privado");
+		         labelpriv.setBounds(495,65,100,20);
+		         add(labelpriv);
 		         
 		         privadobox = new JCheckBox();
 		         privadobox.setBounds(495,85,20,20);
@@ -324,17 +324,17 @@ public class VentanaCursos extends JFrame {
 		            	clearCursos();
 		            	editar.setEnabled(true);
 		            	ResultSet filas;
-		     			filas = Cursos.Consultarid(textfield1.getText(), this);
+		     			filas = Cursos.Consultarid(textfieldidCurso.getText(), this);
 		     	        
 		     			try {
 		     				if (filas.next()){
 		     					
-		     					textfield2.setText(filas.getString("CodigoCurso"));
-		     					textfield3.setText(filas.getString("Nombre"));
-		     					textfield4.setText(filas.getString("Categoria"));
-		     					textarea5.setText(filas.getString("Descripcion"));
-		     					textfield6.setText(filas.getString("Precio"));
-		     					textfield7.setText(filas.getString("Duracion"));
+		     					textfieldcod.setText(filas.getString("CodigoCurso"));
+		     					textfieldnombre.setText(filas.getString("Nombre"));
+		     					textfieldcat.setText(filas.getString("Categoria"));
+		     					textareades.setText(filas.getString("Descripcion"));
+		     					textfieldprecio.setText(filas.getString("Precio"));
+		     					textfielddur.setText(filas.getString("Duracion"));
 		     					privadobox.setText(filas.getString("Privado"));
 		     					if (Cursos.numpriv.equals("1")){
 		     						privadobox.setSelected(true);}
@@ -353,13 +353,13 @@ public class VentanaCursos extends JFrame {
 		             
 		             if (botonPulsado==insertar) {
 		            	 
-		            	 String CodigoCurso1 = textfield2.getText();
-		            	 String Nombre1 = textfield3.getText();
-		            	 String Categoria1 = textfield4.getText();
-		            	 String Descripcion1 = textarea5.getText();
-		            	 String Precio1 = textfield6.getText();
+		            	 String CodigoCurso1 = textfieldcod.getText();
+		            	 String Nombre1 = textfieldnombre.getText();
+		            	 String Categoria1 = textfieldcat.getText();
+		            	 String Descripcion1 = textareades.getText();
+		            	 String Precio1 = textfieldprecio.getText();
 		            	 float flprecio = Float.parseFloat(Precio1);
-		            	 String Duracion1 = textfield7.getText();
+		            	 String Duracion1 = textfielddur.getText();
 		            	 int intduracion = Integer.parseInt(Duracion1);	 
 		            	 boolean privado2 = privadobox.isSelected();
 		            	 int privado1 = (privado2) ? 1 : 0;
@@ -369,15 +369,15 @@ public class VentanaCursos extends JFrame {
 		             }
 		             
 		             if (botonPulsado==modificar) {
-		            	 String idcurso1 = textfield1.getText();
+		            	 String idcurso1 = textfieldidCurso.getText();
 		            	 int intidcurso = Integer.parseInt(idcurso1);
 		            	 String CodigoCurso2 = (String)comboidCurso.getSelectedItem();
-		            	 String Nombre2 = textfield3.getText();
+		            	 String Nombre2 = textfieldnombre.getText();
 		            	 String Categoria2 = (String)combocategoria.getSelectedItem();
-		            	 String Descripcion2 = textarea5.getText();
-		            	 String Precio2 = textfield6.getText();
+		            	 String Descripcion2 = textareades.getText();
+		            	 String Precio2 = textfieldprecio.getText();
 		            	 float flprecio1 = Float.parseFloat(Precio2);
-		            	 String Duracion2 = textfield7.getText();
+		            	 String Duracion2 = textfielddur.getText();
 		            	 int intduracion1 = Integer.parseInt(Duracion2);
 		            	 boolean privado2 = privadobox.isSelected();
 		            	 int privado1 = (privado2) ? 1 : 0; 
@@ -390,36 +390,37 @@ public class VentanaCursos extends JFrame {
 		          
 		             if (botonPulsado==borrar) {
 		            	 
-		        			 String idCurso2 = textfield1.getText();
+		        			 String idCurso2 = textfieldidCurso.getText();
 		        			 int intidCurso1 = Integer.parseInt(idCurso2);	 
 			            	 JOptionPane.showMessageDialog(null, "El registro se eliminó correctamente");		 
 		        			 Cursos.Eliminar( intidCurso1);
 		             }
 		        			 
 		        	
-		             if (botonPulsado==limpiar) {
-		            	 textfield1.setText(""); 
-		            	 textfield3.setText("");		            
-		            	 textarea5.setText("");
-		            	 textfield6.setText("");
-		            	 textfield7.setText("");
+		             if (botonPulsado==limpiar) {	
+		            	 editar.setEnabled(false);
+		            	 textfieldidCurso.setText(""); 
+		            	 textfieldnombre.setText("");		            
+		            	 textareades.setText("");
+		            	 textfieldprecio.setText("");
+		            	 textfielddur.setText("");
 		            	 remove(combocategoria);
 							remove(comboidCurso);
 		            	 combocategoria.setEnabled(false);
 							comboidCurso.setEnabled(false);
 							
-							add(textfield2);
-						add(textfield4);
-						textfield4.setText(""); 
-			            textfield2.setText("");
+							add(textfieldcod);
+						add(textfieldcat);
+						textfieldcat.setText(""); 
+						textfieldcod.setText("");
 		            	 privadobox.setSelected(false);
 		            	 clearCursos();
-		            	 textareaconsulta.setText("");}
+		            	 }
 		             
 		             if (botonPulsado==editar) {
 						modificar.setEnabled(true);
-						remove(textfield2);
-						remove(textfield4);
+						remove(textfieldcod);
+						remove(textfieldcat);
 						add(combocategoria);
 						add(comboidCurso);
 						combocategoria.setEnabled(true);

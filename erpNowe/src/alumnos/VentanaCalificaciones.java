@@ -272,7 +272,7 @@ public class VentanaCalificaciones extends JFrame{
 				
 				datos=Calificaciones.Consultar3(textfield1.getText(),(textfield2.getText()));
 				try {
-					while(datos.next()){//es el metodo que permite ir recorriendo los datos
+					while(datos.next()){
 						campo1  = datos.getString("DNI");
 						campo2  = datos.getString("idAlumno");
 						campo3  = datos.getString("idModulo");
