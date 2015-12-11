@@ -33,7 +33,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 public class ImpresionFactura {
 	
 	@SuppressWarnings("deprecation")
-	public static void main(String[] a3d) throws FileNotFoundException, DocumentException
+	public  void  imprimir(Factura facturaimp,FacturasDetalle[] facturaimpDetalle) throws FileNotFoundException, DocumentException
 	   {
 		   
 		  final String TEXTOFINAL = "Puede realizar el pago por transferencia bancaria a la cuenta ES86 2038 1927 88 6000173219,a nombre de NOWE CREATIVE FORMACIÓN Y DISEÑO, S,L. - C/ Melilla 5.";
@@ -42,50 +42,10 @@ public class ImpresionFactura {
 		  //número de factura que se saca de BD o se calcula 
 		  
 		  
-		   
+		  int lienasfactura = facturaimpDetalle.length;
 
-		  
 	      
-	      Factura facturaimp = new Factura(	1,//int idfactura, 
-	    		  							2015,//int anofactura, 
-	    		  							1,//int facturascont, 
-	    		  							100,//float totfactura, 
-	    		  							"10/11/2015",//String fechafact, 
-	    		  							"Casa S.A.",//String nomempresa,
-	    		  							"Antonio López 99",//String direccempresa, 
-	    		  							"A1234579",//String cifempresa, 
-	    		  							"Marcos Alonso",//String personacontacto, 
-	    		  							"98514414545",//String telffaxempresa, 
-	    		  							928,//float baseimponible,
-	    		  							"En Efectivo",//String formaPago
-	    		  							"juia@gajkl.es"//email
-	    		  							);
-	      
-	      
-	      int  lienasfactura =2;
-	      
-	      FacturasDetalle[] facturaimpDetalle = new FacturasDetalle[lienasfactura];
-	      
-	      FacturasDetalle   facturaimpDetalleVal =  new FacturasDetalle(1,//int idfacturasdetalle,
-																		"F3432C5",//String codproducto,
-																		"curso Java",//String descproducto,
-																		2,//int cantidad,
-																		8,//float preciounidad,
-																		99,//float importe,
-																		1//int fk_idfactura
-																		);
-	      
-	      FacturasDetalle   facturaimpDetalleVal2 =  new FacturasDetalle(2,//int idfacturasdetalle,
-					"F999C5",//String codproducto,
-					"curso joomla",//String descproducto,
-					1,//int cantidad,
-					333,//float preciounidad,
-					88,//float importe,
-					1//int fk_idfactura
-					);
-	      
-	      facturaimpDetalle[0]=facturaimpDetalleVal;
-	      facturaimpDetalle[1]=facturaimpDetalleVal2;
+
 	      
 	          
 	      String NUMERO =  facturaimp.getAnoFactura() + "/" + facturaimp.getFacturasCont();
@@ -98,6 +58,9 @@ public class ImpresionFactura {
 	      String FECHATXT = dia + "/" + (mes+1) + "/" + año  ;                   
 		  
 		  
+	      
+	      
+	      
 		  try  {
 		   
 	      FileOutputStream archivo = new FileOutputStream("C:\\temp\\facturatmp.pdf");
@@ -111,9 +74,11 @@ public class ImpresionFactura {
 	      documento.open();
 	     
 		  	      
+
+	      
 	      try
 	      {
-	          Image foto = Image.getInstance("C:\\temp\\cabfact.png");
+	          Image foto = Image.getInstance(getClass().getResource("/img/cabfact.png"));
 	          foto.scaleToFit(600, 600);
 	          foto.setAbsolutePosition(0, 700);
 	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
@@ -127,7 +92,9 @@ public class ImpresionFactura {
 	      
 	      try
 	      {
-	          Image foto = Image.getInstance("C:\\temp\\datosCli.png");
+	    	  
+	    	  Image foto = Image.getInstance(getClass().getResource("/img/datosCli.png"));
+	         
 	          foto.scaleToFit(160, 160);
 	          foto.setAbsolutePosition(120, 560);
 	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
@@ -141,7 +108,8 @@ public class ImpresionFactura {
 	      
 	      try
 	      {
-	          Image foto = Image.getInstance("C:\\temp\\piepagina.png");
+	    	  Image foto = Image.getInstance(getClass().getResource("/img/piepagina.png"));
+	       
 	          foto.scaleToFit(600, 600);
 	          foto.setAbsolutePosition(0, 0);
 	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
@@ -155,7 +123,9 @@ public class ImpresionFactura {
 	      
 	      try
 	      {
-	          Image foto = Image.getInstance("C:\\temp\\lineasfact.png");
+	    	  
+	    	  Image foto = Image.getInstance(getClass().getResource("/img/lineasfact.png"));
+	         
 	          foto.scaleToFit(520, 490);
 	          foto.setAbsolutePosition(32, 225);
 	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
@@ -170,7 +140,8 @@ public class ImpresionFactura {
 	      
 	      try
 	      {
-	          Image foto = Image.getInstance("C:\\temp\\totales.png");
+	    	  Image foto = Image.getInstance(getClass().getResource("/img/totales.png"));
+	        
 	          foto.scaleToFit(500, 500);
 	          foto.setAbsolutePosition(50, 120);
 	          foto.setAlignment(Chunk.ALIGN_LEFT);	 
