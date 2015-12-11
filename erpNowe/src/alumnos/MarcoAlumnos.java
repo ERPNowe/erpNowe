@@ -1,3 +1,14 @@
+/**
+ * Clase Calificaciones
+ * @author curso14/7803
+ * @version 1.0
+ * @since 26/11/2015
+ * <br>
+ * <p>
+ * 
+ * </p>
+ */
+
 package alumnos;
 
 import java.awt.Color;
@@ -16,11 +27,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-/**
- * @author Carlos ,Eduardo, Angel
- * @since 25/11/2015
- * @version 1.0
-*/
 
 @SuppressWarnings("serial")
 public class MarcoAlumnos extends JFrame {
