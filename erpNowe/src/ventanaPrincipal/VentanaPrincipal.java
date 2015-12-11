@@ -83,9 +83,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		menuAlumnos = new JMenu ("Alumnos");
 		barraMenu.add(menuAlumnos);		
 			    
-		matriculado = new JMenuItem("Matriculado");
-		matriculado.addActionListener(this);
-		menuAlumnos.add(matriculado);
+//		matriculado = new JMenuItem("Matriculado");
+//		matriculado.addActionListener(this);
+//		menuAlumnos.add(matriculado);
 		
 		interesado = new JMenuItem("Interesado");
 		interesado.addActionListener(this);
