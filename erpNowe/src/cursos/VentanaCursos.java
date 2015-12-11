@@ -372,11 +372,10 @@ public class VentanaCursos extends JFrame {
 		            	 String Precio1 = textfield6.getText();
 		            	 float flprecio = Float.parseFloat(Precio1);
 		            	 String Duracion1 = textfield7.getText();
-		            	 int intduracion = Integer.parseInt(Duracion1);
-		            	 String Privado1 = textfield8.getText();
-		            	 int intprivado = Integer.parseInt(Privado1);
-		            	 
-		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,intprivado));}
+		            	 int intduracion = Integer.parseInt(Duracion1);	 
+		            	 boolean privado2 = privadobox.isSelected();
+		            	 int privado1 = (privado2) ? 1 : 0;
+		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,privado1));}
 		            	 
 
 		             
@@ -391,11 +390,11 @@ public class VentanaCursos extends JFrame {
 		            	 float flprecio1 = Float.parseFloat(Precio2);
 		            	 String Duracion2 = textfield7.getText();
 		            	 int intduracion1 = Integer.parseInt(Duracion2);
-		            	 String Privado2 = textfield8.getText();
-		            	 int intprivado1 = Integer.parseInt(Privado2); 
+		            	 boolean privado2 = privadobox.isSelected();
+		            	 int privado1 = (privado2) ? 1 : 0; 
 		            	 
 		            	
-		            	 textareaconsulta.setText(Cursos.Modificar(intidcurso,CodigoCurso2,Nombre2,Categoria2,Descripcion2,flprecio1,intduracion1,intprivado1));
+		            	 textareaconsulta.setText(Cursos.Modificar(intidcurso,CodigoCurso2,Nombre2,Categoria2,Descripcion2,flprecio1,intduracion1,privado1));
 		            	 
 		             }
 
@@ -414,7 +413,7 @@ public class VentanaCursos extends JFrame {
 		            	 textarea5.setText("");
 		            	 textfield6.setText("");
 		            	 textfield7.setText("");
-		            	 textfield8.setText("");
+		            	 privadobox.setSelected(false);
 		            	
 		            	 textareaconsulta.setText("");}
 		             
