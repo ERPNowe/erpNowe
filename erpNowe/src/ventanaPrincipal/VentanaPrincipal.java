@@ -135,9 +135,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		consulta.addActionListener(this);
 		menuGestion.add(consulta);	
 		
-		modificacion = new JMenuItem("Modificación");
-		modificacion.addActionListener(this);
-		menuGestion.add(modificacion);	
+//		modificacion = new JMenuItem("Modificación");
+//		modificacion.addActionListener(this);
+//		menuGestion.add(modificacion);	
 		
 		// Menú Ayuda
 		menuAyuda = new JMenu ("Ayuda");
