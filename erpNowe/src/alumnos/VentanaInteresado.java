@@ -1,3 +1,14 @@
+/**
+ * Clase Calificaciones
+ * @author curso14/7803
+ * @version 1.0
+ * @since 26/11/2015
+ * <br>
+ * <p>
+ * 
+ * </p>
+ */
+
 package alumnos;
 import java.awt.Color;
 import java.awt.Image;
@@ -16,27 +27,20 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import ventanaPrincipal.VentanaPrincipal;
 
-
-/**
- * @author Carlos ,Eduardo, Angel
- * @since 25/11/2015
- * @version 1.0
-*/
-
 @SuppressWarnings("serial")
 public class VentanaInteresado extends JFrame {
 
-	// creo el constructor del panel donde pongo todas sus propiedades//
+	
 
 	public VentanaInteresado() {
-		// para ponerle el icono a la app
+		
 		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logoApp.gif"));
 		setIconImage(icon);
 		setSize(855, 410); // Ancho*Alto
 		setTitle("Gestión Alumnos Nowe");
 		setLocationRelativeTo(null);
 		
-		Panel p = new Panel(); // crear la clase panel como en marcoprincipal
+		Panel p = new Panel(); 
 		add(p);
 	
 		
@@ -61,9 +65,9 @@ public class VentanaInteresado extends JFrame {
 			setBackground(new Color(192, 192, 192));
 			setResizable(false);
 			scrollArea = new JScrollPane();
-			// creo los botones
+			
 			consultar = new JButton("consultar");
-			consultar.setBounds(10, 10, 100, 50); // Padding_Left, Padding_Top,Ancho, Alto
+			consultar.setBounds(10, 10, 100, 50); 
 			add(consultar);
 			consultar.addActionListener(this);
 
@@ -103,13 +107,12 @@ public class VentanaInteresado extends JFrame {
 			textareaconsulta = new JTextArea();
 			textareaconsulta.setBackground(new Color(224, 224, 224));
 			textareaconsulta.setEditable(false);
-			// pongo el textarea
+			
 			scrollArea.setViewportView(textareaconsulta);
-			scrollArea.setBounds(120, 10, 450, 230); // posiciona dentro de la
-														// ventana
+			scrollArea.setBounds(120, 10, 450, 230); 
 			add(scrollArea);
 
-			// pongo los texfileds y jlabel
+			
 
 			label1 = new JLabel("Nomkk");
 			label1.setBounds(635, 30, 100, 20);
@@ -241,7 +244,7 @@ public class VentanaInteresado extends JFrame {
 				while (datos.next())
 					 select.addItem(datos.getString("CodigoCurso"));
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 	
@@ -252,7 +255,7 @@ public class VentanaInteresado extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Object botonPulsado = e.getSource(); // podemos crearnos esta variable para preguntar luego por los botones
+			Object botonPulsado = e.getSource(); 
 			
 			
 	if (botonPulsado == consultar) {

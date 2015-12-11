@@ -1,7 +1,6 @@
-
 /**
- * 
- * @author Adolfo
+ * Clase Calificaciones
+ * @author curso14/7803
  * @version 1.0
  * @since 26/11/2015
  * <br>
@@ -9,10 +8,8 @@
  * Esta clase se corresponde con la ventana de la clase
  * Calificaciones
  * </p>
- *
  */
-
-
+ 
 package alumnos;
 
 import java.awt.BorderLayout;

@@ -32,7 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.io.File;
 import alumnos.VentanaCalificaciones;
-//import alumnos.VentanaInteresado;
+import alumnos.VentanaInteresado;
 import cursos.VentanaCursos;
 import cursos.VentanaGrupos;
 import cursos.ventanaModulo;
@@ -79,7 +79,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		barraMenu = new JMenuBar();
 		setJMenuBar(barraMenu);
 		
-		
+		// Menú Alumnos
 		menuAlumnos = new JMenu ("Alumnos");
 		barraMenu.add(menuAlumnos);		
 			    
@@ -91,7 +91,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		interesado.addActionListener(this);
 		menuAlumnos.add(interesado);
 		
-		
+		// Menú Cursos
 		menuCursos = new JMenu ("Cursos");
 		barraMenu.add(menuCursos);		
 			    
@@ -105,10 +105,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		
 		modulos = new JMenuItem("Módulos");
 		modulos.addActionListener(this);
-		menuCursos.add(modulos);
+		menuCursos.add(modulos);		
 		
-		
-		
+		// Menú Calificación
 		menuCalificacion = new JMenu ("Calificación");
 		barraMenu.add(menuCalificacion);
 		
@@ -116,7 +115,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		calificacion.addActionListener(this);
 		menuCalificacion.add(calificacion);	
 		
-		
+		// Menú Matricula
 		menuMatricula = new JMenu ("Matrícula");
 		barraMenu.add(menuMatricula);
 		
@@ -128,7 +127,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		formaPago.addActionListener(this);
 		menuMatricula.add(formaPago);
 		
-		
+		// Menú Gestión
 		menuGestion = new JMenu ("Gestión");
 		barraMenu.add(menuGestion);
 		
@@ -140,7 +139,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		modificacion.addActionListener(this);
 		menuGestion.add(modificacion);	
 		
-		
+		// Menú Ayuda
 		menuAyuda = new JMenu ("Ayuda");
 		barraMenu.add(menuAyuda);
 		
@@ -148,12 +147,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 		ayuda.addActionListener(this);
 		menuAyuda.add(ayuda);
 		
+		// Menú Salir
 		menuSalir = new JMenu ("Salir");
 		barraMenu.add(menuSalir);
 		
 		salir = new JMenuItem("Salir");
 		salir.addActionListener(this);
 		menuSalir.add(salir);}
+	
+	/**
+	 * Acciones definidas para los distintos items de los menús
+	 */
 	
 	public void actionPerformed(ActionEvent e) {
 		
@@ -168,11 +172,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 			 ventanaModulo ventana = new ventanaModulo();
 			 ventana.setVisible(true);   	
 		}
-		/*if (e.getSource()== interesado){
+		if (e.getSource()== interesado){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaInteresado ne = new VentanaInteresado();
 			ne.setVisible(true);
-		}*/
+		}
 		if (e.getSource()== grupos){
 			conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
 			VentanaGrupos ne = new VentanaGrupos();
