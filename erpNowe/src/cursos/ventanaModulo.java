@@ -167,9 +167,7 @@ public class ventanaModulo extends JFrame {
 	          * Creacion del panel scroll
 	          */
 	         
-			 /*scrollArea.setViewportView(textareaconsulta);
-			 scrollArea.setBounds(120, 10, 630, 230); 
-			 add(scrollArea);*/
+	
 		 }
 		 /**
 		  * Acciones de los botones al ser pulsados
@@ -179,14 +177,13 @@ public class ventanaModulo extends JFrame {
 	         	
 	             if (botonPulsado == consultar) {
 	            	 clearModulo();
-	            	 Modulos.consultar((String)combo1.getSelectedItem(),this);
-	            	 //textareaconsulta.setText(Modulos.consultar((String)combo1.getSelectedItem()));
+	            	 Modulos.consultar((String)combo1.getSelectedItem(),this);	            
 	            	 }
 	             
 	             if (botonPulsado == listado) {
 	            	 clearModulo();
 	            	 Modulos.listar(this);
-	            	 //textareaconsulta.setText(Modulos.listar());
+	            	 
 	            	 }
 	             
 	             if (botonPulsado == insertar) {
@@ -198,11 +195,13 @@ public class ventanaModulo extends JFrame {
 	             if (botonPulsado == borrar) {
 	            	 textareaconsulta.setText(Modulos.eliminar((String)combo1.getSelectedItem()));}
 	             
-	             if (botonPulsado == limpiar) {
-	            	 textfield1.setText("");
+	             if (botonPulsado == limpiar) {            
+	            	 clearModulo();
 	            	 textfield2.setText("");
-	            	 textareaconsulta.setText("");}
-	             
+	            	 textfield3.setText("");
+	            	 textareaconsulta.setText("");
+	            	 }
+	             	
 	             if (botonPulsado == cerrar) {
 	            	 VentanaPrincipal.conexion.cerrarConexion();
 	            	 textareaconsulta.setText("conexion cerrada");}

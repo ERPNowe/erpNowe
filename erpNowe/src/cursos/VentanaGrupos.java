@@ -297,6 +297,7 @@ void cargarCombo() throws SQLException {
 			 }
 
 		 if(botonPulsado == btBorrar){
+			 clearCursos();
 			 cidGrupo.setText("");
 			 cidAcademia.setText("");
 			 cidOficial.setText("");

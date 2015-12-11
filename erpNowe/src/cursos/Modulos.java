@@ -28,11 +28,10 @@ import cursos.ventanaModulo.Panel;
 		 private static String pwd = "root";
 		 private static String bd = "nowedb";
 		 
-		 //static ConexionBaseDatos conexion = null;
-		 //static Scanner scanner = new Scanner(System.in);
+		
 
 		public static void main(String[] args) {
-			 //conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			 
 			 ventanaModulo ventana = new ventanaModulo();
 			 ventana.setVisible(true);   
 		}
