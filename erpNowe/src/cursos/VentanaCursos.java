@@ -19,6 +19,7 @@ import java.sql.Statement;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import alumnos.Calificaciones;
 import utilidades.Fecha;
 import ventanaPrincipal.VentanaPrincipal;
 
@@ -46,14 +48,14 @@ public class VentanaCursos extends JFrame {
 	public static JButton modificar;
 	public static JButton borrar;
 		 public VentanaCursos() {
-		    	//para ponerle el icono a la app
+		    
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
 		    	setIconImage(icon);
-			    setSize(900,550); // Ancho*Alto
+			    setSize(900,550); 
 			    setTitle("Gestión Cursos Nowe");
 			    setLocationRelativeTo(null);
 				addWindowListener(new FrameListener());
-		        Panel p = new Panel(); //crear la clase panel como en marcoprincipal
+		        Panel p = new Panel();
 				add(p); 
 			    }
 
@@ -69,12 +71,12 @@ public class VentanaCursos extends JFrame {
 			  {
 			   System.out.println("Cerrando la conexión...");
 			   VentanaPrincipal.conexion.cerrarConexion();
-//			    System.exit(0);
+
 			  }
 		}
 			
 		 class Panel extends JPanel implements ActionListener{
-
+			 JCheckBox privadobox;
 			 JButton listar, insertar, limpiar, cerrar, consultar,editar;
 			 JTextArea textareaconsulta,textarea5; 
 			 JTextField textfield1, textfield2,textfield3,textfield4,textfield6,textfield7,textfield8;
@@ -127,13 +129,7 @@ public class VentanaCursos extends JFrame {
 		         limpiar.setBounds(610,170,100,25);
 		         add(limpiar);
 		         limpiar.addActionListener(this); 
-		         
-/*		         cerrar=new JButton("Cerrar");
-		         cerrar.setBounds(470,250,100,25);
-		         add(cerrar);
-		         cerrar.addActionListener(this);*/
-		         
-		         
+		             
 		         listar=new JButton("Listado");
 		         listar.setBounds(10,145,100,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(listar);
@@ -153,7 +149,7 @@ public class VentanaCursos extends JFrame {
 		         textareaconsulta.setFont(negrita);
 		         textareaconsulta.setBounds(265,450,600,50); //Padding_Left, Padding_Top, Ancho, Alto
 		         add(textareaconsulta);
-		         
+		         */
 		         /**
 		          * Creacion del panel scroll con tabla de cursos
 		          */ 
@@ -250,10 +246,16 @@ public class VentanaCursos extends JFrame {
 		         label8.setBounds(495,65,100,20);
 		         add(label8);
 		         
-		         textfield8=new JTextField();
+		         privadobox = new JCheckBox();
+		         privadobox.setBounds(495,85,20,20);
+		         privadobox.setContentAreaFilled(false);
+		         add(privadobox);
+					if(Cursos.priv) privadobox.setSelected(true);
+		         
+		        /* textfield8=new JTextField();
 		         textfield8.setBounds(495,85,100,20);
 		         add(textfield8);
-		         textfield8.setBackground( new Color(224,224,224) );
+		         textfield8.setBackground( new Color(224,224,224) );*/
 		     
 		         comboidCurso=new JComboBox();
 		     	comboidCurso.setBounds(265,30,100,20);
@@ -344,8 +346,12 @@ public class VentanaCursos extends JFrame {
 		     					textarea5.setText(filas.getString("Descripcion"));
 		     					textfield6.setText(filas.getString("Precio"));
 		     					textfield7.setText(filas.getString("Duracion"));
-		     					textfield8.setText(filas.getString("Privado"));
-		     					
+		     					privadobox.setText(filas.getString("Privado"));
+		     					if (Cursos.numpriv == "1"){
+		     						privadobox.setSelected(true);}
+		     					else{
+		     						privadobox.setSelected(false);
+		     					}
 		     					
 		     				} else {
 		     					JOptionPane.showMessageDialog(null, "no existe el registro");
@@ -355,7 +361,7 @@ public class VentanaCursos extends JFrame {
 		     			}
 		     		}
 	
-		             //----------------------------------
+		             
 		             if (botonPulsado==insertar) {
 		            	 
 		            	
@@ -373,7 +379,7 @@ public class VentanaCursos extends JFrame {
 		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,intprivado));}
 		            	 
 
-		             //------------------------------------------------------------------
+		             
 		             if (botonPulsado==modificar) {
 		            	 String idcurso1 = textfield1.getText();
 		            	 int intidcurso = Integer.parseInt(idcurso1);
@@ -393,8 +399,7 @@ public class VentanaCursos extends JFrame {
 		            	 
 		             }
 
-		             
-		             //----------------------------------------------------------------------------------------------------------
+		          
 		             if (botonPulsado==borrar) {
 		            	 
 		        			 String idCurso2 = textfield1.getText();
@@ -402,7 +407,7 @@ public class VentanaCursos extends JFrame {
 		        			 textareaconsulta.setText(Cursos.Eliminar( intidCurso1));
 		             }
 		        			 
-		        	//--------------------------------------------------------------------
+		        	
 		             if (botonPulsado==limpiar) {
 		            	 textfield1.setText(""); 
 		            	 textfield3.setText("");		            
@@ -413,11 +418,7 @@ public class VentanaCursos extends JFrame {
 		            	
 		            	 textareaconsulta.setText("");}
 		             
-/*		             if (botonPulsado==cerrar) {
-		            	 VentanaPrincipal.conexion.cerrarConexion();
-		            	 textareaconsulta.setText("conexion cerrada");}*/
-		            	
-		 			if (botonPulsado==editar) {
+		             if (botonPulsado==editar) {
 						modificar.setEnabled(true);
 						remove(textfield2);
 						remove(textfield4);

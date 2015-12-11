@@ -12,16 +12,11 @@ import ventanaPrincipal.VentanaPrincipal;
  * @version 1.0
 */
 	public class Cursos {
-		 private static String usuario = "root";
-		 private static String pwd = "root";
-		 private static String bd = "nowedb";
-		 //static basedatos.ConexionBaseDatos conexion = null;
-		 //static Scanner scanner = new Scanner(System.in);
-	
+		static boolean priv = false;
+		static String numpriv;
 	    
 		 public static void main(String[] args) {
-			 // En caso de no tener contraseña pwd = ""
-		    //conexion = new basedatos.ConexionBaseDatos(bd, usuario, pwd);
+			
 		    VentanaCursos ventana=new VentanaCursos();
 		    ventana.setVisible(true);
 		}
@@ -38,22 +33,20 @@ import ventanaPrincipal.VentanaPrincipal;
 		    String campo1, campo2, campo3,campo4,campo5,campo6,campo7,campo8, resultado ="";
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM cursos;");
 		    try {
-		      while(datos.next()){//es el metodo que permite ir recorriendo los datos
-		    	  campo1 = datos.getString("idCurso"); //podemos poner el nombre o un numero
+		      while(datos.next()){
+		    	  campo1 = datos.getString("idCurso"); 
 		    	  campo2 = datos.getString("CodigoCurso");
 		    	  campo3 = datos.getString("Nombre");
 		    	  campo4 = datos.getString("Categoria");
-//		    	  campo5 = datos.getString("Descripcion");
 		    	  campo6 = datos.getString("Precio");
 		    	  campo7 = datos.getString("Duracion");
 		    	  campo8 = (datos.getString("Privado").equals("1")) ? "Si":"No";
-//		    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3 + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
+	
 		    	  panel.getModelo().addRow( new Object[] {campo1, campo2, campo3, campo4, campo6, campo7, campo8} );                
 		      }
 		    }
 		    catch (SQLException e) { e.printStackTrace();
 		   }
-//		    return resultado; 
 	 }
 			
 		/**
@@ -65,16 +58,16 @@ import ventanaPrincipal.VentanaPrincipal;
 			ResultSet datos;
 		    datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM cursos where idCurso = '"+idCurso+"'");
 		    try {
-			      while(datos.next()){//es el metodo que permite ir recorriendo los datos
-			    	  campo1 = datos.getString("idCurso"); //podemos poner el nombre o un numero
+			      while(datos.next()){
+			    	  campo1 = datos.getString("idCurso"); 
 			    	  campo2 = datos.getString("CodigoCurso");
 			    	  campo3 = datos.getString("Nombre");
 			    	  campo4 = datos.getString("Categoria");
-//			    	  campo5 = datos.getString("Descripcion");
+
 			    	  campo6 = datos.getString("Precio");
 			    	  campo7 = datos.getString("Duracion");
 			    	  campo8 = (datos.getString("Privado").equals("1")) ? "Si":"No";
-//			    	  resultado = resultado +"\n"+ campo1 + "\t" + campo2 + "\t" + campo3 + "\t" + campo4 + "\t" + campo5 + "\t" + campo6 + "\t" + campo7 + "\t" + campo8 ; 
+			    	  numpriv = datos.getString("privado");
 			    	  panel.getModelo().addRow( new Object[] {campo1, campo2, campo3, campo4, campo6, campo7, campo8} );                
 			      }
 			    }
@@ -107,7 +100,6 @@ import ventanaPrincipal.VentanaPrincipal;
 				 else 
 					resultado ="No se pudo insertar";	 
 			} 
-		// todos los campos han de rellenarse 
 		 catch(Exception e){ e.printStackTrace(); }
 		return resultado;
 		
