@@ -78,10 +78,10 @@ public class VentanaCursos extends JFrame {
 		 class Panel extends JPanel implements ActionListener{
 			 JCheckBox privadobox;
 			 JButton listar, insertar, limpiar, cerrar, consultar,editar;
-			 JTextArea textareaconsulta,textareades; 
+			 JTextArea textareades; 
 			 JTextField textfieldidCurso, textfieldcod,textfieldnombre,textfieldcat,textfieldprecio,textfielddur;
 			 JLabel labelidCurso,labelcod,labelnombre,labelcat,labeldes,labelprecio,labeldur,labelpriv;
-			 JScrollPane scrollArea;
+			 JScrollPane scrollArea,scrolldescri;
 			 private JTable tblcursos = null;
 			 DefaultTableModel modelo = null;
 			 JComboBox comboidCurso,combocategoria;
@@ -93,7 +93,7 @@ public class VentanaCursos extends JFrame {
 		    	 setSize(710,320);
 		    	 setBackground(new Color(192,192,192));
 		    	 scrollArea = new JScrollPane();
-		    	 
+		    	 scrolldescri = new JScrollPane();
 		    	 /**
 		    	  * Creacion de los botones
 		    	  */
@@ -214,9 +214,11 @@ public class VentanaCursos extends JFrame {
 		         add(labeldes);
 		         
 		         textareades=new JTextArea();
-		         textareades.setBounds(610,30,260,120);
 		         textareades.setBackground( new Color(224,224,224) );
-		         add(textareades, BorderLayout.NORTH);
+		         scrolldescri.setViewportView(textareades);
+		         scrolldescri.setBounds(610,30,260,120);
+		         scrolldescri.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );	      
+		         add(scrolldescri);
 		         
 		         labelprecio=new JLabel("Precio");
 		         labelprecio.setBounds(265,65,100,20);
@@ -364,7 +366,7 @@ public class VentanaCursos extends JFrame {
 		            	 boolean privado2 = privadobox.isSelected();
 		            	 int privado1 = (privado2) ? 1 : 0;
 		            	 JOptionPane.showMessageDialog(null, "El registro se insertó correctamente");
-		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,privado1));
+		            	 Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,privado1);
 		            		
 		             }
 		             
