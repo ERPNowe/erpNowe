@@ -1,59 +1,59 @@
-/**
- * Clase Calificaciones
- * @author curso14/7803
- * @version 1.0
- * @since 26/11/2015
- * <br>
- * <p>
- *
- * </p>
- */
-
 package alumnos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import ventanaPrincipal.VentanaPrincipal;
-
+import alumnos.VentanaInteresado;
 public class Interesado {
+
+	/**
+	 * consulta de alumno 
+	 * @param dni
+	 * @return  el alumno que corresponde a ese DNI
+	 */
 	
 	public static ResultSet consultaAlumno(String dni) {
 		ResultSet datos;
-		datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM alumnos where DNI ='"+dni+"'");
+		datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM alumnos join alumnointeresado on alumnos.idAlumno = alumnointeresado.idAlumno where DNI ='"+dni+"'");
 		return datos;	
+	
 	}
+	
+	
+	/**
+	 * Consulta tabla alumnos
+	 * @return toda la tabla de alumnos 
+	 */
+	
 
-	public static String consultaAlumnos() {
+	public static ResultSet consultaAlumnos() {
 		ResultSet datos;
-		String  idAlumno= null  , nombre = null, apellidos = null, dni = null, email = null, telefono = null, direccion = null,
-				codigoPostal = null, municipio = null, provincia = null, pais = null, fNacimiento = null;
-		String consulta = ("id \t Alumno \t Apellidos \t DNI \t Email \t Telefono \t Direccion \t CodigoPostal \t Municipio \t Provincia \t Pais \t FechaNacimiento\n \n ");
 		datos = VentanaPrincipal.conexion.getQuery("SELECT * FROM alumnos;");
-		try {
-			while (datos.next()) {
-				idAlumno 		= datos.getString("idAlumno");
-				nombre  		= datos.getString("Nombre");
-				apellidos  		= datos.getString("Apellidos");
-				dni  			= datos.getString("DNI");
-				email  			= datos.getString("Email");
-				telefono  		= datos.getString("Telefono");
-				direccion  		= datos.getString("Direccion");
-				codigoPostal  	= datos.getString("CodigoPostal");
-				municipio 		= datos.getString("Municipio");
-				provincia 		= datos.getString("Provincia");
-				pais 			= datos.getString("Pais");
-				fNacimiento 	= datos.getString("FechaNacimiento");
-				consulta = (idAlumno + "\t" + nombre + "\t" + apellidos + "\t" + dni + "\t" + email + "\t" + telefono
-							+ "\t" + direccion + "\t" + codigoPostal + "\t" + municipio + "\t" + provincia + "\t" + pais + "\t"
-						    + fNacimiento + "\n");
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return consulta;
+		
+		return datos;
 	}
+	
+	
+	/**
+	 * Insertar alumno
+	 * @param nombre
+	 * @param apellidos
+	 * @param dNI
+	 * @param email
+	 * @param telefono
+	 * @param direccion
+	 * @param codigoPostal
+	 * @param municipio
+	 * @param provincia
+	 * @param pais
+	 * @param fechaNacimiento
+	 * @param areaDeInteres
+	 * @param observaciones
+	 * @return Si no existe se inserta en la tabla alumnos sus datos y el curso interesado
+	 * si existe solo añade a la tabla alumno interesado el curso por el que se interesa 
+	 */
 
+	
 	public static String insertarAlumno(
 			String nombre,
 			String apellidos,
@@ -66,70 +66,138 @@ public class Interesado {
 			String provincia,
 			String pais,
 			String fechaNacimiento,
-			String curso,
-			String observaciones)
-	{
-		    String resultado = null;
-		    boolean ok,ok2 = false;
-		    
+			String areaDeInteres,
+			String observaciones) {
+			String resultado = null;
+			boolean ok, ok2 = false;
+			
+		ResultSet datos;
+		
+		datos = VentanaPrincipal.conexion.getQuery("SELECT idAlumno FROM alumnos where DNI ='" + dNI + "'");
 		try {
-			
-			if(fechaNacimiento.equals("0")){
-				ok = VentanaPrincipal.conexion.setQuery(
-						"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais ) VALUES ('"
-								+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', '" + telefono + "', '"
-								+ direccion + "', '" + codigoPostal + "', '" + municipio + "', '" + provincia + "', '" + pais
-								+ "')");
-			
-			}else {
-				ok = VentanaPrincipal.conexion.setQuery(
-						"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais, FechaNacimiento) VALUES ('"
-								+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', '" + telefono + "', '"
-								+ direccion + "', '" + codigoPostal + "', '" + municipio + "', '" + provincia + "', '" + pais
-								+ "', " + fechaNacimiento + ")");
-				ResultSet datos;		
-				datos = VentanaPrincipal.conexion.getQuery("SELECT max(idAlumno) FROM alumnos");
-				String  idAlum =datos.getString("idAlumno");
+			if (!datos.next()) {// si no existe el alumno doble insercion
 				
-				ok2 = VentanaPrincipal.conexion.setQuery(
-				"INSERT INTO alumnoInteresado  (cursosInteresado,Observaciones,idAlumno ) VALUES ('"
-				+ curso + "','" + observaciones +"'," + idAlum +")");
+				// VentanaInteresado().CargarCursos(datos.getString("idAlumno"));
+
+				try {
+
+					if (fechaNacimiento.equals("0")) { // si no se ingresa ninguna fecha 
+						ok = VentanaPrincipal.conexion.setQuery(
+								"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais ) VALUES ('"
+										+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', '" + telefono
+										+ "', '" + direccion + "', '" + codigoPostal + "', '" + municipio + "', '"
+										+ provincia + "', '" + pais + "')");
+						ResultSet datos2;
+						datos2 = VentanaPrincipal.conexion.getQuery("SELECT max(idAlumno) AS b FROM alumnos");
+						datos2.next();
+						int idAlum = Integer.parseInt(datos2.getString("b"));
+
+						ok2 = VentanaPrincipal.conexion.setQuery(
+								"INSERT INTO alumnoInteresado ( cursosInteresado,idAlumno,Observaciones )VALUES('"
+										+ areaDeInteres + "','" + idAlum + "','" + observaciones + "')");
+
+					} else { //si se ingresa un fecha 
+
+						ok = VentanaPrincipal.conexion.setQuery(
+								"INSERT INTO alumnos  ( Nombre,Apellidos, DNI,Email,Telefono ,Direccion,CodigoPostal,Municipio ,Provincia ,Pais, FechaNacimiento) VALUES ('"
+										+ nombre + "','" + apellidos + "','" + dNI + "', '" + email + "', '" + telefono
+										+ "', '" + direccion + "', '" + codigoPostal + "', '" + municipio + "', '"
+										+ provincia + "', '" + pais + "', " + fechaNacimiento + ")");
+						ResultSet datos2;
+						datos2 = VentanaPrincipal.conexion.getQuery("SELECT max(idAlumno) AS b FROM alumnos");
+						datos2.next();
+						String idAlum = datos2.getString("b");
+
+						ok2 = VentanaPrincipal.conexion.setQuery(
+								"INSERT INTO alumnoInteresado ( cursosInteresado,idAlumno,Observaciones )VALUES('"
+										+ areaDeInteres + "','" + idAlum + "','" + observaciones + "')");
+					}
+					
+					if (ok && ok2) {// si son correctas las dos inserciones 
+					
+						
+						resultado = "Se inserto correctamente ";
+					} else {
+						resultado = "No se pudo insertar el nuevo alumno.";
+					}
+
+				} catch (Exception e) {
+					System.out.println("no existe el alumno");
+					e.printStackTrace();
+
+				}
+			} else { // Si existe el alumno una insercion
+
+				ResultSet datos2;
+
+				datos2 = VentanaPrincipal.conexion.getQuery("SELECT idAlumno FROM alumnos WHERE DNI = '" + dNI + "'");
+				datos2.next();
+				String idAlum = datos2.getString("idAlumno");
+				System.out.println(idAlum);
+
+				ok2 = VentanaPrincipal.conexion
+						.setQuery("INSERT INTO alumnoInteresado ( cursosInteresado,idAlumno,Observaciones )VALUES('"
+								+ areaDeInteres + "'," + idAlum + ",'" + observaciones + "')");
+				if (ok2)
+					resultado = "Se ha añadido un nuevo curso a este alumno  ";
+				else
+					resultado = "No se ha añadido un nuevo curso a este alumno";
 			}
-			
-			
-			if (ok && ok2)
-				resultado = "Se inserto correctamente";
-			else
-				resultado = "Error";		
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			System.out.println("existe el alumno");
 			e.printStackTrace();
 		}
+
 		return resultado;
 
 	}
+	
+	/**
+	 * Modificar alumno
+	 * @param Nombre
+	 * @param Apellidos
+	 * @param DNI
+	 * @param Email
+	 * @param Telefono
+	 * @param Direccion
+	 * @param CodigoPostal
+	 * @param Municipio
+	 * @param Provincia
+	 * @param Pais
+	 * @param FechaNacimiento
+	 * @param idAlumno
+	 * @return el aviso si ha sido modificado
+	 */
 
-	public static String modificarAlumno(String Nombre,
+	public static String modificarAlumno(
+			String Nombre,
 			String Apellidos,
 			String DNI,
 			String Email,
-			int Telefono,
+			String Telefono,
 			String Direccion,
-			int CodigoPostal,
+			String CodigoPostal,
 			String Municipio,
 			String Provincia,
 			String Pais, 
 			String FechaNacimiento,
 			String idAlumno) {
 		
-		String resultado="";
-		boolean ok = false;
+			String resultado="";
+			boolean ok = false;
 		
 		try {
+			
+			if(FechaNacimiento.equals("0")){
 			ok = VentanaPrincipal.conexion.setQuery(
 					
-					"UPDATE  alumnos SET  Nombre = '"+Nombre+"',Apellidos= '" + Apellidos + "' , DNI = '" + DNI + "',Email = '" + Email + "',Telefono= " + Telefono + " ,Direccion ='" + Direccion + "',CodigoPostal =" + CodigoPostal + ",Municipio='" + Municipio + "' ,Provincia='" + Provincia + "' ,Pais='" + Pais + "', FechaNacimiento='" + FechaNacimiento +"' where idAlumno = '"+idAlumno+"' " );
+					"UPDATE  alumnos SET  Nombre = '"+Nombre+"',Apellidos= '" + Apellidos + "' , DNI = '" + DNI + "',Email = '" + Email + "',Telefono= " + Telefono + " ,Direccion ='" + Direccion + "',CodigoPostal =" + CodigoPostal + ",Municipio='" + Municipio + "' ,Provincia='" + Provincia + "' ,Pais='" + Pais + "' where idAlumno = '"+idAlumno+"' " );
 			
-			
+			}else 
+				
+				ok = VentanaPrincipal.conexion.setQuery(
+						
+						"UPDATE  alumnos SET  Nombre = '"+Nombre+"',Apellidos= '" + Apellidos + "' , DNI = '" + DNI + "',Email = '" + Email + "',Telefono= " + Telefono + " ,Direccion ='" + Direccion + "',CodigoPostal =" + CodigoPostal + ",Municipio='" + Municipio + "' ,Provincia='" + Provincia + "' ,Pais='" + Pais + "', FechaNacimiento='" + FechaNacimiento +"' where idAlumno = '"+idAlumno+"' " );
 			if (ok)
 				resultado = "Se Modifico correctamente";
 
