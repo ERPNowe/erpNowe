@@ -1,3 +1,14 @@
+/**
+ * Clase Calificaciones
+ * @author curso14/7803
+ * @version 1.0
+ * @since 26/11/2015
+ * <br>
+ * <p>
+ * 
+ * </p>
+ */
+
 package alumnos;
 
 import java.sql.ResultSet;

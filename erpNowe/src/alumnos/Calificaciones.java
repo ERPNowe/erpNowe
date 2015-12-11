@@ -1,7 +1,7 @@
 
 /**
  * Clase Calificaciones
- * @author Adolfo y Guillermo
+ * @author curso14/7803
  * @version 1.0
  * @since 26/11/2015
  * <br>
