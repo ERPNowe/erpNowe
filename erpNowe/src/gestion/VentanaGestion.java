@@ -80,7 +80,7 @@ public class VentanaGestion extends JFrame{
 		 public VentanaGestion(char modoVentana) {
 		    	
 		    	Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo_nowe.gif"));
-		    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		   
+		    			   
 			    setIconImage(icon);
 			    setSize(885,725); 
 			    setTitle("Gestión de Facturas Nowe");
