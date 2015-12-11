@@ -19,6 +19,7 @@ import java.sql.SQLException;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -30,6 +31,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+
+import com.itextpdf.text.DocumentException;
 
 import gestion.Gestion;
 import gestion.VentanaGestion.Panel;
@@ -363,7 +366,7 @@ public class VentanaGestion extends JFrame{
 		            	 
 		            	 Gestion.consultar(fact);
 
-		            	 Gestion.consultarDetalle(fact.getIdfactura(),factDtll, this);
+		            	 //Gestion.consultarDetalle(fact.getIdfactura(),factDtll, this);
 		            	 
 		            	 rellenarDatos();
 		            	 
@@ -385,6 +388,19 @@ public class VentanaGestion extends JFrame{
 		            	 
 		             }
 		            	 
+		             
+		             if (botonPulsado==gmprimir) {
+		            	 
+			            ///////////////////////////////////	
+		                try {
+							imprime();
+						} catch (FileNotFoundException | DocumentException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		            	 
+		             }
+		             
 		           }
 		
 			 public DefaultTableModel getModelo() {
@@ -397,6 +413,62 @@ public class VentanaGestion extends JFrame{
 			 
 		         }
 		
+		public void imprime() throws FileNotFoundException, DocumentException{
+			 //VentanaGestion ventana = new VentanaGestion('G');
+			 //ventana.setVisible(true);
+
+			Factura facturaimp = new Factura(1, // int idfactura,
+					2015, // int anofactura,
+					1, // int facturascont,
+					100, // float totfactura,
+					"10/11/2015", // String fechafact,
+					"Casa S.A.", // String nomempresa,
+					"Antonio López 99", // String direccempresa,
+					"A1234579", // String cifempresa,
+					"Marcos Alonso", // String personacontacto,
+					"98514414545", // String telffaxempresa,
+					928, // float baseimponible,
+					"En Efectivo", // String formaPago
+					"juia@gajkl.es"// email
+			);
+
+			int lienasfactura = 2;
+
+			FacturasDetalle[] facturaimpDetalle = new FacturasDetalle[lienasfactura];
+
+			FacturasDetalle facturaimpDetalleVal = new FacturasDetalle(//1, // int
+																			// idfacturasdetalle,
+					"F3432C5", // String codproducto,
+					"curso Java", // String descproducto,
+					2, // int cantidad,
+					8, // float preciounidad,
+					99
+			);
+
+			FacturasDetalle facturaimpDetalleVal2 = new FacturasDetalle(//2, // int
+																			// idfacturasdetalle,
+					"F999C5", // String codproducto,
+					"curso joomla", // String descproducto,
+					1, // int cantidad,
+					333, // float preciounidad,
+					88
+			);
+
+			facturaimpDetalle[0] = facturaimpDetalleVal;
+			facturaimpDetalle[1] = facturaimpDetalleVal2;
+			
+			
+			
+		  
+			
+			
+						
+
+			ImpresionFactura imp = new ImpresionFactura();
+			imp.imprimir(facturaimp,facturaimpDetalle);
+		}
+		
+		///////////////////////
 		
 		 public  void prepararVentana(String modoVentanta){
 			 

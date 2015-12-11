@@ -36,24 +36,22 @@ public class PruebaVentana {
 
 		FacturasDetalle[] facturaimpDetalle = new FacturasDetalle[lienasfactura];
 
-		FacturasDetalle facturaimpDetalleVal = new FacturasDetalle(1, // int
+		FacturasDetalle facturaimpDetalleVal = new FacturasDetalle(//1, // int
 																		// idfacturasdetalle,
 				"F3432C5", // String codproducto,
 				"curso Java", // String descproducto,
 				2, // int cantidad,
 				8, // float preciounidad,
-				99, // float importe,
-				1// int fk_idfactura
+				99
 		);
 
-		FacturasDetalle facturaimpDetalleVal2 = new FacturasDetalle(2, // int
+		FacturasDetalle facturaimpDetalleVal2 = new FacturasDetalle(//2, // int
 																		// idfacturasdetalle,
 				"F999C5", // String codproducto,
 				"curso joomla", // String descproducto,
 				1, // int cantidad,
 				333, // float preciounidad,
-				88, // float importe,
-				1// int fk_idfactura
+				88
 		);
 
 		facturaimpDetalle[0] = facturaimpDetalleVal;
