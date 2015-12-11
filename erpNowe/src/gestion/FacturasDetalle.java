@@ -9,14 +9,13 @@ package gestion;
 public class FacturasDetalle {
 	
 	//private static idDetalleObj;
-	
-	private int idfacturasdetalle;
+	//private int idfacturasdetalle;
 	private String codproducto;
 	private String descproducto;
 	private int cantidad;
 	private float preciounidad =0.0F;
 	private float importe =0.0F;
-	private int fk_idfactura;
+	//private int fk_idfactura;
 	
 	/**
 	 * Metodo constructor FacturasDetalle
@@ -26,37 +25,37 @@ public class FacturasDetalle {
 	 */
 	
 	
-	public  FacturasDetalle(int idfacturasdetalle,
+	public  FacturasDetalle(
 								String codproducto,
 								String descproducto,
 								int cantidad,
 								float preciounidad,
-								float importe,
-								int fk_idfactura){
+								float importe
+								){
 		
-		this.idfacturasdetalle=idfacturasdetalle;
+		
 		this.codproducto=codproducto;
 		this.descproducto=descproducto;
 		this.cantidad=cantidad;
 		this.preciounidad=preciounidad;
 		this.importe= importe;
-		this.fk_idfactura=fk_idfactura;
+		
 		
 	}
 
 	/**
 	 * @return the idfacturasdetalle
 	 */
-	public int getIdfacturasdetalle() {
-		return idfacturasdetalle;
-	}
+	//public int getIdfacturasdetalle() {
+	//	return idfacturasdetalle;
+	//}
 
 	/**
 	 * @param idfacturasdetalle the idfacturasdetalle to set
 	 */
-	public void setIdfacturasdetalle(int idfacturasdetalle) {
-		this.idfacturasdetalle = idfacturasdetalle;
-	}
+	//public void setIdfacturasdetalle(int idfacturasdetalle) {
+	//	this.idfacturasdetalle = idfacturasdetalle;
+	//}
 
 	/**
 	 * @return the codproducto
@@ -131,16 +130,16 @@ public class FacturasDetalle {
 	/**
 	 * @return the fk_idfactura
 	 */
-	public int getFk_idfactura() {
-		return fk_idfactura;
-	}
+	//public int getFk_idfactura() {
+	//	return fk_idfactura;
+	//}
 
 	/**
 	 * @param fk_idfactura the fk_idfactura to set
 	 */
-	public void setFk_idfactura(int fk_idfactura) {
-		this.fk_idfactura = fk_idfactura;
-	}
+	//public void setFk_idfactura(int fk_idfactura) {
+	//	this.fk_idfactura = fk_idfactura;
+	//}
 	
 	
 	

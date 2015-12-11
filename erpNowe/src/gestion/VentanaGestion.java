@@ -71,7 +71,7 @@ public class VentanaGestion extends JFrame{
 			""//String emailempresa
 			);
 	
-	public FacturasDetalle factDtll;
+	public FacturasDetalle[] factDtll = new FacturasDetalle[10] ;
 	
 	
 		 public VentanaGestion(char modoVentana) {
@@ -140,20 +140,17 @@ public class VentanaGestion extends JFrame{
 		         gmprimir=new JButton("Imprimir");
 		         gmprimir.setBounds(10,190,120,50);
 		         add(gmprimir);
-		         //gmprimir.setEnabled(false);
 		         gmprimir.addActionListener(this);
 		         
 		         anadirLinea=new JButton("<html>Añadir<br>línea</html>");
 		         anadirLinea.setBounds(10,250,120,50);
 		         add(anadirLinea);
-		         //anadirLinea.setEnabled(false);
 		         anadirLinea.addActionListener(this);
 		         
 		         
 		         modificar=new JButton("<html>Modificar</html>");
 		         modificar.setBounds(10,310,120,50);
 		         add(modificar);
-		         //anadirLinea.setEnabled(false);
 		         modificar.addActionListener(this);
 		         		         
 		         limpiar=new JButton("Limpiar");
@@ -360,15 +357,15 @@ public class VentanaGestion extends JFrame{
 			 public void actionPerformed(ActionEvent e) {
 		         	Object botonPulsado = e.getSource();
 		         	
-		             if (botonPulsado==consulta) {		            	
-		            	 //gestion.Consultar(this);
+		             if (botonPulsado==consulta) {		
+	
 		            	 prepararVentana("C");
 		            	 
 		            	 Gestion.consultar(fact);
-		            	 Gestion.consultarDetalle(Integer.parseInt(numFactura.getText()), factDtll);
+
+		            	 Gestion.consultarDetalle(fact.getIdfactura(),factDtll, this);
 		            	 
 		            	 rellenarDatos();
-		            	 rellenarDatosDetalle();
 		            	 
 		            	 }
 		             
@@ -382,144 +379,11 @@ public class VentanaGestion extends JFrame{
 		             
 		             if (botonPulsado==cerrar) {
 		            	 
-		            	 //validar que si no esta abierta que no de pete
-		            	 
+		            	
 		            	 VentanaPrincipal.conexion.cerrarConexion();
 		            	 resultado.setText("conexion cerrada");
 		            	 
 		             }
-		             
-		             
-		             /*
-		             if (botonPulsado==Consultaid) {
-		            	 clearmatricula();
-		            	 Matricula.Consultarid((String)alumno.getSelectedItem(),this);}
-		             
-		             if (botonPulsado==ConsultaGR) {
-		            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
-		            	 String idGrupo = "";
-							try {
-								while(datos.next())
-								idGrupo = datos.getString("idGrupo");
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
-			            	 int grupo = Integer.parseInt(idGrupo);
-			            clearmatricula();
-		            	Matricula.ConsultarGR(idGrupo,this);}
-		             
-		             if (botonPulsado==Presupuesto) {
-		            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
-		            	 String idGrupo = "";
-						try {
-							while(datos.next())
-							idGrupo = datos.getString("idGrupo");
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-		            	 int grupo = Integer.parseInt(idGrupo);
-		            	 String promocion = (String) promociones.getSelectedItem(); 
-		            	 textarea2.setText(Matricula.crearPresupuesto(grupo,promocion));
-		            	 }
-		            	 
-		             if (botonPulsado==Insertar) {
-		            	 String idAlumno = (String) alumno.getSelectedItem();
-		            	 int Alumno = Integer.parseInt(idAlumno);
-		            	 String Matricul = idMatricula.getText();
-		            	
-		            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
-		            	 String idGrupo = "";
-						try {
-							while(datos.next())
-							idGrupo = datos.getString("idGrupo");
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-		            	 int grupo = Integer.parseInt(idGrupo);
-		            	 
-		            	
-		            	 ResultSet datos2 = VentanaPrincipal.conexion.getQuery("SELECT idFormaPago FROM formapago WHERE descripcion = '"+formaPago.getSelectedItem()+"'");
-		            	 String idFormaPago = "";
-							try {
-								while(datos2.next())
-									idFormaPago = datos2.getString("idFormaPago".toString());
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}
-							int formaPago = Integer.parseInt(idFormaPago);	 
-			            	 
-			            	 
-			            	int desemplead = 0; 
-			             if(desempleado.getSelectedItem() == "Desempleado") {
-			            	 desemplead = 1;
-			             }else{
-			            	 desemplead = 0;
-			             } 	 
-		            	 String promocion = (String) promociones.getSelectedItem(); 
-			             
-		            	 int pagad = 0; 
-			             if(pagado.getSelectedItem() == "Si") {
-			            	 pagad = 1;
-			             }else{
-			            	 pagad = 0;
-			             } 	 
-		            	 
-			             textarea2.setText(Matricula.insertar(Matricul,Alumno,grupo,formaPago,desemplead,promocion,pagad));
-		            	 }
-		             
-	            	 if (botonPulsado==Modificar) {
-		             String idAlumno = (String) alumno.getSelectedItem();
-	            	 int Alumno = Integer.parseInt(idAlumno);
-	            	 
-	            	 String Matricul = idMatricula.getText();
-	            	
-	            	 ResultSet datos = VentanaPrincipal.conexion.getQuery("SELECT idGrupo FROM grupos WHERE idOficial= '"+grupo.getSelectedItem()+"'");
-	            	 String idGrupo = "";
-					try {
-						while(datos.next())
-						idGrupo = datos.getString("idGrupo");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-	            	 int grupo = Integer.parseInt(idGrupo);
-	            	 
-	            	
-	            	 ResultSet datos2 = VentanaPrincipal.conexion.getQuery("SELECT idFormaPago FROM formapago WHERE descripcion = '"+formaPago.getSelectedItem()+"'");
-	            	 String idFormaPago = "";
-						try {
-							while(datos2.next())
-								idFormaPago = datos2.getString("idFormaPago".toString());
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-						int formaPago = Integer.parseInt(idFormaPago);	 
-		            	 
-		            	 
-		            	int desemplead = 0; 
-		             if(desempleado.getSelectedItem() == "Desempleado") {
-		            	 desemplead = 1;
-		             }else{
-		            	 desemplead = 0;
-		             } 	 
-	            	 String promocion = (String) promociones.getSelectedItem(); 
-		             
-	            	 int pagad = 0; 
-		             if(pagado.getSelectedItem() == "Si") {
-		            	 pagad = 1;
-		             }else{
-		            	 pagad = 0;
-		             } 	 
-	            	 
-		             textarea2.setText(Matricula.modificar(Matricul,Alumno,grupo,formaPago,desemplead,promocion,pagad));
-	            	 }
-		             
-		             if (botonPulsado==limpiar) {
-		            	 textarea2.setText("");}
-		             
-		             if (botonPulsado==cerrar) {
-		            	 VentanaPrincipal.conexion.cerrarConexion();
-		            	 textarea2.setText("conexion cerrada");}
-		            	 */
 		            	 
 		           }
 		
@@ -530,7 +394,6 @@ public class VentanaGestion extends JFrame{
 				 this.modelo = modelo;
 			 }
 			 
-
 			 
 		         }
 		
@@ -605,15 +468,7 @@ public class VentanaGestion extends JFrame{
 			 
 			 
 		 }
-		 
-		 public  void rellenarDatosDetalle(){
-			 
-
-			 
-			 //me falta limpiar la tabla que no sé
-			 
-			 
-		 }		 
+		 	 
 		 
 		 public  void limpiarVentana(){
 			 
@@ -626,7 +481,6 @@ public class VentanaGestion extends JFrame{
 			 telefonoEmpresa.setText("");
 			 emailEmpresa.setText("");
 			 
-			 //me falta limpiar la tabla que no sé
 			 
 			 
 		 }

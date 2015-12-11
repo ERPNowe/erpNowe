@@ -14,8 +14,8 @@ public class PruebaVentana {
 
 	public static void main(String[] args) throws FileNotFoundException, DocumentException {
 
-		// VentanaGestion ventana = new VentanaGestion('G');
-		// ventana.setVisible(true);
+		 //VentanaGestion ventana = new VentanaGestion('G');
+		 //ventana.setVisible(true);
 
 		Factura facturaimp = new Factura(1, // int idfactura,
 				2015, // int anofactura,
@@ -64,10 +64,7 @@ public class PruebaVentana {
 	  
 		
 		
-		
-		
-		
-		
+					
 
 		ImpresionFactura imp = new ImpresionFactura();
 		imp.imprimir(facturaimp,facturaimpDetalle);

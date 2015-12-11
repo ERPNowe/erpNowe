@@ -3,6 +3,7 @@ package gestion;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -44,10 +45,7 @@ public class ImpresionFactura {
 		  
 		  int lienasfactura = facturaimpDetalle.length;
 
-	      
-
-	      
-	          
+          
 	      String NUMERO =  facturaimp.getAnoFactura() + "/" + facturaimp.getFacturasCont();
 	     
 	      
@@ -464,7 +462,11 @@ public class ImpresionFactura {
 		  cb.endText();
 		  documento.close(); 
 		
-		  
+		  try {
+			    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + "C:\\temp\\facturatmp.pdf");
+			} catch (IOException e) {
+			                e.printStackTrace();
+			}
 		  
 	      
 	   }
