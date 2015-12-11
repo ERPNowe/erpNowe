@@ -35,7 +35,7 @@ import utilidades.Fecha;
 import ventanaPrincipal.VentanaPrincipal;
 
 /**
- * @author Alberto Jaén
+ * @author Jesús Hernando,Alberto Jaén, Guillermo Priego
  * @since 20/11/2015
  * @version 1.0
 */
@@ -60,7 +60,7 @@ public class VentanaCursos extends JFrame {
 			    }
 
 			/**
-			 * @author Jesús Hernando
+			 * @author Jesús Hernando,Alberto Jaén, Guillermo Priego
 			 * @since 28/11/2015
 			 * @version 1.0
 			*/
@@ -100,6 +100,7 @@ public class VentanaCursos extends JFrame {
 		    	 editar = new JButton("editar");
 					editar.setBounds(610,230,100,50);
 					add(editar);
+					editar.setEnabled(false);
 					editar.addActionListener(this);
 
 		         consultar=new JButton("Consultar");
@@ -131,26 +132,19 @@ public class VentanaCursos extends JFrame {
 		         limpiar.addActionListener(this); 
 		             
 		         listar=new JButton("Listado");
-		         listar.setBounds(10,145,100,50); //Padding_Left, Padding_Top, Ancho, Alto
+		         listar.setBounds(10,145,100,50); 
 		         add(listar);
 		         listar.addActionListener(this);
 		         
 		     	/**
-		     	 * @author Jesús Hernando
+		     	 * @author Jesús Hernando,Alberto Jaén, Guillermo Priego
 		     	 * @since 28/11/2015
 		     	 * @version 1.0
 		          * Creacion del TextArea con resultado
 		          */
 		       
-		         /*textareaconsulta = new JTextArea("Resultado");	 
-		         textareaconsulta.setBackground(new Color(192,192,192));
-		         textareaconsulta.setForeground(Color.blue);
-		         Font negrita = new Font("Verdana", Font.BOLD, 12);
-		         textareaconsulta.setFont(negrita);
-		         textareaconsulta.setBounds(265,450,600,50); //Padding_Left, Padding_Top, Ancho, Alto
-		         add(textareaconsulta);
-		         */
-		         /**
+		        
+		          /**
 		          * Creacion del panel scroll con tabla de cursos
 		          */ 
 		         String[] columnas = {"id", "Código", "Nombre", "Categoría", "Precio", "Duración", "Privado"};
@@ -158,7 +152,7 @@ public class VentanaCursos extends JFrame {
 		         modelo = new DefaultTableModel();
 		         tblcursos.setBackground(new Color(224,224,224));
 		         scrollArea.setViewportView(tblcursos);
-		         scrollArea.setBounds(10,205,585,230); //posiciona dentro de la ventana
+		         scrollArea.setBounds(10,205,585,230); 
 		         modelo.setColumnIdentifiers(columnas);
 		         scrollArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		         tblcursos.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -250,14 +244,9 @@ public class VentanaCursos extends JFrame {
 		         privadobox.setBounds(495,85,20,20);
 		         privadobox.setContentAreaFilled(false);
 		         add(privadobox);
-					if(Cursos.priv) privadobox.setSelected(true);
-		         
-		        /* textfield8=new JTextField();
-		         textfield8.setBounds(495,85,100,20);
-		         add(textfield8);
-		         textfield8.setBackground( new Color(224,224,224) );*/
+					if(Cursos.priv) privadobox.setSelected(true);		   
 		     
-		         comboidCurso=new JComboBox();
+		        comboidCurso=new JComboBox();
 		     	comboidCurso.setBounds(265,30,100,20);
 		     	try {
 		     		cargarCombo();
@@ -333,7 +322,7 @@ public class VentanaCursos extends JFrame {
 		             
 		             if (botonPulsado==consultar){
 		            	clearCursos();
-		            	
+		            	editar.setEnabled(true);
 		            	ResultSet filas;
 		     			filas = Cursos.Consultarid(textfield1.getText(), this);
 		     	        
@@ -347,7 +336,7 @@ public class VentanaCursos extends JFrame {
 		     					textfield6.setText(filas.getString("Precio"));
 		     					textfield7.setText(filas.getString("Duracion"));
 		     					privadobox.setText(filas.getString("Privado"));
-		     					if (Cursos.numpriv == "1"){
+		     					if (Cursos.numpriv.equals("1")){
 		     						privadobox.setSelected(true);}
 		     					else{
 		     						privadobox.setSelected(false);
@@ -364,7 +353,6 @@ public class VentanaCursos extends JFrame {
 		             
 		             if (botonPulsado==insertar) {
 		            	 
-		            	
 		            	 String CodigoCurso1 = textfield2.getText();
 		            	 String Nombre1 = textfield3.getText();
 		            	 String Categoria1 = textfield4.getText();
@@ -375,9 +363,10 @@ public class VentanaCursos extends JFrame {
 		            	 int intduracion = Integer.parseInt(Duracion1);	 
 		            	 boolean privado2 = privadobox.isSelected();
 		            	 int privado1 = (privado2) ? 1 : 0;
-		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,privado1));}
-		            	 
-
+		            	 JOptionPane.showMessageDialog(null, "El registro se insertó correctamente");
+		            	 textareaconsulta.setText(Cursos.Insertar(CodigoCurso1,Nombre1,Categoria1,Descripcion1,flprecio,intduracion,privado1));
+		            		
+		             }
 		             
 		             if (botonPulsado==modificar) {
 		            	 String idcurso1 = textfield1.getText();
@@ -393,8 +382,8 @@ public class VentanaCursos extends JFrame {
 		            	 boolean privado2 = privadobox.isSelected();
 		            	 int privado1 = (privado2) ? 1 : 0; 
 		            	 
-		            	
-		            	 textareaconsulta.setText(Cursos.Modificar(intidcurso,CodigoCurso2,Nombre2,Categoria2,Descripcion2,flprecio1,intduracion1,privado1));
+		            	 JOptionPane.showMessageDialog(null, "El registro se modificó correctamente");
+		            	 Cursos.Modificar(intidcurso,CodigoCurso2,Nombre2,Categoria2,Descripcion2,flprecio1,intduracion1,privado1);
 		            	 
 		             }
 
@@ -402,8 +391,9 @@ public class VentanaCursos extends JFrame {
 		             if (botonPulsado==borrar) {
 		            	 
 		        			 String idCurso2 = textfield1.getText();
-		        			 int intidCurso1 = Integer.parseInt(idCurso2);			 
-		        			 textareaconsulta.setText(Cursos.Eliminar( intidCurso1));
+		        			 int intidCurso1 = Integer.parseInt(idCurso2);	 
+			            	 JOptionPane.showMessageDialog(null, "El registro se eliminó correctamente");		 
+		        			 Cursos.Eliminar( intidCurso1);
 		             }
 		        			 
 		        	
@@ -413,8 +403,17 @@ public class VentanaCursos extends JFrame {
 		            	 textarea5.setText("");
 		            	 textfield6.setText("");
 		            	 textfield7.setText("");
+		            	 remove(combocategoria);
+							remove(comboidCurso);
+		            	 combocategoria.setEnabled(false);
+							comboidCurso.setEnabled(false);
+							
+							add(textfield2);
+						add(textfield4);
+						textfield4.setText(""); 
+			            textfield2.setText("");
 		            	 privadobox.setSelected(false);
-		            	
+		            	 clearCursos();
 		            	 textareaconsulta.setText("");}
 		             
 		             if (botonPulsado==editar) {

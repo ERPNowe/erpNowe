@@ -7,7 +7,7 @@ import ventanaPrincipal.VentanaPrincipal;
 
 
 /**
- * @author Alberto Jaén
+ * @author Jesús Hernando,Alberto Jaén, Guillermo Priego
  * @since 20/11/2015
  * @version 1.0
 */
@@ -20,8 +20,6 @@ import ventanaPrincipal.VentanaPrincipal;
 		    VentanaCursos ventana=new VentanaCursos();
 		    ventana.setVisible(true);
 		}
-	 
-	
 		
 		 /**
 			 * Metodo para listar la tabla
@@ -78,8 +76,6 @@ import ventanaPrincipal.VentanaPrincipal;
 		      return datos;
 		    }
 		 
-	 
-		
 
 		/**
 		 * Metodo para insertar un nuevo registro en la tabla
@@ -127,7 +123,6 @@ import ventanaPrincipal.VentanaPrincipal;
 		 return resultado;
 	}
 	
-
 	/**
 	 * Metodo para borrar registros de la base de datos
 	 * @param idCursos
@@ -148,11 +143,7 @@ import ventanaPrincipal.VentanaPrincipal;
 		 catch(Exception e){ e.printStackTrace(); }
 		 return resultado;
 		
-	}
-
-	
-	
-		
+	}	
 	}
 	
 		
